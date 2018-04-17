@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5570be0012185cab772aa448dee7e9e",
+    "content-hash": "0028357053541737a2b7f2080ca3cbb5",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -420,6 +420,48 @@
             ],
             "description": "Interfaces for working with data containers",
             "time": "2018-03-26T13:27:27+00:00"
+        },
+        {
+            "name": "dhii/data-identifiable-interface",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dhii/data-identifiable-interface.git",
+                "reference": "59e160c85c9d9246ce51ad611ce2bb686ba3dc2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dhii/data-identifiable-interface/zipball/59e160c85c9d9246ce51ad611ce2bb686ba3dc2d",
+                "reference": "59e160c85c9d9246ce51ad611ce2bb686ba3dc2d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 | ^7.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "<=0.3.2",
+                "dhii/php-cs-fixer-config": "dev-php-5.3",
+                "phpunit/phpunit": "^4.8",
+                "ptrofimov/xpmock": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dhii\\Data\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dhii Team",
+                    "email": "development@dhii.co"
+                }
+            ],
+            "description": "Interfaces for objects that are identifiable.",
+            "time": "2017-03-07T16:25:09+00:00"
         },
         {
             "name": "dhii/data-key-value-aware-abstract",
@@ -1248,17 +1290,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/module-interface.git",
-                "reference": "eb2fd0003aaed3daddd3b141bc27e56ea692228e"
+                "reference": "8aa782dc55d763109c0db54762ab997602730984"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/module-interface/zipball/eb2fd0003aaed3daddd3b141bc27e56ea692228e",
-                "reference": "eb2fd0003aaed3daddd3b141bc27e56ea692228e",
+                "url": "https://api.github.com/repos/Dhii/module-interface/zipball/8aa782dc55d763109c0db54762ab997602730984",
+                "reference": "8aa782dc55d763109c0db54762ab997602730984",
                 "shasum": ""
             },
             "require": {
                 "dhii/data-key-value-aware-interface": "^0.1",
                 "dhii/exception-interface": "^0.1 | ^0.2",
+                "dhii/factory-interface": "^0.1-alpha1",
                 "php": "^5.3 | ^7.0",
                 "psr/container": "^1.0"
             },
@@ -1291,7 +1334,7 @@
                 }
             ],
             "description": "Interfaces for modules",
-            "time": "2018-03-14T10:52:04+00:00"
+            "time": "2018-04-16T12:08:26+00:00"
         },
         {
             "name": "dhii/normalization-helper-base",
@@ -1466,6 +1509,48 @@
             ],
             "description": "Interoperability interface for objects that can be cast to string",
             "time": "2017-01-23T15:08:20+00:00"
+        },
+        {
+            "name": "dhii/time-interface",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dhii/time-interface.git",
+                "reference": "7ecdf1092a53b69cd9419c62287657485c66af4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dhii/time-interface/zipball/7ecdf1092a53b69cd9419c62287657485c66af4a",
+                "reference": "7ecdf1092a53b69cd9419c62287657485c66af4a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 | ^7.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "<=0.3.2",
+                "dhii/php-cs-fixer-config": "dev-php-5.3",
+                "phpunit/phpunit": "^4.8",
+                "ptrofimov/xpmock": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dhii\\Time\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Dhii Team",
+                    "email": "development@dhii.co"
+                }
+            ],
+            "description": "Interfaces for dealing with time.",
+            "time": "2017-10-11T13:29:39+00:00"
         },
         {
             "name": "dhii/type-interface",
@@ -1778,6 +1863,57 @@
             "time": "2017-02-14T16:28:37+00:00"
         },
         {
+            "name": "rebelcode/booking-interface",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RebelCode/booking-interface.git",
+                "reference": "7f72d7eb29c3d29ed6a12f95db57972e7750092c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RebelCode/booking-interface/zipball/7f72d7eb29c3d29ed6a12f95db57972e7750092c",
+                "reference": "7f72d7eb29c3d29ed6a12f95db57972e7750092c",
+                "shasum": ""
+            },
+            "require": {
+                "dhii/data-identifiable-interface": "^0.1",
+                "dhii/factory-interface": "0.1-alpha2",
+                "dhii/time-interface": "dev-develop",
+                "php": "^5.3 | ^7.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "<=0.3.2",
+                "dhii/php-cs-fixer-config": "dev-php-5.3",
+                "dhii/stringable-interface": "^0.1",
+                "phpunit/phpunit": "^4.8",
+                "ptrofimov/xpmock": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "develop": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RebelCode\\Bookings\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "RebelCode",
+                    "email": "dev@rebelcode.com"
+                }
+            ],
+            "description": "Interfaces for bookings.",
+            "time": "2018-03-21T14:36:35+00:00"
+        },
+        {
             "name": "rebelcode/expression-wp-query-builder",
             "version": "dev-task/initial-classes",
             "source": {
@@ -1828,12 +1964,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/modular.git",
-                "reference": "795595dd087bfa7d2400ea055a1cae007a936546"
+                "reference": "d019ed4c21442ba77582cd9708691edea66883de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/modular/zipball/795595dd087bfa7d2400ea055a1cae007a936546",
-                "reference": "795595dd087bfa7d2400ea055a1cae007a936546",
+                "url": "https://api.github.com/repos/RebelCode/modular/zipball/d019ed4c21442ba77582cd9708691edea66883de",
+                "reference": "d019ed4c21442ba77582cd9708691edea66883de",
                 "shasum": ""
             },
             "require": {
@@ -1880,7 +2016,7 @@
                 }
             ],
             "description": "A module system.",
-            "time": "2018-04-11T14:49:46+00:00"
+            "time": "2018-04-16T14:42:13+00:00"
         },
         {
             "name": "rebelcode/module-iterator-abstract",
@@ -2106,6 +2242,59 @@
                 "coverage"
             ],
             "time": "2016-04-19T16:54:33+00:00"
+        },
+        {
+            "name": "dhii/output-renderer-interface",
+            "version": "v0.3-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dhii/output-renderer-interface.git",
+                "reference": "2786204ad6b9b79e5f4485aedd700016c13f6668"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dhii/output-renderer-interface/zipball/2786204ad6b9b79e5f4485aedd700016c13f6668",
+                "reference": "2786204ad6b9b79e5f4485aedd700016c13f6668",
+                "shasum": ""
+            },
+            "require": {
+                "dhii/exception-interface": "^0.1 | ^0.2",
+                "dhii/stringable-interface": "^0.1",
+                "php": "^5.3 | ^7.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "dhii/php-cs-fixer-config": "dev-php-5.3",
+                "phpunit/phpunit": "4.*",
+                "psr/container": "^1.0",
+                "ptrofimov/xpmock": "^1.1"
+            },
+            "suggest": {
+                "dhii/container-helper-base": "Useful for reading data from different context types uniformly"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dhii\\Output\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dhii Team",
+                    "email": "development@dhii.co"
+                }
+            ],
+            "description": "An interface for objects that can perform rendering.",
+            "time": "2018-04-05T09:39:21+00:00"
         },
         {
             "name": "dhii/php-cs-fixer-config",
@@ -3940,6 +4129,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "rebelcode/modular": 20,
+        "rebelcode/booking-interface": 20,
         "rebelcode/wp-cqrs-resource-models": 20
     },
     "prefer-stable": true,
