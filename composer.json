@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "RebelCode\\Storage\\Resource\\Module\\": "src"
+            "RebelCode\\Storage\\Resource\\WordPress\\": "src"
         }
     },
     "scripts": {
