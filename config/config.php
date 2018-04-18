@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * This file contains the configuration for the WP Bookings CQRS Module.
+ *
+ * @since [*next-version*]
+ */
+
 /*
  * The prefix for all table names.
  *
