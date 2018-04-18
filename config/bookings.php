@@ -28,7 +28,7 @@ $cfg['cqrs']['bookings']['field_column_map']['admin_notes'] = 'admin_notes';
  * @since [*next-version*]
  */
 $cfg['cqrs']['bookings']['select']['tables']           = ['${cqrs/bookings/table}'];
-$cfg['cqrs']['bookings']['select']['field_column_map'] = '${cqrs/bookings/field_column_map}';
+$cfg['cqrs']['bookings']['select']['field_column_map'] = $cfg['cqrs']['bookings']['field_column_map'];
 $cfg['cqrs']['bookings']['select']['joins']            = [];
 
 /*
@@ -37,7 +37,7 @@ $cfg['cqrs']['bookings']['select']['joins']            = [];
  * @since [*next-version*]
  */
 $cfg['cqrs']['bookings']['insert']['table']            = '${cqrs/bookings/table}';
-$cfg['cqrs']['bookings']['insert']['field_column_map'] = '${cqrs/bookings/field_column_map}';
+$cfg['cqrs']['bookings']['insert']['field_column_map'] = $cfg['cqrs']['bookings']['field_column_map'];
 $cfg['cqrs']['bookings']['insert']['insert_bulk']      = true;
 
 /*
@@ -46,7 +46,7 @@ $cfg['cqrs']['bookings']['insert']['insert_bulk']      = true;
  * @since [*next-version*]
  */
 $cfg['cqrs']['bookings']['update']['table']            = '${cqrs/bookings/table}';
-$cfg['cqrs']['bookings']['update']['field_column_map'] = '${cqrs/bookings/field_column_map}';
+$cfg['cqrs']['bookings']['update']['field_column_map'] = $cfg['cqrs']['bookings']['field_column_map'];
 
 /*
  * Configuration for the bookings DELETE resource model.
@@ -54,6 +54,6 @@ $cfg['cqrs']['bookings']['update']['field_column_map'] = '${cqrs/bookings/field_
  * @since [*next-version*]
  */
 $cfg['cqrs']['bookings']['delete']['table']            = '${cqrs/bookings/table}';
-$cfg['cqrs']['bookings']['delete']['field_column_map'] = '${cqrs/bookings/field_column_map}';
+$cfg['cqrs']['bookings']['delete']['field_column_map'] = $cfg['cqrs']['bookings']['field_column_map'];
 
 return $cfg;

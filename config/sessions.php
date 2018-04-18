@@ -18,8 +18,8 @@ $cfg['cqrs']['sessions']['field_column_map']['rule_id']    = 'booking_id';
  *
  * @since [*next-version*]
  */
-$cfg['cqrs']['sessions']['select']['table']            = '${cqrs/sessions/table}';
-$cfg['cqrs']['sessions']['select']['field_column_map'] = '${cqrs/sessions/field_column_map}';
+$cfg['cqrs']['sessions']['select']['tables']           = ['${cqrs/sessions/table}'];
+$cfg['cqrs']['sessions']['select']['field_column_map'] = $cfg['cqrs']['sessions']['field_column_map'];
 $cfg['cqrs']['sessions']['select']['joins']            = [];
 
 /*
@@ -28,7 +28,7 @@ $cfg['cqrs']['sessions']['select']['joins']            = [];
  * @since [*next-version*]
  */
 $cfg['cqrs']['sessions']['insert']['table']            = '${cqrs/sessions/table}';
-$cfg['cqrs']['sessions']['insert']['field_column_map'] = '${cqrs/sessions/field_column_map}';
+$cfg['cqrs']['sessions']['insert']['field_column_map'] = $cfg['cqrs']['sessions']['field_column_map'];
 $cfg['cqrs']['sessions']['insert']['insert_bulk']      = false;
 
 /*
@@ -37,7 +37,7 @@ $cfg['cqrs']['sessions']['insert']['insert_bulk']      = false;
  * @since [*next-version*]
  */
 $cfg['cqrs']['sessions']['update']['table']            = '${cqrs/sessions/table}';
-$cfg['cqrs']['sessions']['update']['field_column_map'] = '${cqrs/sessions/field_column_map}';
+$cfg['cqrs']['sessions']['update']['field_column_map'] = $cfg['cqrs']['sessions']['field_column_map'];
 
 /*
  * Configuration for the sessions DELETE resource model.
@@ -45,6 +45,6 @@ $cfg['cqrs']['sessions']['update']['field_column_map'] = '${cqrs/sessions/field_
  * @since [*next-version*]
  */
 $cfg['cqrs']['sessions']['delete']['table']            = '${cqrs/sessions/table}';
-$cfg['cqrs']['sessions']['delete']['field_column_map'] = '${cqrs/sessions/field_column_map}';
+$cfg['cqrs']['sessions']['delete']['field_column_map'] = $cfg['cqrs']['sessions']['field_column_map'];
 
 return $cfg;

@@ -19,7 +19,7 @@ $cfg['cqrs']['booking_status_logs']['field_column_map']['booking_id'] = 'booking
  * @since [*next-version*]
  */
 $cfg['cqrs']['booking_status_logs']['select']['tables']           = ['${cqrs/booking_status_logs/table}'];
-$cfg['cqrs']['booking_status_logs']['select']['field_column_map'] = '${cqrs/booking_status_logs/field_column_map}';
+$cfg['cqrs']['booking_status_logs']['select']['field_column_map'] = $cfg['cqrs']['booking_status_logs']['field_column_map'];
 $cfg['cqrs']['booking_status_logs']['select']['joins']            = [];
 
 /*
@@ -28,7 +28,7 @@ $cfg['cqrs']['booking_status_logs']['select']['joins']            = [];
  * @since [*next-version*]
  */
 $cfg['cqrs']['booking_status_logs']['insert']['table']            = '${cqrs/booking_status_logs/table}';
-$cfg['cqrs']['booking_status_logs']['insert']['field_column_map'] = '${cqrs/booking_status_logs/field_column_map}';
+$cfg['cqrs']['booking_status_logs']['insert']['field_column_map'] = $cfg['cqrs']['booking_status_logs']['field_column_map'];
 $cfg['cqrs']['booking_status_logs']['insert']['insert_bulk']      = false;
 
 /*
@@ -37,7 +37,7 @@ $cfg['cqrs']['booking_status_logs']['insert']['insert_bulk']      = false;
  * @since [*next-version*]
  */
 $cfg['cqrs']['booking_status_logs']['update']['table']            = '${cqrs/booking_status_logs/table}';
-$cfg['cqrs']['booking_status_logs']['update']['field_column_map'] = '${cqrs/booking_status_logs/field_column_map}';
+$cfg['cqrs']['booking_status_logs']['update']['field_column_map'] = $cfg['cqrs']['booking_status_logs']['field_column_map'];
 
 /*
  * Configuration for the booking status logs DELETE resource model.
@@ -45,6 +45,6 @@ $cfg['cqrs']['booking_status_logs']['update']['field_column_map'] = '${cqrs/book
  * @since [*next-version*]
  */
 $cfg['cqrs']['booking_status_logs']['delete']['table']            = '${cqrs/booking_status_logs/table}';
-$cfg['cqrs']['booking_status_logs']['delete']['field_column_map'] = '${cqrs/booking_status_logs/field_column_map}';
+$cfg['cqrs']['booking_status_logs']['delete']['field_column_map'] = $cfg['cqrs']['booking_status_logs']['field_column_map'];
 
 return $cfg;
