@@ -165,6 +165,7 @@
       <path value="$PROJECT_DIR$/vendor/rebelcode/sql-expression-renderer" />
       <path value="$PROJECT_DIR$/vendor/dhii/expression-renderer-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/expression-renderer-abstract" />
+      <path value="$PROJECT_DIR$/vendor/johnpbloch/wordpress-core" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />

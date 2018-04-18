@@ -1005,7 +1005,7 @@
         },
         {
             "name": "dhii/factory-base",
-            "version": "dev-develop",
+            "version": "v0.1-alpha3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/factory-base.git",
@@ -2132,6 +2132,46 @@
             "time": "2018-04-06T12:06:41+00:00"
         },
         {
+            "name": "johnpbloch/wordpress-core",
+            "version": "4.9.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnpbloch/wordpress-core.git",
+                "reference": "442ae6c761e3b20cc6a000bee8fefcde5dbab3fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/442ae6c761e3b20cc6a000bee8fefcde5dbab3fa",
+                "reference": "442ae6c761e3b20cc6a000bee8fefcde5dbab3fa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "provide": {
+                "wordpress/core-implementation": "4.9.5"
+            },
+            "type": "wordpress-core",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "WordPress Community",
+                    "homepage": "http://wordpress.org/about/"
+                }
+            ],
+            "description": "WordPress is web software you can use to create a beautiful website or blog.",
+            "homepage": "http://wordpress.org/",
+            "keywords": [
+                "blog",
+                "cms",
+                "wordpress"
+            ],
+            "time": "2018-04-03T22:47:40+00:00"
+        },
+        {
             "name": "psr/container",
             "version": "1.0.0",
             "source": {
@@ -2282,12 +2322,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/modular.git",
-                "reference": "d019ed4c21442ba77582cd9708691edea66883de"
+                "reference": "19d062be6698d3a1fe2375f84ca9e67faf18ab43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/modular/zipball/d019ed4c21442ba77582cd9708691edea66883de",
-                "reference": "d019ed4c21442ba77582cd9708691edea66883de",
+                "url": "https://api.github.com/repos/RebelCode/modular/zipball/19d062be6698d3a1fe2375f84ca9e67faf18ab43",
+                "reference": "19d062be6698d3a1fe2375f84ca9e67faf18ab43",
                 "shasum": ""
             },
             "require": {
@@ -2334,7 +2374,7 @@
                 }
             ],
             "description": "A module system.",
-            "time": "2018-04-16T14:42:13+00:00"
+            "time": "2018-04-18T15:42:50+00:00"
         },
         {
             "name": "rebelcode/module-iterator-abstract",
@@ -2390,17 +2430,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/rcmod-wp-cqrs.git",
-                "reference": "45e7fe91da3d5f012853b54835deb66f319475db"
+                "reference": "7213f5569f4f35226178c063bc9ebc5128689bf5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/rcmod-wp-cqrs/zipball/45e7fe91da3d5f012853b54835deb66f319475db",
-                "reference": "45e7fe91da3d5f012853b54835deb66f319475db",
+                "url": "https://api.github.com/repos/RebelCode/rcmod-wp-cqrs/zipball/7213f5569f4f35226178c063bc9ebc5128689bf5",
+                "reference": "7213f5569f4f35226178c063bc9ebc5128689bf5",
                 "shasum": ""
             },
             "require": {
                 "dhii/data-object-abstract": "^0.1-alpha1",
-                "dhii/factory-base": "dev-develop",
+                "dhii/factory-base": "^0.1-alpha1",
+                "johnpbloch/wordpress-core": "^4.0",
                 "php": "^5.4 | ^7.0",
                 "rebelcode/modular": "dev-task/initial-classes",
                 "rebelcode/sql-expression-renderer": "dev-task/initial-classes",
@@ -2431,7 +2472,7 @@
                 }
             ],
             "description": "A RebelCode module that provides services for WordPress CQRS resource models.",
-            "time": "2018-04-17T09:05:35+00:00"
+            "time": "2018-04-18T15:09:04+00:00"
         },
         {
             "name": "rebelcode/sql-cqrs-resource-models-abstract",
@@ -2956,23 +2997,23 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.7.5",
+            "version": "1.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401"
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/dfd6be44111a7c41c2e884a336cc4f461b3b2401",
-                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/33a7e3c4fda54e912ff6338c48823bd5c0f0b712",
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712",
                 "shasum": ""
             },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
                 "php": "^5.3|^7.0",
                 "phpdocumentor/reflection-docblock": "^2.0|^3.0.2|^4.0",
-                "sebastian/comparator": "^1.1|^2.0",
+                "sebastian/comparator": "^1.1|^2.0|^3.0",
                 "sebastian/recursion-context": "^1.0|^2.0|^3.0"
             },
             "require-dev": {
@@ -3015,7 +3056,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-02-19T10:16:54+00:00"
+            "time": "2018-04-18T13:57:24+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

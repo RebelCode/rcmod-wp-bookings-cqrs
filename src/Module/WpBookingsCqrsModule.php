@@ -29,24 +29,18 @@ class WpBookingsCqrsModule extends AbstractBaseModule
      *
      * @param string|Stringable         $key                  The module key.
      * @param string[]|Stringable[]     $dependencies         The module dependencies.
-     * @param ContainerFactoryInterface $containerFactory     The container factory.
      * @param ContainerFactoryInterface $configFactory        The config factory.
+     * @param ContainerFactoryInterface $containerFactory     The container factory.
      * @param ContainerFactoryInterface $compContainerFactory The composite container factory.
      */
     public function __construct(
         $key,
         $dependencies = [],
-        ContainerFactoryInterface $containerFactory,
         ContainerFactoryInterface $configFactory,
+        ContainerFactoryInterface $containerFactory,
         ContainerFactoryInterface $compContainerFactory
     ) {
-        $this->_initModule(
-            $key,
-            $dependencies,
-            $containerFactory,
-            $configFactory,
-            $compContainerFactory
-        );
+        $this->_initModule($key, $dependencies, $configFactory, $containerFactory, $compContainerFactory);
     }
 
     /**
