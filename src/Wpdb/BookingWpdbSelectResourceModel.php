@@ -157,8 +157,8 @@ class BookingWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourceModel
         );
         $statusLog = $this->_containerGet($statusLogs, 0);
 
-        return $this->_containerHas($statusLog, 'name')
-            ? $this->_containerGet($statusLog, 'name')
-            : BookingStatusInterface::STATUS_NONE;
+        return $this->_containerHas($statusLog, 'status')
+            ? $this->_containerGet($statusLog, 'status')
+            : null;
     }
 }
