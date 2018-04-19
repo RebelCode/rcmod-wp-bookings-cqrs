@@ -27,7 +27,7 @@ $cfg['cqrs']['bookings']['field_column_map']['admin_notes'] = 'admin_notes';
  *
  * @since [*next-version*]
  */
-$cfg['cqrs']['bookings']['select']['tables']           = ['${cqrs/bookings/table}'];
+$cfg['cqrs']['bookings']['select']['tables']           = ['bookings' => '${cqrs/bookings/table}'];
 $cfg['cqrs']['bookings']['select']['field_column_map'] = $cfg['cqrs']['bookings']['field_column_map'];
 $cfg['cqrs']['bookings']['select']['joins']            = [];
 

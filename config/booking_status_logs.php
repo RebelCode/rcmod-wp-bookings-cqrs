@@ -23,7 +23,7 @@ $cfg['cqrs']['booking_status_logs']['field_column_map']['booking_id'] = 'booking
  *
  * @since [*next-version*]
  */
-$cfg['cqrs']['booking_status_logs']['select']['tables']           = ['${cqrs/booking_status_logs/table}'];
+$cfg['cqrs']['booking_status_logs']['select']['tables']           = ['booking_status_logs' => '${cqrs/booking_status_logs/table}'];
 $cfg['cqrs']['booking_status_logs']['select']['field_column_map'] = $cfg['cqrs']['booking_status_logs']['field_column_map'];
 $cfg['cqrs']['booking_status_logs']['select']['joins']            = [];
 

@@ -23,7 +23,7 @@ $cfg['cqrs']['sessions']['field_column_map']['rule_id']    = 'booking_id';
  *
  * @since [*next-version*]
  */
-$cfg['cqrs']['sessions']['select']['tables']           = ['${cqrs/sessions/table}'];
+$cfg['cqrs']['sessions']['select']['tables']           = ['sessions' => '${cqrs/sessions/table}'];
 $cfg['cqrs']['sessions']['select']['field_column_map'] = $cfg['cqrs']['sessions']['field_column_map'];
 $cfg['cqrs']['sessions']['select']['joins']            = [];
 
