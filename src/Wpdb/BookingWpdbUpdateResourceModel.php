@@ -105,9 +105,9 @@ class BookingWpdbUpdateResourceModel extends AbstractBaseWpdbUpdateResourceModel
                 $_userId    = $this->_invokeUserIdCallback($_booking);
                 $this->statusLogInsertRm->insert([
                     [
-                        'booking_id'     => $_bookingId,
-                        'booking_status' => $status,
-                        'user_id'        => $_userId,
+                        'status'     => $status,
+                        'booking_id' => $_bookingId,
+                        'user_id'    => $_userId,
                     ],
                 ]);
             }

@@ -96,9 +96,9 @@ class BookingWpdbInsertResourceModel extends AbstractBaseWpdbInsertResourceModel
 
             $this->statusLogRm->insert([
                 [
-                    'booking_id'     => $_bookingId,
-                    'booking_status' => $_bookingStatus,
-                    'user_id'        => $userId,
+                    'status'     => $_bookingStatus,
+                    'booking_id' => $_bookingId,
+                    'user_id'    => $userId,
                 ],
             ]);
         }
