@@ -13,7 +13,7 @@ $cfg['cqrs']['booking_status_logs']['table'] = '${cqrs/table_prefix}booking_stat
  * @since [*next-version*]
  */
 $cfg['cqrs']['booking_status_logs']['field_column_map']['id']         = 'id';
-$cfg['cqrs']['booking_status_logs']['field_column_map']['name']       = 'name';
+$cfg['cqrs']['booking_status_logs']['field_column_map']['status']     = 'status';
 $cfg['cqrs']['booking_status_logs']['field_column_map']['date']       = 'date';
 $cfg['cqrs']['booking_status_logs']['field_column_map']['user_id']    = 'user_id';
 $cfg['cqrs']['booking_status_logs']['field_column_map']['booking_id'] = 'booking_id';
