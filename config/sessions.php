@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * The name of the table where sessions are stored.
+ *
+ * @since [*next-version*]
+ */
 $cfg['cqrs']['sessions']['table'] = '${cqrs/table_prefix}sessions';
 
 /*

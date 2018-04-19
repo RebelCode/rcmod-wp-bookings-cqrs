@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * The name of the table where booking status logs are stored.
+ *
+ * @since [*next-version*]
+ */
 $cfg['cqrs']['booking_status_logs']['table'] = '${cqrs/table_prefix}booking_status_logs';
 
 /*
