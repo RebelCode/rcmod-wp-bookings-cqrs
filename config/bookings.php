@@ -38,7 +38,7 @@ $cfg['cqrs']['bookings']['select']['joins']            = [];
  */
 $cfg['cqrs']['bookings']['insert']['table']            = '${cqrs/bookings/table}';
 $cfg['cqrs']['bookings']['insert']['field_column_map'] = $cfg['cqrs']['bookings']['field_column_map'];
-$cfg['cqrs']['bookings']['insert']['insert_bulk']      = true;
+$cfg['cqrs']['bookings']['insert']['insert_bulk']      = false;
 
 /*
  * Configuration for the bookings UPDATE resource model.
