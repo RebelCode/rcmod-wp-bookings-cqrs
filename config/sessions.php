@@ -12,11 +12,12 @@ $cfg['cqrs']['sessions']['table'] = '${cqrs/table_prefix}sessions';
  *
  * @since [*next-version*]
  */
-$cfg['cqrs']['sessions']['field_column_map']['id']         = 'id';
-$cfg['cqrs']['sessions']['field_column_map']['start']      = 'name';
-$cfg['cqrs']['sessions']['field_column_map']['end']        = 'date';
-$cfg['cqrs']['sessions']['field_column_map']['service_id'] = 'user_id';
-$cfg['cqrs']['sessions']['field_column_map']['rule_id']    = 'booking_id';
+$cfg['cqrs']['sessions']['field_column_map']['id']          = 'id';
+$cfg['cqrs']['sessions']['field_column_map']['start']       = 'start';
+$cfg['cqrs']['sessions']['field_column_map']['end']         = 'end';
+$cfg['cqrs']['sessions']['field_column_map']['service_id']  = 'service_id';
+$cfg['cqrs']['sessions']['field_column_map']['resource_id'] = 'resource_id';
+$cfg['cqrs']['sessions']['field_column_map']['rule_id']     = 'rule_id';
 
 /*
  * Configuration for the sessions SELECT resource model.
