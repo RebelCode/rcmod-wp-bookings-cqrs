@@ -246,6 +246,18 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     );
                 },
 
+                /*==============================================================*
+                 *   Misc. Services                                             |
+                 *==============================================================*/
+
+                /*
+                 * The callback that returns the ID of the user to use for new booking status logs.
+                 *
+                 * @since [*next-version*]
+                 */
+                'booking_status_logs_user_id_callback' => function (ContainerInterface $c) {
+                    return 'get_current_user_id';
+                }
             ]
         );
     }
