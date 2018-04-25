@@ -5,8 +5,11 @@ namespace RebelCode\Storage\Resource\WordPress\Wpdb;
 use ArrayAccess;
 use Dhii\Data\Container\ContainerHasCapableTrait;
 use Dhii\Data\Container\ContainerSetCapableTrait;
+use Dhii\Iterator\CountIterableCapableTrait;
+use Dhii\Iterator\ResolveIteratorCapableTrait;
 use Dhii\Storage\Resource\InsertCapableInterface;
 use Dhii\Storage\Resource\SelectCapableInterface;
+use Dhii\Util\Normalization\NormalizeIntCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
 use Psr\Container\ContainerInterface;
 use stdClass;
@@ -20,15 +23,20 @@ use wpdb;
  */
 class BookingWpdbInsertResourceModel extends AbstractBaseWpdbInsertResourceModel
 {
-    /*
-     * @since [*next-version*]
-     */
+    /*@since [*next-version*] */
     use ContainerSetCapableTrait;
 
-    /*
-     * @since [*next-version*]
-     */
+    /* @since [*next-version*] */
     use ContainerHasCapableTrait;
+
+    /* @since [*next-version*] */
+    use CountIterableCapableTrait;
+
+    /* @since [*next-version*] */
+    use ResolveIteratorCapableTrait;
+
+    /* @since [*next-version*] */
+    use NormalizeIntCapableTrait;
 
     /**
      * The INSERT resource model for status logs.
@@ -83,25 +91,31 @@ class BookingWpdbInsertResourceModel extends AbstractBaseWpdbInsertResourceModel
      */
     public function insert($records)
     {
-        parent::insert($records);
-
-        if ($this->statusLogRm === null) {
-            return;
-        }
+        $bookings = [];
 
         foreach ($records as $_booking) {
-            $_bookingId = $this->_containerGet($_booking, 'id');
-            $_bookingStatus = $this->_containerGet($_booking, 'status');
-            $userId = $this->_invokeUserIdCallback($_booking);
+            if ($this->statusLogRm !== null) {
+                $_bookingId     = $this->_containerGet($_booking, 'id');
+                $_bookingStatus = $this->_containerGet($_booking, 'status');
+                $userId         = $this->_invokeUserIdCallback($_booking);
 
-            $this->statusLogRm->insert([
-                [
-                    'status'     => $_bookingStatus,
-                    'booking_id' => $_bookingId,
-                    'user_id'    => $userId,
-                ],
-            ]);
+                $logIds = $this->statusLogRm->insert([
+                    [
+                        'status'     => $_bookingStatus,
+                        'booking_id' => $_bookingId,
+                        'user_id'    => $userId,
+                    ],
+                ]);
+
+                if ($this->_countIterable($logIds) > 0) {
+                    $this->_containerSet($_booking, 'status_log_id', $logIds[0]);
+                }
+            }
+
+            $bookings[] = $_booking;
         }
+
+        parent::insert($bookings);
     }
 
     /**
