@@ -21,14 +21,14 @@ $cfg['cqrs']['table_prefix'] = '${wpdb_prefix}';
 include __DIR__ . '/bookings.php';
 
 /*
- * The configuration for bookings resource models.
+ * The configuration for transition logs resource models.
  *
  * @since [*next-version*]
  */
-include __DIR__ . '/booking_status_logs.php';
+include __DIR__ . '/transition_log.php';
 
 /*
- * The configuration for bookings resource models.
+ * The configuration for sessions resource models.
  *
  * @since [*next-version*]
  */

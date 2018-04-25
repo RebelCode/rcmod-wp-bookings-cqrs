@@ -7,9 +7,7 @@ use Dhii\Exception\InternalException;
 use Dhii\Util\String\StringableInterface as Stringable;
 use Psr\Container\ContainerInterface;
 use RebelCode\Modular\Module\AbstractBaseModule;
-use RebelCode\Storage\Resource\WordPress\Wpdb\BookingWpdbInsertResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingWpdbSelectResourceModel;
-use RebelCode\Storage\Resource\WordPress\Wpdb\BookingWpdbUpdateResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbDeleteResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbInsertResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbSelectResourceModel;
@@ -71,9 +69,6 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/bookings/select/tables'),
                         $c->get('cqrs/bookings/select/field_column_map'),
-                        $c->get('booking_status_logs_select_rm'),
-                        $c->get('sql_order_factory'),
-                        $c->get('sql_expression_builder'),
                         $c->get('cqrs/bookings/select/joins')
                     );
                 },
@@ -84,13 +79,11 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'bookings_insert_rm'            => function (ContainerInterface $c) {
-                    return new BookingWpdbInsertResourceModel(
+                    return new WpdbInsertResourceModel(
                         $c->get('wpdb'),
                         $c->get('cqrs/bookings/insert/table'),
                         $c->get('cqrs/bookings/insert/field_column_map'),
-                        $c->get('cqrs/bookings/insert/insert_bulk'),
-                        $c->get('booking_status_logs_insert_rm'),
-                        $c->get('booking_status_logs_user_id_callback')
+                        $c->get('cqrs/bookings/insert/insert_bulk')
                     );
                 },
 
@@ -100,13 +93,11 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'bookings_update_rm'            => function (ContainerInterface $c) {
-                    return new BookingWpdbUpdateResourceModel(
+                    return new WpdbUpdateResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/bookings/insert/table'),
-                        $c->get('cqrs/bookings/insert/field_column_map'),
-                        $c->get('booking_status_logs_insert_rm'),
-                        $c->get('booking_status_logs_user_id_callback')
+                        $c->get('cqrs/bookings/insert/field_column_map')
                     );
                 },
 
@@ -125,63 +116,63 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                 },
 
                 /*==============================================================*
-                 *   Booking Status Log RMs                                     |
+                 *   Booking Transition Log RMs                                 |
                  *==============================================================*/
 
                 /*
-                 * The SELECT resource model for booking status logs.
+                 * The SELECT resource model for transition logs.
                  *
                  * @since [*next-version*]
                  */
-                'booking_status_logs_select_rm' => function (ContainerInterface $c) {
+                'transition_logs_select_rm' => function (ContainerInterface $c) {
                     return new WpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
-                        $c->get('cqrs/booking_status_logs/select/tables'),
-                        $c->get('cqrs/booking_status_logs/select/field_column_map'),
-                        $c->get('cqrs/booking_status_logs/select/joins')
+                        $c->get('cqrs/transition_logs/select/tables'),
+                        $c->get('cqrs/transition_logs/select/field_column_map'),
+                        $c->get('cqrs/transition_logs/select/joins')
                     );
                 },
 
                 /*
-                 * The INSERT resource model for booking status logs.
+                 * The INSERT resource model for transition logs.
                  *
                  * @since [*next-version*]
                  */
-                'booking_status_logs_insert_rm' => function (ContainerInterface $c) {
+                'transition_logs_insert_rm' => function (ContainerInterface $c) {
                     return new WpdbInsertResourceModel(
                         $c->get('wpdb'),
-                        $c->get('cqrs/booking_status_logs/insert/table'),
-                        $c->get('cqrs/booking_status_logs/insert/field_column_map'),
-                        $c->get('cqrs/booking_status_logs/insert/insert_bulk')
+                        $c->get('cqrs/transition_logs/insert/table'),
+                        $c->get('cqrs/transition_logs/insert/field_column_map'),
+                        $c->get('cqrs/transition_logs/insert/insert_bulk')
                     );
                 },
 
                 /*
-                 * The UPDATE resource model for booking status logs.
+                 * The UPDATE resource model for transition logs.
                  *
                  * @since [*next-version*]
                  */
-                'booking_status_logs_update_rm' => function (ContainerInterface $c) {
+                'transition_logs_update_rm' => function (ContainerInterface $c) {
                     return new WpdbUpdateResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
-                        $c->get('cqrs/booking_status_logs/update/table'),
-                        $c->get('cqrs/booking_status_logs/update/field_column_map')
+                        $c->get('cqrs/transition_logs/update/table'),
+                        $c->get('cqrs/transition_logs/update/field_column_map')
                     );
                 },
 
                 /*
-                 * The DELETE resource model for booking status logs.
+                 * The DELETE resource model for transition logs.
                  *
                  * @since [*next-version*]
                  */
-                'booking_status_logs_delete_rm' => function (ContainerInterface $c) {
+                'transition_logs_delete_rm' => function (ContainerInterface $c) {
                     return new WpdbDeleteResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
-                        $c->get('cqrs/booking_status_logs/delete/table'),
-                        $c->get('cqrs/booking_status_logs/delete/field_column_map')
+                        $c->get('cqrs/transition_logs/delete/table'),
+                        $c->get('cqrs/transition_logs/delete/field_column_map')
                     );
                 },
 
@@ -251,11 +242,11 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  *==============================================================*/
 
                 /*
-                 * The callback that returns the ID of the user to use for new booking status logs.
+                 * The callback that returns the ID of the user to use for new transition logs.
                  *
                  * @since [*next-version*]
                  */
-                'booking_status_logs_user_id_callback' => function (ContainerInterface $c) {
+                'transition_logs_user_id_callback' => function (ContainerInterface $c) {
                     return 'get_current_user_id';
                 }
             ]

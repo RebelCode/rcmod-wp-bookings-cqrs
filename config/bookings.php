@@ -12,16 +12,16 @@ $cfg['cqrs']['bookings']['table'] = '${cqrs/table_prefix}bookings';
  *
  * @since [*next-version*]
  */
-$cfg['cqrs']['bookings']['field_column_map']['id']            = 'id';
-$cfg['cqrs']['bookings']['field_column_map']['start']         = 'start';
-$cfg['cqrs']['bookings']['field_column_map']['end']           = 'end';
-$cfg['cqrs']['bookings']['field_column_map']['service_id']    = 'service_id';
-$cfg['cqrs']['bookings']['field_column_map']['resource_id']   = 'resource_id';
-$cfg['cqrs']['bookings']['field_column_map']['payment_id']    = 'payment_id';
-$cfg['cqrs']['bookings']['field_column_map']['client_id']     = 'client_id';
-$cfg['cqrs']['bookings']['field_column_map']['client_tz']     = 'client_tz';
-$cfg['cqrs']['bookings']['field_column_map']['admin_notes']   = 'admin_notes';
-$cfg['cqrs']['bookings']['field_column_map']['status_log_id'] = 'status_log_id';
+$cfg['cqrs']['bookings']['field_column_map']['id']          = 'id';
+$cfg['cqrs']['bookings']['field_column_map']['start']       = 'start';
+$cfg['cqrs']['bookings']['field_column_map']['end']         = 'end';
+$cfg['cqrs']['bookings']['field_column_map']['service_id']  = 'service_id';
+$cfg['cqrs']['bookings']['field_column_map']['resource_id'] = 'resource_id';
+$cfg['cqrs']['bookings']['field_column_map']['payment_id']  = 'payment_id';
+$cfg['cqrs']['bookings']['field_column_map']['client_id']   = 'client_id';
+$cfg['cqrs']['bookings']['field_column_map']['client_tz']   = 'client_tz';
+$cfg['cqrs']['bookings']['field_column_map']['admin_notes'] = 'admin_notes';
+$cfg['cqrs']['bookings']['field_column_map']['status']      = 'status';
 
 /*
  * Configuration for the bookings SELECT resource model.

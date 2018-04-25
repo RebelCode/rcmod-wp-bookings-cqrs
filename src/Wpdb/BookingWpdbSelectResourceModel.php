@@ -34,33 +34,6 @@ class BookingWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourceModel
     use ContainerHasCapableTrait;
 
     /**
-     * The SELECT resource model for status logs.
-     *
-     * @since [*next-version*]
-     *
-     * @var SelectCapableInterface|null
-     */
-    protected $statusLogRm;
-
-    /**
-     * The ordering information for status log SELECTing.
-     *
-     * @since [*next-version*]
-     *
-     * @var OrderInterface[]
-     */
-    protected $statusLogOrdering;
-
-    /**
-     * The expression builder.
-     *
-     * @since [*next-version*]
-     *
-     * @var object
-     */
-    protected $exprBuilder;
-
-    /**
      * The booking factory.
      *
      * @since [*next-version*]
@@ -80,10 +53,6 @@ class BookingWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourceModel
      * @param array|stdClass|Traversable   $tables             The tables names (values) mapping to their aliases (keys)
      *                                                         or null for no aliasing.
      * @param string[]|Stringable[]        $fieldColumnMap     A map of field names to table column names.
-     * @param SelectCapableInterface       $statusLogRm        The SELECT resource model for status logs.
-     * @param FactoryInterface             $orderFactory       The factory for creating {@see OrderInterface} instances,
-     *                                                         if any.
-     * @param object                       $exprBuilder        The expression builder, if any.
      * @param LogicalExpressionInterface[] $joins              A list of JOIN expressions to use in SELECT queries.
      */
     public function __construct(
@@ -92,19 +61,10 @@ class BookingWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourceModel
         TemplateInterface $expressionTemplate,
         $tables,
         $fieldColumnMap,
-        $statusLogRm,
-        $orderFactory,
-        $exprBuilder,
         $joins = []
     ) {
         $this->_init($wpdb, $expressionTemplate, $tables, $fieldColumnMap, $joins);
         $this->bookingFactory = $bookingFactory;
-        $this->statusLogRm = $statusLogRm;
-        $this->exprBuilder = $exprBuilder;
-        $this->statusLogOrdering = [
-            $orderFactory->make(['field' => 'date', 'ascending' => false]),
-            $orderFactory->make(['field' => 'id', 'ascending' => false]),
-        ];
     }
 
     /**
@@ -118,47 +78,13 @@ class BookingWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourceModel
         $limit = null,
         $offset = null
     ) {
-        $records = parent::select($condition, $ordering, $limit, $offset);
+        $records  = parent::select($condition, $ordering, $limit, $offset);
         $bookings = [];
 
         foreach ($records as $_record) {
-            if (!$this->_containerHas($_record, 'id')) {
-                continue;
-            }
-            $id = $this->_containerGet($_record, 'id');
-            $status = $this->_getBookingStatus($id);
-
-            $this->_containerSet($_record, 'status', $status);
-
             $bookings[] = $this->bookingFactory->make($_record);
         }
 
         return $bookings;
-    }
-
-    /**
-     * Retrieves the status for a booking.
-     *
-     * @since [*next-version*]
-     *
-     * @param int|string|Stringable $id The booking's ID.
-     *
-     * @return string|Stringable The booking's status, if any.
-     */
-    protected function _getBookingStatus($id)
-    {
-        $statusLogs = $this->statusLogRm->select(
-            $this->exprBuilder->eq(
-                $this->exprBuilder->var('booking_id'),
-                $this->exprBuilder->lit($id)
-            ),
-            $this->statusLogOrdering,
-            1
-        );
-        $statusLog = $this->_containerGet($statusLogs, 0);
-
-        return $this->_containerHas($statusLog, 'status')
-            ? $this->_containerGet($statusLog, 'status')
-            : null;
     }
 }
