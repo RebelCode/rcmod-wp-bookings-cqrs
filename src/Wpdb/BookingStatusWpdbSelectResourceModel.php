@@ -3,9 +3,7 @@
 namespace RebelCode\Storage\Resource\WordPress\Wpdb;
 
 use Dhii\Expression\LogicalExpressionInterface;
-use Dhii\Expression\TermInterface;
 use Dhii\Output\TemplateInterface;
-use Dhii\Storage\Resource\Sql\EntityFieldInterface;
 use Dhii\Util\String\StringableInterface as Stringable;
 use stdClass;
 use Traversable;
@@ -23,7 +21,7 @@ class BookingStatusWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourc
      *
      * @since [*next-version*]
      *
-     * @var EntityFieldInterface|TermInterface|Traversable
+     * @var array|Traversable
      */
     protected $groupColumns;
 
@@ -37,6 +35,7 @@ class BookingStatusWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourc
      * @param array|stdClass|Traversable   $tables             The tables names (values) mapping to their aliases (keys)
      *                                                         or null for no aliasing.
      * @param string[]|Stringable[]        $fieldColumnMap     A map of field names to table column names.
+     * @param array|Traversable            $groupColumns       The column names to group by.
      * @param LogicalExpressionInterface[] $joins              A list of JOIN expressions to use in SELECT queries.
      */
     public function __construct(
@@ -44,9 +43,11 @@ class BookingStatusWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourc
         TemplateInterface $expressionTemplate,
         $tables,
         $fieldColumnMap,
+        $groupColumns,
         $joins = []
     ) {
         $this->_init($wpdb, $expressionTemplate, $tables, $fieldColumnMap, $joins);
+        $this->_setGroupColumns($groupColumns);
     }
 
     /**
@@ -54,7 +55,7 @@ class BookingStatusWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourc
      *
      * @since [*next-version*]
      *
-     * @return TermInterface|EntityFieldInterface|Traversable The list of columns.
+     * @return array|Traversable The list of columns.
      */
     protected function _getGroupColumns()
     {
@@ -66,7 +67,7 @@ class BookingStatusWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourc
      *
      * @since [*next-version*]
      *
-     * @param TermInterface|EntityFieldInterface|Traversable $groupColumns The list of columns.
+     * @param array|Traversable $groupColumns The list of columns.
      */
     protected function _setGroupColumns($groupColumns)
     {
@@ -84,8 +85,8 @@ class BookingStatusWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourc
     ) {
         $result = '';
 
-        $groupColumns = $this->_buildSqlColumnList($this->_getGroupColumns());
-        $result .= sprintf('GROUP BY %s', $groupColumns);
+        $groupColumns = $this->_escapeSqlReferenceList($this->_getGroupColumns());
+        $result       .= sprintf('GROUP BY %s', $groupColumns);
 
         if ($condition === null) {
             $rendered = $this->_renderSqlCondition($condition, $valueHashMap);
