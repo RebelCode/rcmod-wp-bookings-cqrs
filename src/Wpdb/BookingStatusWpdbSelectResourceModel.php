@@ -88,7 +88,7 @@ class BookingStatusWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourc
         $groupColumns = $this->_escapeSqlReferenceList($this->_getGroupColumns());
         $result       .= sprintf('GROUP BY %s', $groupColumns);
 
-        if ($condition === null) {
+        if ($condition !== null) {
             $rendered = $this->_renderSqlCondition($condition, $valueHashMap);
             $rendered = $this->_normalizeString($rendered);
 
