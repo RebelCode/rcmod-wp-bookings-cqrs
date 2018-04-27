@@ -6,7 +6,9 @@ use Dhii\Data\Container\ContainerFactoryInterface;
 use Dhii\Exception\InternalException;
 use Dhii\Util\String\StringableInterface as Stringable;
 use Psr\Container\ContainerInterface;
+use RebelCode\Expression\EntityFieldTerm;
 use RebelCode\Modular\Module\AbstractBaseModule;
+use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbDeleteResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbInsertResourceModel;
@@ -112,6 +114,30 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/bookings/insert/table'),
                         $c->get('cqrs/bookings/insert/field_column_map')
+                    );
+                },
+
+                /*==============================================================*
+                 *   Booking Status RMs                                         |
+                 *==============================================================*/
+
+                /*
+                 * The SELECT resource model for booking statuses and their counts.
+                 *
+                 * @since [*next-version*]
+                 */
+                'booking_status_select_rm' => function(ContainerInterface $c) {
+                    return new BookingStatusWpdbSelectResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $c->get('cqrs/bookings/select/tables'),
+                        [
+                            'status' => 'status',
+                            'status_count' => $c->get('sql_expression_builder')->fn(
+                                'count', $c->get('sql_expression_builder')->ef('booking', 'start')
+                            )
+                        ],
+                        $c->get('cqrs/booking/select/joins')
                     );
                 },
 
