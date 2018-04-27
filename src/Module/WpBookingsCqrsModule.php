@@ -137,7 +137,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                                 'count', $c->get('sql_expression_builder')->ef('booking', 'start')
                             )
                         ],
-                        $c->get('cqrs/booking/select/joins')
+                        $c->get('cqrs/bookings/select/joins')
                     );
                 },
 
