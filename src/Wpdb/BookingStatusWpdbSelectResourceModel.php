@@ -82,15 +82,18 @@ class BookingStatusWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourc
         LogicalExpressionInterface $condition = null,
         array $valueHashMap = []
     ) {
-        if ($condition === null) {
-            return '';
-        }
-
-        $rendered = $this->_renderSqlCondition($condition, $valueHashMap);
-        $rendered = $this->_normalizeString($rendered);
+        $result = '';
 
         $groupColumns = $this->_buildSqlColumnList($this->_getGroupColumns());
+        $result .= sprintf('GROUP BY %s', $groupColumns);
 
-        return sprintf('GROUP BY %1$s HAVING %1%s', $groupColumns, $rendered);
+        if ($condition === null) {
+            $rendered = $this->_renderSqlCondition($condition, $valueHashMap);
+            $rendered = $this->_normalizeString($rendered);
+
+            $result .= ' ' . $rendered;
+        }
+
+        return $result;
     }
 }
