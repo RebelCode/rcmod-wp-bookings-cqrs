@@ -92,7 +92,7 @@ class BookingStatusWpdbSelectResourceModel extends AbstractBaseWpdbSelectResourc
             $rendered = $this->_renderSqlCondition($condition, $valueHashMap);
             $rendered = $this->_normalizeString($rendered);
 
-            $result .= ' ' . $rendered;
+            $result .= ' HAVING ' . $rendered;
         }
 
         return $result;
