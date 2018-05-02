@@ -14,8 +14,7 @@
     "require": {
         "php": "^5.4 | ^7.0",
         "rebelcode/modular": "dev-task/initial-classes",
-        "rebelcode/booking-interface": "dev-develop",
-        "rebelcode/rcmod-wp-cqrs": "dev-task/initial-module-code"
+        "rebelcode/booking-interface": "dev-develop"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
