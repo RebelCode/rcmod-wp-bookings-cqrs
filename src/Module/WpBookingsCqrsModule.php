@@ -6,7 +6,6 @@ use Dhii\Data\Container\ContainerFactoryInterface;
 use Dhii\Exception\InternalException;
 use Dhii\Util\String\StringableInterface as Stringable;
 use Psr\Container\ContainerInterface;
-use RebelCode\Expression\EntityFieldTerm;
 use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingWpdbSelectResourceModel;
