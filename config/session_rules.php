@@ -15,7 +15,7 @@ return [
         'repeat_until'        => 'repeat_until',
         'repeat_until_date'   => 'repeat_until_date',
         'repeat_until_period' => 'repeat_until_period',
-        'repeat_daily_on'     => 'repeat_daily_on',
+        'repeat_weekly_on'    => 'repeat_weekly_on',
         'repeat_monthly_on'   => 'repeat_monthly_on',
         'exclude_dates'       => 'exclude_dates',
     ],
