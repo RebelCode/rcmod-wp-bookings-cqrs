@@ -4,6 +4,7 @@ namespace RebelCode\Storage\Resource\WordPress\Module;
 
 use Dhii\Data\Container\ContainerFactoryInterface;
 use Dhii\Exception\InternalException;
+use Dhii\Util\Normalization\NormalizeArrayCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
 use Psr\Container\ContainerInterface;
 use RebelCode\Modular\Module\AbstractBaseModule;
@@ -21,6 +22,9 @@ use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbUpdateResourceModel;
  */
 class WpBookingsCqrsModule extends AbstractBaseModule
 {
+    /* @since [*next-version*] */
+    use NormalizeArrayCapableTrait;
+
     /**
      * Constructor.
      *
@@ -68,9 +72,9 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('booking_factory'),
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
-                        $c->get('cqrs/bookings/select/tables'),
-                        $c->get('cqrs/bookings/select/field_column_map'),
-                        $c->get('cqrs/bookings/select/joins')
+                        $this->_normalizeArray($c->get('cqrs/bookings/select/tables')),
+                        $this->_normalizeArray($c->get('cqrs/bookings/select/field_column_map')),
+                        $this->_normalizeArray($c->get('cqrs/bookings/select/joins'))
                     );
                 },
 
@@ -83,7 +87,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new WpdbInsertResourceModel(
                         $c->get('wpdb'),
                         $c->get('cqrs/bookings/insert/table'),
-                        $c->get('cqrs/bookings/insert/field_column_map'),
+                        $this->_normalizeArray($c->get('cqrs/bookings/insert/field_column_map')),
                         $c->get('cqrs/bookings/insert/insert_bulk')
                     );
                 },
@@ -98,7 +102,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/bookings/insert/table'),
-                        $c->get('cqrs/bookings/insert/field_column_map')
+                        $this->_normalizeArray($c->get('cqrs/bookings/insert/field_column_map'))
                     );
                 },
 
@@ -112,7 +116,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/bookings/insert/table'),
-                        $c->get('cqrs/bookings/insert/field_column_map')
+                        $this->_normalizeArray($c->get('cqrs/bookings/insert/field_column_map'))
                     );
                 },
 
@@ -129,7 +133,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new BookingStatusWpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
-                        $c->get('cqrs/bookings/select/tables'),
+                        $this->_normalizeArray($c->get('cqrs/bookings/select/tables')),
                         [
                             'status'       => 'status',
                             'status_count' => $c->get('sql_expression_builder')->fn(
@@ -137,7 +141,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                             ),
                         ],
                         ['status'],
-                        $c->get('cqrs/bookings/select/joins')
+                        $this->_normalizeArray($c->get('cqrs/bookings/select/joins'))
                     );
                 },
 
@@ -154,9 +158,9 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new WpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
-                        $c->get('cqrs/transition_logs/select/tables'),
-                        $c->get('cqrs/transition_logs/select/field_column_map'),
-                        $c->get('cqrs/transition_logs/select/joins')
+                        $this->_normalizeArray($c->get('cqrs/transition_logs/select/tables')),
+                        $this->_normalizeArray($c->get('cqrs/transition_logs/select/field_column_map')),
+                        $this->_normalizeArray($c->get('cqrs/transition_logs/select/joins'))
                     );
                 },
 
@@ -169,7 +173,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new WpdbInsertResourceModel(
                         $c->get('wpdb'),
                         $c->get('cqrs/transition_logs/insert/table'),
-                        $c->get('cqrs/transition_logs/insert/field_column_map'),
+                        $this->_normalizeArray($c->get('cqrs/transition_logs/insert/field_column_map')),
                         $c->get('cqrs/transition_logs/insert/insert_bulk')
                     );
                 },
@@ -184,7 +188,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/transition_logs/update/table'),
-                        $c->get('cqrs/transition_logs/update/field_column_map')
+                        $this->_normalizeArray($c->get('cqrs/transition_logs/update/field_column_map'))
                     );
                 },
 
@@ -198,7 +202,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/transition_logs/delete/table'),
-                        $c->get('cqrs/transition_logs/delete/field_column_map')
+                        $this->_normalizeArray($c->get('cqrs/transition_logs/delete/field_column_map'))
                     );
                 },
 
@@ -215,9 +219,9 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new WpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
-                        $c->get('cqrs/sessions/select/tables'),
-                        $c->get('cqrs/sessions/select/field_column_map'),
-                        $c->get('cqrs/sessions/select/joins')
+                        $this->_normalizeArray($c->get('cqrs/sessions/select/tables')),
+                        $this->_normalizeArray($c->get('cqrs/sessions/select/field_column_map')),
+                        $this->_normalizeArray($c->get('cqrs/sessions/select/joins'))
                     );
                 },
 
@@ -230,7 +234,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new WpdbInsertResourceModel(
                         $c->get('wpdb'),
                         $c->get('cqrs/sessions/insert/table'),
-                        $c->get('cqrs/sessions/insert/field_column_map'),
+                        $this->_normalizeArray($c->get('cqrs/sessions/insert/field_column_map')),
                         $c->get('cqrs/sessions/insert/insert_bulk')
                     );
                 },
@@ -245,7 +249,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/sessions/update/table'),
-                        $c->get('cqrs/sessions/update/field_column_map')
+                        $this->_normalizeArray($c->get('cqrs/sessions/update/field_column_map'))
                     );
                 },
 
@@ -259,12 +263,12 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/sessions/delete/table'),
-                        $c->get('cqrs/sessions/delete/field_column_map')
+                        $this->_normalizeArray($c->get('cqrs/sessions/delete/field_column_map'))
                     );
                 },
 
                 /*==============================================================*
-                 *   Session Rules RMs                                                |
+                 *   Session Rules RMs                                          |
                  *==============================================================*/
 
                 /*
@@ -276,9 +280,9 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new WpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
-                        $c->get('cqrs/session_rules/select/tables'),
-                        $c->get('cqrs/session_rules/select/field_column_map'),
-                        $c->get('cqrs/session_rules/select/joins')
+                        $this->_normalizeArray($c->get('cqrs/session_rules/select/tables')),
+                        $this->_normalizeArray($c->get('cqrs/session_rules/select/field_column_map')),
+                        $this->_normalizeArray($c->get('cqrs/session_rules/select/joins'))
                     );
                 },
 
@@ -291,7 +295,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new WpdbInsertResourceModel(
                         $c->get('wpdb'),
                         $c->get('cqrs/session_rules/insert/table'),
-                        $c->get('cqrs/session_rules/insert/field_column_map'),
+                        $this->_normalizeArray($c->get('cqrs/session_rules/insert/field_column_map')),
                         $c->get('cqrs/session_rules/insert/insert_bulk')
                     );
                 },
@@ -306,7 +310,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/session_rules/update/table'),
-                        $c->get('cqrs/session_rules/update/field_column_map')
+                        $this->_normalizeArray($c->get('cqrs/session_rules/update/field_column_map'))
                     );
                 },
 
@@ -320,7 +324,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/session_rules/delete/table'),
-                        $c->get('cqrs/session_rules/delete/field_column_map')
+                        $this->_normalizeArray($c->get('cqrs/session_rules/delete/field_column_map'))
                     );
                 },
 
