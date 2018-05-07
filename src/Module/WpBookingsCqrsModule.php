@@ -264,6 +264,67 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                 },
 
                 /*==============================================================*
+                 *   Session Rules RMs                                                |
+                 *==============================================================*/
+
+                /*
+                 * The SELECT resource model for session rules.
+                 *
+                 * @since [*next-version*]
+                 */
+                'session_rules_select_rm'            => function (ContainerInterface $c) {
+                    return new WpdbSelectResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $c->get('cqrs/session_rules/select/tables'),
+                        $c->get('cqrs/session_rules/select/field_column_map'),
+                        $c->get('cqrs/session_rules/select/joins')
+                    );
+                },
+
+                /*
+                 * The INSERT resource model for session rules.
+                 *
+                 * @since [*next-version*]
+                 */
+                'session_rules_insert_rm'            => function (ContainerInterface $c) {
+                    return new WpdbInsertResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('cqrs/session_rules/insert/table'),
+                        $c->get('cqrs/session_rules/insert/field_column_map'),
+                        $c->get('cqrs/session_rules/insert/insert_bulk')
+                    );
+                },
+
+                /*
+                 * The UPDATE resource model for session rules.
+                 *
+                 * @since [*next-version*]
+                 */
+                'session_rules_update_rm'            => function (ContainerInterface $c) {
+                    return new WpdbUpdateResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $c->get('cqrs/session_rules/update/table'),
+                        $c->get('cqrs/session_rules/update/field_column_map')
+                    );
+                },
+
+                /*
+                 * The DELETE resource model for session rules.
+                 *
+                 * @since [*next-version*]
+                 */
+                'session_rules_delete_rm'            => function (ContainerInterface $c) {
+                    return new WpdbDeleteResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $c->get('cqrs/session_rules/delete/table'),
+                        $c->get('cqrs/session_rules/delete/field_column_map')
+                    );
+                },
+
+                /*==============================================================*
                  *   Misc. Services                                             |
                  *==============================================================*/
 
