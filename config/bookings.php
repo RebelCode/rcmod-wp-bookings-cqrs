@@ -1,60 +1,46 @@
 <?php
 
-/*
- * The name of the table where bookings are stored.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['bookings']['table'] = '${cqrs/table_prefix}bookings';
+return [
+    // Config for all booking RMs
+    'table'            => '${cqrs/table_prefix}bookings',
+    'field_column_map' => $bookingsFieldColumnMap = [
+        'id'          => 'id',
+        'start'       => 'start',
+        'end'         => 'end',
+        'service_id'  => 'service_id',
+        'resource_id' => 'resource_id',
+        'payment_id'  => 'payment_id',
+        'client_id'   => 'client_id',
+        'client_tz'   => 'client_tz',
+        'admin_notes' => 'admin_notes',
+        'status'      => 'status',
+    ],
 
-/*
- * The field-to-column map configuration for all booking resource models.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['bookings']['field_column_map']['id']          = 'id';
-$cfg['cqrs']['bookings']['field_column_map']['start']       = 'start';
-$cfg['cqrs']['bookings']['field_column_map']['end']         = 'end';
-$cfg['cqrs']['bookings']['field_column_map']['service_id']  = 'service_id';
-$cfg['cqrs']['bookings']['field_column_map']['resource_id'] = 'resource_id';
-$cfg['cqrs']['bookings']['field_column_map']['payment_id']  = 'payment_id';
-$cfg['cqrs']['bookings']['field_column_map']['client_id']   = 'client_id';
-$cfg['cqrs']['bookings']['field_column_map']['client_tz']   = 'client_tz';
-$cfg['cqrs']['bookings']['field_column_map']['admin_notes'] = 'admin_notes';
-$cfg['cqrs']['bookings']['field_column_map']['status']      = 'status';
+    // Config for SELECT RMs
+    'select'           => [
+        'tables'           => [
+            'booking' => '${cqrs/bookings/table}',
+        ],
+        'field_column_map' => $bookingsFieldColumnMap,
+        'joins'            => [],
+    ],
 
-/*
- * Configuration for the bookings SELECT resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['bookings']['select']['tables']           = ['booking' => '${cqrs/bookings/table}'];
-$cfg['cqrs']['bookings']['select']['field_column_map'] = $cfg['cqrs']['bookings']['field_column_map'];
-$cfg['cqrs']['bookings']['select']['joins']            = [];
+    // Config for INSERT RMs
+    'insert'           => [
+        'table'            => '${cqrs/bookings/table}',
+        'field_column_map' => $bookingsFieldColumnMap,
+        'insert_bulk'      => false,
+    ],
 
-/*
- * Configuration for the bookings INSERT resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['bookings']['insert']['table']            = '${cqrs/bookings/table}';
-$cfg['cqrs']['bookings']['insert']['field_column_map'] = $cfg['cqrs']['bookings']['field_column_map'];
-$cfg['cqrs']['bookings']['insert']['insert_bulk']      = false;
+    // Config for UPDATE RMs
+    'update'           => [
+        'table'            => '${cqrs/bookings/table}',
+        'field_column_map' => $bookingsFieldColumnMap,
+    ],
 
-/*
- * Configuration for the bookings UPDATE resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['bookings']['update']['table']            = '${cqrs/bookings/table}';
-$cfg['cqrs']['bookings']['update']['field_column_map'] = $cfg['cqrs']['bookings']['field_column_map'];
-
-/*
- * Configuration for the bookings DELETE resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['bookings']['delete']['table']            = '${cqrs/bookings/table}';
-$cfg['cqrs']['bookings']['delete']['field_column_map'] = $cfg['cqrs']['bookings']['field_column_map'];
-
-return $cfg;
+    // Config for DELETE RMs
+    'delete'           => [
+        'table'            => '${cqrs/bookings/table}',
+        'field_column_map' => $bookingsFieldColumnMap,
+    ],
+];

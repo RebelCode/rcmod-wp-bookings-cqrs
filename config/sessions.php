@@ -1,56 +1,40 @@
 <?php
 
-/*
- * The name of the table where sessions are stored.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['sessions']['table'] = '${cqrs/table_prefix}sessions';
+return [
+    // Config for all session RMs
+    'table'            => '${cqrs/table_prefix}sessions',
+    'field_column_map' => $sessionsFieldColumnMap = [
+        'id'          => 'id',
+        'start'       => 'start',
+        'end'         => 'end',
+        'service_id'  => 'service_id',
+        'resource_id' => 'resource_id',
+        'rule_id'     => 'rule_id',
+    ],
 
-/*
- * The field-to-column map configuration for all session resource models.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['sessions']['field_column_map']['id']          = 'id';
-$cfg['cqrs']['sessions']['field_column_map']['start']       = 'start';
-$cfg['cqrs']['sessions']['field_column_map']['end']         = 'end';
-$cfg['cqrs']['sessions']['field_column_map']['service_id']  = 'service_id';
-$cfg['cqrs']['sessions']['field_column_map']['resource_id'] = 'resource_id';
-$cfg['cqrs']['sessions']['field_column_map']['rule_id']     = 'rule_id';
+    // Config for SELECT RMs
+    'select'           => [
+        'tables'           => ['session' => '${cqrs/sessions/table}'],
+        'field_column_map' => $sessionsFieldColumnMap,
+        'joins'            => [],
+    ],
 
-/*
- * Configuration for the sessions SELECT resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['sessions']['select']['tables']           = ['session' => '${cqrs/sessions/table}'];
-$cfg['cqrs']['sessions']['select']['field_column_map'] = $cfg['cqrs']['sessions']['field_column_map'];
-$cfg['cqrs']['sessions']['select']['joins']            = [];
+    // Config for INSERT RMs
+    'insert'           => [
+        'table'            => '${cqrs/sessions/table}',
+        'field_column_map' => $sessionsFieldColumnMap,
+        'insert_bulk'      => false,
+    ],
 
-/*
- * Configuration for the sessions INSERT resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['sessions']['insert']['table']            = '${cqrs/sessions/table}';
-$cfg['cqrs']['sessions']['insert']['field_column_map'] = $cfg['cqrs']['sessions']['field_column_map'];
-$cfg['cqrs']['sessions']['insert']['insert_bulk']      = false;
+    // Config for UPDATE RMs
+    'update'           => [
+        'table'            => '${cqrs/sessions/table}',
+        'field_column_map' => $sessionsFieldColumnMap,
+    ],
 
-/*
- * Configuration for the sessions UPDATE resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['sessions']['update']['table']            = '${cqrs/sessions/table}';
-$cfg['cqrs']['sessions']['update']['field_column_map'] = $cfg['cqrs']['sessions']['field_column_map'];
-
-/*
- * Configuration for the sessions DELETE resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['sessions']['delete']['table']            = '${cqrs/sessions/table}';
-$cfg['cqrs']['sessions']['delete']['field_column_map'] = $cfg['cqrs']['sessions']['field_column_map'];
-
-return $cfg;
+    // Config for DELETE RMs
+    'delete'           => [
+        'table'            => '${cqrs/sessions/table}',
+        'field_column_map' => $sessionsFieldColumnMap,
+    ],
+];

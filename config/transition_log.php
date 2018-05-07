@@ -1,55 +1,41 @@
 <?php
 
-/*
- * The name of the table where booking transition logs are stored.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['transition_logs']['table'] = '${cqrs/table_prefix}transition_logs';
+return [
+    // Config for all transition log RMs
+    'table'            => '${cqrs/table_prefix}transition_logs',
+    'field_column_map' => $transitionLogFieldColumnMap = [
+        'id'         => 'id',
+        'transition' => 'transition',
+        'date'       => 'date',
+        'user_id'    => 'user_id',
+        'booking_id' => 'booking_id',
+    ],
 
-/*
- * The field-to-column map configuration for all booking transition log resource models.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['transition_logs']['field_column_map']['id']         = 'id';
-$cfg['cqrs']['transition_logs']['field_column_map']['transition'] = 'transition';
-$cfg['cqrs']['transition_logs']['field_column_map']['date']       = 'date';
-$cfg['cqrs']['transition_logs']['field_column_map']['user_id']    = 'user_id';
-$cfg['cqrs']['transition_logs']['field_column_map']['booking_id'] = 'booking_id';
+    // Config for SELECT RMs
+    'select' => [
+        'tables'           => [
+            'transition_log' => '${cqrs/transition_logs/table}',
+        ],
+        'field_column_map' => $transitionLogFieldColumnMap,
+        'joins'            => [],
+    ],
 
-/*
- * Configuration for the booking transition logs SELECT resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['transition_logs']['select']['tables']           = ['transition_log' => '${cqrs/transition_logs/table}'];
-$cfg['cqrs']['transition_logs']['select']['field_column_map'] = $cfg['cqrs']['transition_logs']['field_column_map'];
-$cfg['cqrs']['transition_logs']['select']['joins']            = [];
+    // Config for INSERT RMs
+    'insert' => [
+        'table'            => '${cqrs/transition_logs/table}',
+        'field_column_map' => $transitionLogFieldColumnMap,
+        'insert_bulk'      => false,
+    ],
 
-/*
- * Configuration for the booking transition logs INSERT resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['transition_logs']['insert']['table']            = '${cqrs/transition_logs/table}';
-$cfg['cqrs']['transition_logs']['insert']['field_column_map'] = $cfg['cqrs']['transition_logs']['field_column_map'];
-$cfg['cqrs']['transition_logs']['insert']['insert_bulk']      = false;
+    // Config for UPDATE RMs
+    'update' => [
+        'table'            => '${cqrs/transition_logs/table}',
+        'field_column_map' => $transitionLogFieldColumnMap,
+    ],
 
-/*
- * Configuration for the booking transition logs UPDATE resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['transition_logs']['update']['table']            = '${cqrs/transition_logs/table}';
-$cfg['cqrs']['transition_logs']['update']['field_column_map'] = $cfg['cqrs']['transition_logs']['field_column_map'];
-
-/*
- * Configuration for the booking transition logs DELETE resource model.
- *
- * @since [*next-version*]
- */
-$cfg['cqrs']['transition_logs']['delete']['table']            = '${cqrs/transition_logs/table}';
-$cfg['cqrs']['transition_logs']['delete']['field_column_map'] = $cfg['cqrs']['transition_logs']['field_column_map'];
-
-return $cfg;
+    // Config for DELETE RMs
+    'delete' => [
+        'table'            => '${cqrs/transition_logs/table}',
+        'field_column_map' => $transitionLogFieldColumnMap,
+    ],
+];
