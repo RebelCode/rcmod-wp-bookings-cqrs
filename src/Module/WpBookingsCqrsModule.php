@@ -10,6 +10,7 @@ use Psr\Container\ContainerInterface;
 use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingWpdbSelectResourceModel;
+use RebelCode\Storage\Resource\WordPress\Wpdb\SessionsWpdbInsertResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbDeleteResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbInsertResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbSelectResourceModel;
@@ -231,7 +232,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'sessions_insert_rm'            => function (ContainerInterface $c) {
-                    return new WpdbInsertResourceModel(
+                    return new SessionsWpdbInsertResourceModel(
                         $c->get('wpdb'),
                         $c->get('cqrs/sessions/insert/table'),
                         $this->_normalizeArray($c->get('cqrs/sessions/insert/field_column_map')),
