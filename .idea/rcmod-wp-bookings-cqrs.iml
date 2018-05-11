@@ -31,7 +31,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/invocable-base" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/invocable-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/iterator-helper-base" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/modular-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/module-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/normalization-helper-base" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/output-renderer-interface" />

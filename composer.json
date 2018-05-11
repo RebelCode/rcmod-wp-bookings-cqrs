@@ -13,7 +13,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^5.4 | ^7.0",
-        "rebelcode/modular": "dev-task/initial-classes",
+        "rebelcode/modular": "^0.1-alpha1",
         "rebelcode/booking-interface": "dev-develop",
         "rebelcode/wp-cqrs-resource-models": "dev-task/initial-classes"
     },

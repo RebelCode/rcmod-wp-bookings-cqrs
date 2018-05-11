@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2da10a502fd54ae4f3ae2108500d7b03",
+    "content-hash": "e3bbe8691551c7364a2db3fa203561a5",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -1007,25 +1007,25 @@
         },
         {
             "name": "dhii/file-finder-abstract",
-            "version": "dev-task/create-finder",
+            "version": "v0.1-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/file-finder-abstract.git",
-                "reference": "7d56c03789b91a67a1a98f05bb770b05f109e0d1"
+                "reference": "3f5ad2a6a9e6ae68bad4870548061428734b231c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/file-finder-abstract/zipball/7d56c03789b91a67a1a98f05bb770b05f109e0d1",
-                "reference": "7d56c03789b91a67a1a98f05bb770b05f109e0d1",
+                "url": "https://api.github.com/repos/Dhii/file-finder-abstract/zipball/3f5ad2a6a9e6ae68bad4870548061428734b231c",
+                "reference": "3f5ad2a6a9e6ae68bad4870548061428734b231c",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3 | ^7.0"
+                "php": "^5.4 | ^7.0"
             },
             "require-dev": {
                 "aza/phpgen": "^1.0",
                 "codeclimate/php-test-reporter": "<=0.3.2",
-                "dhii/php-cs-fixer-config": "dev-php-5.3",
+                "dhii/php-cs-fixer-config": "^0.1",
                 "mikey179/vfsstream": "^1.6.4",
                 "phpunit/phpunit": "^4.8",
                 "ptrofimov/xpmock": "^1.1"
@@ -1047,7 +1047,7 @@
                 }
             ],
             "description": "Common functionality for finding files",
-            "time": "2017-06-08T14:19:40+00:00"
+            "time": "2018-05-11T09:25:34+00:00"
         },
         {
             "name": "dhii/i18n-helper-base",
@@ -1291,51 +1291,8 @@
             "time": "2018-03-22T11:25:07+00:00"
         },
         {
-            "name": "dhii/modular-interface",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Dhii/modular-interface.git",
-                "reference": "de1fd0de001c322ca4a975ef9ee89cca872a9321"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/modular-interface/zipball/de1fd0de001c322ca4a975ef9ee89cca872a9321",
-                "reference": "de1fd0de001c322ca4a975ef9ee89cca872a9321",
-                "shasum": ""
-            },
-            "require": {
-                "dhii/module-interface": "dev-develop",
-                "php": "^5.3 | ^7.0"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "<=0.3.2",
-                "dhii/php-cs-fixer-config": "dev-php-5.3",
-                "phpunit/phpunit": "^4.8",
-                "ptrofimov/xpmock": "^1.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhii\\Modular\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dhii Team",
-                    "email": "development@dhii.co"
-                }
-            ],
-            "description": "Interfaces for modular systems.",
-            "time": "2017-06-27T07:40:59+00:00"
-        },
-        {
             "name": "dhii/module-interface",
-            "version": "dev-develop",
+            "version": "v0.1-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/module-interface.git",
@@ -1811,16 +1768,16 @@
         },
         {
             "name": "dhii/wp-events",
-            "version": "dev-task/wip-refactoring",
+            "version": "v0.3-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/wp-events.git",
-                "reference": "38e27d021df5914ad04c2ca2849eb709ca179fdd"
+                "reference": "265f8dd9a79b97d23e1c7abaae56c27694138f3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/wp-events/zipball/38e27d021df5914ad04c2ca2849eb709ca179fdd",
-                "reference": "38e27d021df5914ad04c2ca2849eb709ca179fdd",
+                "url": "https://api.github.com/repos/Dhii/wp-events/zipball/265f8dd9a79b97d23e1c7abaae56c27694138f3b",
+                "reference": "265f8dd9a79b97d23e1c7abaae56c27694138f3b",
                 "shasum": ""
             },
             "require": {
@@ -1832,7 +1789,7 @@
             },
             "require-dev": {
                 "10up/wp_mock": "^0.1.1",
-                "dhii/php-cs-fixer-config": "dev-php-5.3",
+                "dhii/php-cs-fixer-config": "^0.1",
                 "dhii/stringable-interface": "^0.1",
                 "doctrine/instantiator": ">=1.0.5 <1.1.0",
                 "phpunit/phpunit": "^4.8",
@@ -1841,7 +1798,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.1.x-dev"
+                    "dev-develop": "0.3.x-dev"
                 }
             },
             "autoload": {
@@ -1860,7 +1817,7 @@
                 }
             ],
             "description": "A PSR-14 compliant event wrapper for WordPress.",
-            "time": "2018-04-06T12:06:41+00:00"
+            "time": "2018-05-11T10:15:34+00:00"
         },
         {
             "name": "psr/container",
@@ -1968,12 +1925,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/expression-wp-query-builder-abstract.git",
-                "reference": "a2804de8954b7f0d15ffd05dd56478a6cb22850f"
+                "reference": "7710fecf02e8b8c90133281e1b43184010043703"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/expression-wp-query-builder-abstract/zipball/a2804de8954b7f0d15ffd05dd56478a6cb22850f",
-                "reference": "a2804de8954b7f0d15ffd05dd56478a6cb22850f",
+                "url": "https://api.github.com/repos/RebelCode/expression-wp-query-builder-abstract/zipball/7710fecf02e8b8c90133281e1b43184010043703",
+                "reference": "7710fecf02e8b8c90133281e1b43184010043703",
                 "shasum": ""
             },
             "require": {
@@ -2005,20 +1962,20 @@
                 }
             ],
             "description": "Abstract functionality for building WP_Query args using expressions.",
-            "time": "2018-02-26T17:08:18+00:00"
+            "time": "2018-05-09T11:41:52+00:00"
         },
         {
             "name": "rebelcode/modular",
-            "version": "dev-task/initial-classes",
+            "version": "v0.1-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/modular.git",
-                "reference": "1c0c74e014c4db7d48b9350cb25610954d38b35b"
+                "reference": "3e66d4158fd8b26acb4ad2f169b964682b73e8d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/modular/zipball/1c0c74e014c4db7d48b9350cb25610954d38b35b",
-                "reference": "1c0c74e014c4db7d48b9350cb25610954d38b35b",
+                "url": "https://api.github.com/repos/RebelCode/modular/zipball/3e66d4158fd8b26acb4ad2f169b964682b73e8d0",
+                "reference": "3e66d4158fd8b26acb4ad2f169b964682b73e8d0",
                 "shasum": ""
             },
             "require": {
@@ -2032,19 +1989,19 @@
                 "dhii/exception": "^0.1-alpha4",
                 "dhii/factory-base": "^0.1-alpha3",
                 "dhii/factory-interface": "^0.1-alpha2",
-                "dhii/file-finder-abstract": "dev-task/create-finder",
+                "dhii/file-finder-abstract": "^0.1-alpha1",
                 "dhii/i18n-helper-base": "^0.1",
                 "dhii/iterator-helper-base": "^0.1-alpha2",
                 "dhii/module-interface": "^0.1",
                 "dhii/normalization-helper-base": "^0.1-alpha2",
-                "dhii/wp-events": "dev-task/wip-refactoring",
+                "dhii/wp-events": "^0.3-alpha1",
                 "php": "^5.4 | ^7.0",
                 "psr/container": "^1.0",
-                "rebelcode/module-iterator-abstract": "dev-task/5_update-latest-improvements"
+                "rebelcode/module-iterator-abstract": "^0.1-alpha1"
             },
             "require-dev": {
                 "codeclimate/php-test-reporter": "<=0.3.2",
-                "dhii/php-cs-fixer-config": "dev-php-5.3",
+                "dhii/php-cs-fixer-config": "^0.1",
                 "mikey179/vfsstream": "^1.6@dev",
                 "phpunit/phpunit": "^4.8",
                 "ptrofimov/xpmock": "^1.1"
@@ -2066,30 +2023,31 @@
                 }
             ],
             "description": "A module system.",
-            "time": "2018-05-03T15:14:45+00:00"
+            "time": "2018-05-11T11:17:08+00:00"
         },
         {
             "name": "rebelcode/module-iterator-abstract",
-            "version": "dev-task/5_update-latest-improvements",
+            "version": "v0.1-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/module-iterator-abstract.git",
-                "reference": "80fd1614d545365d4bdb9d3c1d930ccab8c74ac1"
+                "reference": "991a0dc0d826fe7db3c8276e1e358ef9276d5e8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/module-iterator-abstract/zipball/80fd1614d545365d4bdb9d3c1d930ccab8c74ac1",
-                "reference": "80fd1614d545365d4bdb9d3c1d930ccab8c74ac1",
+                "url": "https://api.github.com/repos/RebelCode/module-iterator-abstract/zipball/991a0dc0d826fe7db3c8276e1e358ef9276d5e8e",
+                "reference": "991a0dc0d826fe7db3c8276e1e358ef9276d5e8e",
                 "shasum": ""
             },
             "require": {
-                "dhii/modular-interface": "dev-develop",
-                "php": "^5.3 | ^7.0"
+                "php": "^5.4 | ^7.0"
             },
             "require-dev": {
                 "codeclimate/php-test-reporter": "<=0.3.2",
+                "dhii/module-interface": "^0.1-alpha1",
                 "dhii/php-cs-fixer-config": "dev-php-5.3",
                 "phpunit/phpunit": "^4.8",
+                "psr/container": "^1.0",
                 "ptrofimov/xpmock": "^1.1"
             },
             "type": "library",
@@ -2114,7 +2072,7 @@
                 }
             ],
             "description": "Basic and abstract functionality for module iterators.",
-            "time": "2018-03-14T13:01:50+00:00"
+            "time": "2018-05-11T08:25:59+00:00"
         },
         {
             "name": "rebelcode/sql-cqrs-resource-models-abstract",
@@ -4138,7 +4096,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "rebelcode/modular": 20,
         "rebelcode/booking-interface": 20,
         "rebelcode/wp-cqrs-resource-models": 20
     },
