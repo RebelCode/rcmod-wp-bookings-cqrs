@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3bbe8691551c7364a2db3fa203561a5",
+    "content-hash": "d5777eef90bebb1a4f35e51a89ba2405",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -1518,16 +1518,16 @@
         },
         {
             "name": "dhii/time-interface",
-            "version": "dev-develop",
+            "version": "v0.1-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/time-interface.git",
-                "reference": "7ecdf1092a53b69cd9419c62287657485c66af4a"
+                "reference": "1ec468076d1a3124ac55942c0542f19a06d16def"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/time-interface/zipball/7ecdf1092a53b69cd9419c62287657485c66af4a",
-                "reference": "7ecdf1092a53b69cd9419c62287657485c66af4a",
+                "url": "https://api.github.com/repos/Dhii/time-interface/zipball/1ec468076d1a3124ac55942c0542f19a06d16def",
+                "reference": "1ec468076d1a3124ac55942c0542f19a06d16def",
                 "shasum": ""
             },
             "require": {
@@ -1556,7 +1556,7 @@
                 }
             ],
             "description": "Interfaces for dealing with time.",
-            "time": "2017-10-11T13:29:39+00:00"
+            "time": "2018-05-14T13:42:07+00:00"
         },
         {
             "name": "dhii/type-interface",
@@ -1870,22 +1870,22 @@
         },
         {
             "name": "rebelcode/booking-interface",
-            "version": "dev-develop",
+            "version": "v0.1-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/booking-interface.git",
-                "reference": "7f72d7eb29c3d29ed6a12f95db57972e7750092c"
+                "reference": "7685a647d3bef2da4cd60d74fa85d829628eccc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/booking-interface/zipball/7f72d7eb29c3d29ed6a12f95db57972e7750092c",
-                "reference": "7f72d7eb29c3d29ed6a12f95db57972e7750092c",
+                "url": "https://api.github.com/repos/RebelCode/booking-interface/zipball/7685a647d3bef2da4cd60d74fa85d829628eccc6",
+                "reference": "7685a647d3bef2da4cd60d74fa85d829628eccc6",
                 "shasum": ""
             },
             "require": {
                 "dhii/data-identifiable-interface": "^0.1",
-                "dhii/factory-interface": "0.1-alpha2",
-                "dhii/time-interface": "dev-develop",
+                "dhii/factory-interface": "^0.1-alpha2",
+                "dhii/time-interface": "^0.1-alpha1",
                 "php": "^5.3 | ^7.0"
             },
             "require-dev": {
@@ -1917,7 +1917,7 @@
                 }
             ],
             "description": "Interfaces for bookings.",
-            "time": "2018-03-21T14:36:35+00:00"
+            "time": "2018-05-14T14:14:42+00:00"
         },
         {
             "name": "rebelcode/expression-wp-query-builder",
@@ -4096,7 +4096,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "rebelcode/booking-interface": 20,
         "rebelcode/wp-cqrs-resource-models": 20
     },
     "prefer-stable": true,
