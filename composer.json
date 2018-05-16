@@ -15,7 +15,7 @@
         "php": "^5.4 | ^7.0",
         "rebelcode/modular": "^0.1-alpha1",
         "rebelcode/booking-interface": "^0.1-alpha1",
-        "rebelcode/wp-cqrs-resource-models": "dev-task/initial-classes"
+        "rebelcode/wp-cqrs-resource-models": "^0.1-alpha1"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
