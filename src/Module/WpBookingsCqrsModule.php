@@ -401,11 +401,19 @@ class WpBookingsCqrsModule extends AbstractBaseModule
             $migrator = $c->get('eddbk_migrator');
 
             try {
+                // Trigger event
+                $this->_trigger('wp_bookings_cqrs_before_migration', ['target' => $target]);
+
                 // Migrate
                 $migrator->migrate($target);
+
                 // Update DB version on success
                 \update_option($c->get('wp_bookings_cqrs/migrations/db_version_option'), $target);
-            } catch (Exception $exception) {}
+                // Trigger event
+                $this->_trigger('wp_bookings_cqrs_after_migration', ['target' => $target]);
+            } catch (Exception $exception) {
+                $this->_trigger('wp_bookings_cqrs_on_migration_failed', ['target' => $target]);
+            }
         });
     }
 }
