@@ -6,6 +6,8 @@ use Dhii\Data\Container\ContainerFactoryInterface;
 use Dhii\Exception\InternalException;
 use Dhii\Util\Normalization\NormalizeArrayCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
+use Exception;
+use mysqli;
 use Psr\Container\ContainerInterface;
 use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
@@ -25,6 +27,13 @@ class WpBookingsCqrsModule extends AbstractBaseModule
 {
     /* @since [*next-version*] */
     use NormalizeArrayCapableTrait;
+
+    /**
+     * The database version.
+     *
+     * @since [*next-version*]
+     */
+    const DB_VERSION = 1;
 
     /**
      * Constructor.
@@ -330,6 +339,32 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                 },
 
                 /*==============================================================*
+                 *   Migration Services                                         |
+                 *==============================================================*/
+
+                /*
+                 * The mysqli database connection instance.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_bookings_mysqli'   => function (ContainerInterface $c) {
+                    return new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+                },
+
+                /*
+                 * The migrator instance.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_bookings_migrator' => function (ContainerInterface $c) {
+                    return new Migrator(
+                        $c->get('eddbk_mysqli'),
+                        RC_WP_BOOKINGS_CQRS_MIGRATIONS_DIR,
+                        \get_option($c->get('wp_bookings_cqrs/migrations/db_version_option'), 0)
+                    );
+                },
+
+                /*==============================================================*
                  *   Misc. Services                                             |
                  *==============================================================*/
 
@@ -352,5 +387,17 @@ class WpBookingsCqrsModule extends AbstractBaseModule
      */
     public function run(ContainerInterface $c = null)
     {
+        // Handler to migrate to the latest DB version
+        $this->_attach('init', function () use ($c) {
+            $target   = static::DB_VERSION;
+            $migrator = $c->get('eddbk_migrator');
+
+            try {
+                // Migrate
+                $migrator->migrate($target);
+                // Update DB version on success
+                \update_option($c->get('wp_bookings_cqrs/migrations/db_version_option'), $target);
+            } catch (Exception $exception) {}
+        });
     }
 }
