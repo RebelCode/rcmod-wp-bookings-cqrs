@@ -11,6 +11,7 @@ use Dhii\Util\String\StringableInterface as Stringable;
 use Exception;
 use mysqli;
 use Psr\Container\ContainerInterface;
+use Psr\EventManager\EventInterface;
 use Psr\EventManager\EventManagerInterface;
 use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
@@ -372,6 +373,20 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     );
                 },
 
+                /*
+                 * The auto migrations handlers.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_bookings_cqrs_auto_migrations_handler' => function (ContainerInterface $c) {
+                    return new AutoMigrationsHandler(
+                        $c->get('wp_bookings_migrator'),
+                        static::DB_VERSION,
+                        $c->get('event_manager'),
+                        $c->get('event_factory')
+                    );
+                },
+
                 /*==============================================================*
                  *   Misc. Services                                             |
                  *==============================================================*/
@@ -395,27 +410,15 @@ class WpBookingsCqrsModule extends AbstractBaseModule
      */
     public function run(ContainerInterface $c = null)
     {
-        // Handler to migrate to the latest DB version
-        $this->_attach('init', function () use ($c) {
-            $target   = static::DB_VERSION;
-            $migrator = $c->get('eddbk_migrator');
+        // Handler to auto migrate to the latest DB version
+        $this->_attach('init', $c->get('wp_bookings_cqrs_auto_migrations_handler'));
 
-            try {
-                // Trigger event
-                $this->_trigger('wp_bookings_cqrs_before_migration', ['target' => $target]);
+        // Update the database version after migrating
+        $this->_attach('wp_bookings_cqrs_after_migration', function (EventInterface $event) use ($c) {
+            $target = $event->getParam('target');
+            $option = $c->get('wp_bookings_cqrs/migrations/db_version_option');
 
-                // Migrate
-                $migrator->migrate($target);
-
-                // Update DB version on success
-                $optionName = $c->get('wp_bookings_cqrs/migrations/db_version_option');
-                \update_option($optionName, $target);
-
-                // Trigger event
-                $this->_trigger('wp_bookings_cqrs_after_migration', ['target' => $target]);
-            } catch (Exception $exception) {
-                $this->_trigger('wp_bookings_cqrs_on_migration_failed', ['target' => $target]);
-            }
+            \update_option($option, $target);
         });
     }
 }
