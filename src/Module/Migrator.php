@@ -226,12 +226,26 @@ class Migrator
     {
         $mysqli   = $this->_getMysqli();
         $sqlQuery = $this->_readSqlMigrationFile($filePath);
-        $sqlQuery = str_replace('${table_prefix}', 'wp_eddbk_', $sqlQuery);
+        $sqlQuery = $this->_replaceSqlTokens($sqlQuery);
         $success  = $mysqli->multi_query($sqlQuery);
 
         if (!$success) {
             throw $this->_createRuntimeException($mysqli->error);
         }
+    }
+
+    /**
+     * Replaces placeholder tokens in the SQL.
+     *
+     * @since [*next-version*]
+     *
+     * @param string|Stringable $sql The SQL.
+     *
+     * @return string|Stringable The SQL with the replaced placeholder tokens.
+     */
+    protected function _replaceSqlTokens($sql)
+    {
+        return str_replace('${table_prefix}', 'wp_eddbk_', $sql);
     }
 
     /**
