@@ -408,7 +408,9 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                 $migrator->migrate($target);
 
                 // Update DB version on success
-                \update_option($c->get('wp_bookings_cqrs/migrations/db_version_option'), $target);
+                $optionName = $c->get('wp_bookings_cqrs/migrations/db_version_option');
+                \update_option($optionName, $target);
+
                 // Trigger event
                 $this->_trigger('wp_bookings_cqrs_after_migration', ['target' => $target]);
             } catch (Exception $exception) {
