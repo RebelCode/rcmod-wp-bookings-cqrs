@@ -14,4 +14,14 @@ return [
         'session_rules'   => include __DIR__ . '/session_rules.php',
         'transition_logs' => include __DIR__ . '/transition_log.php',
     ],
+    'wp_bookings_cqrs' => [
+        'migrations' => [
+            /*
+             * The WordPress option name where the database version is saved.
+             *
+             * @since [*next-version*]
+             */
+            'db_version_option' => 'wp_bookings_db_version'
+        ]
+    ]
 ];
