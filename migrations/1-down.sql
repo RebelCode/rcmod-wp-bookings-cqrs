@@ -1,7 +1,5 @@
-drop table if exists ${table_prefix}booking_status_logs;
+drop table if exists ${cqrs/bookings/table};
 
-drop table if exists ${table_prefix}bookings;
+drop table if exists ${cqrs/session_rules/table};
 
-drop table if exists ${table_prefix}session_rules;
-
-drop table if exists ${table_prefix}sessions;
+drop table if exists ${cqrs/sessions/table};
