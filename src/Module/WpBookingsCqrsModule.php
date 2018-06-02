@@ -2,13 +2,16 @@
 
 namespace RebelCode\Storage\Resource\WordPress\Module;
 
+use Dhii\Config\ConfigFactoryInterface;
 use Dhii\Data\Container\ContainerFactoryInterface;
+use Dhii\Event\EventFactoryInterface;
 use Dhii\Exception\InternalException;
 use Dhii\Util\Normalization\NormalizeArrayCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
 use Exception;
 use mysqli;
 use Psr\Container\ContainerInterface;
+use Psr\EventManager\EventManagerInterface;
 use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingWpdbSelectResourceModel;
@@ -42,18 +45,23 @@ class WpBookingsCqrsModule extends AbstractBaseModule
      *
      * @param string|Stringable         $key                  The module key.
      * @param string[]|Stringable[]     $dependencies         The module dependencies.
-     * @param ContainerFactoryInterface $configFactory        The config factory.
+     * @param ConfigFactoryInterface    $configFactory        The config factory.
      * @param ContainerFactoryInterface $containerFactory     The container factory.
      * @param ContainerFactoryInterface $compContainerFactory The composite container factory.
+     * @param EventManagerInterface     $eventManager         The event manager.
+     * @param EventFactoryInterface     $eventFactory         The event factory.
      */
     public function __construct(
         $key,
-        $dependencies = [],
-        ContainerFactoryInterface $configFactory,
+        $dependencies,
+        ConfigFactoryInterface $configFactory,
         ContainerFactoryInterface $containerFactory,
-        ContainerFactoryInterface $compContainerFactory
+        ContainerFactoryInterface $compContainerFactory,
+        $eventManager,
+        $eventFactory
     ) {
         $this->_initModule($key, $dependencies, $configFactory, $containerFactory, $compContainerFactory);
+        $this->_initModuleEvents($eventManager, $eventFactory);
     }
 
     /**
