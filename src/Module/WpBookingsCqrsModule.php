@@ -6,6 +6,7 @@ use Dhii\Config\ConfigFactoryInterface;
 use Dhii\Data\Container\ContainerFactoryInterface;
 use Dhii\Event\EventFactoryInterface;
 use Dhii\Exception\InternalException;
+use Dhii\Output\PlaceholderTemplateFactory;
 use Dhii\Util\Normalization\NormalizeArrayCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
 use mysqli;
@@ -380,7 +381,8 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'wp_bookings_sql_placeholder_template_factory' => function (ContainerInterface $c) {
-                    return new SqlPlaceholderTemplateFactory(
+                    return new PlaceholderTemplateFactory(
+                        'Dhii\Output\PlaceholderTemplate',
                         $c->get('wp_bookings_cqrs/migrations/placeholder_token_start'),
                         $c->get('wp_bookings_cqrs/migrations/placeholder_token_end'),
                         $c->get('wp_bookings_cqrs/migrations/placeholder_default_value')

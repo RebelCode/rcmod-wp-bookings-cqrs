@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c700e7688ea75955720df066cc2a903f",
+    "content-hash": "cbd179d57e07a5bbcd7acb591788261a",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -1608,26 +1608,27 @@
         },
         {
             "name": "dhii/placeholder-template",
-            "version": "v0.1-alpha1",
+            "version": "v0.1-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/placeholder-template.git",
-                "reference": "d1c34e6a77cdc39709b2b4c613e1b34920b1688e"
+                "reference": "ab6eb2f98b085dfdf22cf86fd243cd7e6ee68525"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/placeholder-template/zipball/d1c34e6a77cdc39709b2b4c613e1b34920b1688e",
-                "reference": "d1c34e6a77cdc39709b2b4c613e1b34920b1688e",
+                "url": "https://api.github.com/repos/Dhii/placeholder-template/zipball/ab6eb2f98b085dfdf22cf86fd243cd7e6ee68525",
+                "reference": "ab6eb2f98b085dfdf22cf86fd243cd7e6ee68525",
                 "shasum": ""
             },
             "require": {
                 "dhii/container-helper-base": "^0.1-alpha5",
                 "dhii/data-container-base": "^0.1-alpha1",
                 "dhii/exception": "^0.1-alpha4",
+                "dhii/factory-base": "^0.1-alpha2",
                 "dhii/i18n-helper-base": "^0.1-alpha1",
                 "dhii/normalization-helper-base": "^0.1-alpha3",
                 "dhii/output-renderer-base": "^0.1-alpha1",
-                "dhii/placeholder-template-abstract": "^0.1-alpha4",
+                "dhii/placeholder-template-abstract": "^0.1-alpha5",
                 "dhii/regex-abstract": "^0.1-alpha1",
                 "dhii/stringable-helper-base": "^0.1-alpha2",
                 "php": "^5.4 | ^7.0"
@@ -1661,20 +1662,20 @@
                 }
             ],
             "description": "A template implementation that replaces placeholders in text",
-            "time": "2018-06-04T13:34:55+00:00"
+            "time": "2018-06-04T15:39:18+00:00"
         },
         {
             "name": "dhii/placeholder-template-abstract",
-            "version": "v0.1-alpha4",
+            "version": "v0.1-alpha5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/placeholder-template-abstract.git",
-                "reference": "af9d2504cc6f66219f09c22e26d0b37c85bc3755"
+                "reference": "bfa7cea3b1e078b19bcf59d9a3da63b8c12ed03b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/placeholder-template-abstract/zipball/af9d2504cc6f66219f09c22e26d0b37c85bc3755",
-                "reference": "af9d2504cc6f66219f09c22e26d0b37c85bc3755",
+                "url": "https://api.github.com/repos/Dhii/placeholder-template-abstract/zipball/bfa7cea3b1e078b19bcf59d9a3da63b8c12ed03b",
+                "reference": "bfa7cea3b1e078b19bcf59d9a3da63b8c12ed03b",
                 "shasum": ""
             },
             "require": {
@@ -1718,7 +1719,7 @@
                 }
             ],
             "description": "Abstract functionality for working with templates that use placeholders.",
-            "time": "2018-06-04T12:53:14+00:00"
+            "time": "2018-06-04T15:21:46+00:00"
         },
         {
             "name": "dhii/psr-14",

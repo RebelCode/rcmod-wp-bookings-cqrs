@@ -17,7 +17,7 @@
         "rebelcode/booking-interface": "^0.1-alpha1",
         "rebelcode/wp-cqrs-resource-models": "^0.1-alpha1",
         "dhii/data-object-abstract": "^0.1-alpha1",
-        "dhii/placeholder-template": "^0.1-alpha1"
+        "dhii/placeholder-template": "^0.1-alpha2"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
