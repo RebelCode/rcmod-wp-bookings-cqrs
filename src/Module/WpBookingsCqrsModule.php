@@ -74,7 +74,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
     public function setup()
     {
         return $this->_setupContainer(
-            $config = $this->_loadPhpConfigFile(RC_WP_BOOKINGS_CQRS_MODULE_CONFIG_FILE),
+            $this->_loadPhpConfigFile(RC_WP_BOOKINGS_CQRS_MODULE_CONFIG_FILE),
             [
                 /*==============================================================*
                  *   Booking RMs                                                |
@@ -364,13 +364,13 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  *
                  * @since [*next-version*]
                  */
-                'wp_bookings_migrator' => function (ContainerInterface $c) use ($config) {
+                'wp_bookings_migrator' => function (ContainerInterface $c) {
                     return new Migrator(
                         $c->get('wp_bookings_mysqli'),
                         RC_WP_BOOKINGS_CQRS_MIGRATIONS_DIR,
                         \get_option($c->get('wp_bookings_cqrs/migrations/db_version_option'), 0),
                         $c->get('wp_bookings_sql_placeholder_template_factory'),
-                        $config
+                        $c->get('cqrs')
                     );
                 },
 

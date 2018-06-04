@@ -1,4 +1,4 @@
-create table ${cqrs/bookings/table}
+create table ${bookings/table}
 (
 	id bigint auto_increment
 		primary key,
@@ -13,7 +13,7 @@ create table ${cqrs/bookings/table}
 	status varchar(20) not null
 );
 
-create table ${cqrs/session_rules/table}
+create table ${session_rules/table}
 (
 	id bigint auto_increment
 		primary key,
@@ -32,7 +32,7 @@ create table ${cqrs/session_rules/table}
 	exclude_dates longtext null
 );
 
-create table ${cqrs/sessions/table}
+create table ${sessions/table}
 (
 	id int auto_increment
 		primary key,

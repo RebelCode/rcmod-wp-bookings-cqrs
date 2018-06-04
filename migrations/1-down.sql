@@ -1,5 +1,5 @@
-drop table if exists ${cqrs/bookings/table};
+drop table if exists ${bookings/table};
 
-drop table if exists ${cqrs/session_rules/table};
+drop table if exists ${session_rules/table};
 
-drop table if exists ${cqrs/sessions/table};
+drop table if exists ${sessions/table};
