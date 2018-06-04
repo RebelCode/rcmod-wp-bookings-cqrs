@@ -8,7 +8,6 @@ use Dhii\Event\EventFactoryInterface;
 use Dhii\Exception\InternalException;
 use Dhii\Util\Normalization\NormalizeArrayCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
-use Exception;
 use mysqli;
 use Psr\Container\ContainerInterface;
 use Psr\EventManager\EventInterface;

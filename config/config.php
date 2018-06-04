@@ -7,7 +7,7 @@
  */
 
 return [
-    'cqrs' => [
+    'cqrs'             => [
         'table_prefix'    => '${wpdb_prefix}',
         'bookings'        => include __DIR__ . '/bookings.php',
         'sessions'        => include __DIR__ . '/sessions.php',
