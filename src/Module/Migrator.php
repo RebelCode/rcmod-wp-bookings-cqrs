@@ -99,7 +99,7 @@ class Migrator
      *
      * @since [*next-version*]
      *
-     * @var TemplateFactoryInterface
+     * @var TemplateFactoryInterface|null
      */
     protected $templateFactory;
 
@@ -212,7 +212,7 @@ class Migrator
      *
      * @since [*next-version*]
      *
-     * @return TemplateFactoryInterface The template factory instance.
+     * @return TemplateFactoryInterface|null The template factory instance.
      */
     protected function _getTemplateFactory()
     {
@@ -224,11 +224,11 @@ class Migrator
      *
      * @since [*next-version*]
      *
-     * @param TemplateFactoryInterface $templateFactory The template factory instance.
+     * @param TemplateFactoryInterface|null $templateFactory The template factory instance.
      */
     protected function _setTemplateFactory($templateFactory)
     {
-        if (!($templateFactory instanceof TemplateFactoryInterface)) {
+        if ($templateFactory !== null && !($templateFactory instanceof TemplateFactoryInterface)) {
             throw $this->_createInvalidArgumentException(
                 $this->__('Argument is not a template factory'), null, null, $templateFactory
             );
@@ -310,7 +310,13 @@ class Migrator
      */
     protected function _replaceSqlTokens($sql, $values)
     {
-        $template = $this->_getTemplateFactory()->make([
+        $factory = $this->_getTemplateFactory();
+
+        if ($factory === null) {
+            throw $this->_createRuntimeException($this->__('Template factory is null'));
+        }
+
+        $template = $factory->make([
             TemplateFactoryInterface::K_TEMPLATE => $sql
         ]);
 
