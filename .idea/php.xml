@@ -142,6 +142,12 @@
       <path value="$PROJECT_DIR$/vendor/dhii/normalization-helper-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/output-renderer-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/data-object-abstract" />
+      <path value="$PROJECT_DIR$/vendor/dhii/output-renderer-base" />
+      <path value="$PROJECT_DIR$/vendor/dhii/regex-abstract" />
+      <path value="$PROJECT_DIR$/vendor/dhii/output-renderer-abstract" />
+      <path value="$PROJECT_DIR$/vendor/dhii/placeholder-template" />
+      <path value="$PROJECT_DIR$/vendor/dhii/stringable-helper-base" />
+      <path value="$PROJECT_DIR$/vendor/dhii/placeholder-template-abstract" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />
