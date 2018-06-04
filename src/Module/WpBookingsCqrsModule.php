@@ -2,11 +2,17 @@
 
 namespace RebelCode\Storage\Resource\WordPress\Module;
 
+use Dhii\Config\ConfigFactoryInterface;
 use Dhii\Data\Container\ContainerFactoryInterface;
+use Dhii\Event\EventFactoryInterface;
 use Dhii\Exception\InternalException;
+use Dhii\Output\PlaceholderTemplateFactory;
 use Dhii\Util\Normalization\NormalizeArrayCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
+use mysqli;
 use Psr\Container\ContainerInterface;
+use Psr\EventManager\EventInterface;
+use Psr\EventManager\EventManagerInterface;
 use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingWpdbSelectResourceModel;
@@ -27,24 +33,36 @@ class WpBookingsCqrsModule extends AbstractBaseModule
     use NormalizeArrayCapableTrait;
 
     /**
+     * The database version.
+     *
+     * @since [*next-version*]
+     */
+    const DB_VERSION = 1;
+
+    /**
      * Constructor.
      *
      * @since [*next-version*]
      *
      * @param string|Stringable         $key                  The module key.
      * @param string[]|Stringable[]     $dependencies         The module dependencies.
-     * @param ContainerFactoryInterface $configFactory        The config factory.
+     * @param ConfigFactoryInterface    $configFactory        The config factory.
      * @param ContainerFactoryInterface $containerFactory     The container factory.
      * @param ContainerFactoryInterface $compContainerFactory The composite container factory.
+     * @param EventManagerInterface     $eventManager         The event manager.
+     * @param EventFactoryInterface     $eventFactory         The event factory.
      */
     public function __construct(
         $key,
-        $dependencies = [],
-        ContainerFactoryInterface $configFactory,
+        $dependencies,
+        ConfigFactoryInterface $configFactory,
         ContainerFactoryInterface $containerFactory,
-        ContainerFactoryInterface $compContainerFactory
+        ContainerFactoryInterface $compContainerFactory,
+        $eventManager,
+        $eventFactory
     ) {
         $this->_initModule($key, $dependencies, $configFactory, $containerFactory, $compContainerFactory);
+        $this->_initModuleEvents($eventManager, $eventFactory);
     }
 
     /**
@@ -330,6 +348,62 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                 },
 
                 /*==============================================================*
+                 *   Migration Services                                         |
+                 *==============================================================*/
+
+                /*
+                 * The mysqli database connection instance.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_bookings_mysqli'   => function (ContainerInterface $c) {
+                    return new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+                },
+
+                /*
+                 * The migrator instance.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_bookings_migrator' => function (ContainerInterface $c) {
+                    return new Migrator(
+                        $c->get('wp_bookings_mysqli'),
+                        RC_WP_BOOKINGS_CQRS_MIGRATIONS_DIR,
+                        \get_option($c->get('wp_bookings_cqrs/migrations/db_version_option'), 0),
+                        $c->get('wp_bookings_sql_placeholder_template_factory'),
+                        $c
+                    );
+                },
+
+                /*
+                 * The SQL placeholder template factory - used to create SQL templates with placeholder tokens.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_bookings_sql_placeholder_template_factory' => function (ContainerInterface $c) {
+                    return new PlaceholderTemplateFactory(
+                        'Dhii\Output\PlaceholderTemplate',
+                        $c->get('wp_bookings_cqrs/migrations/placeholder_token_start'),
+                        $c->get('wp_bookings_cqrs/migrations/placeholder_token_end'),
+                        $c->get('wp_bookings_cqrs/migrations/placeholder_default_value')
+                    );
+                },
+
+                /*
+                 * The auto migrations handlers.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_bookings_cqrs_auto_migrations_handler' => function (ContainerInterface $c) {
+                    return new AutoMigrationsHandler(
+                        $c->get('wp_bookings_migrator'),
+                        static::DB_VERSION,
+                        $c->get('event_manager'),
+                        $c->get('event_factory')
+                    );
+                },
+
+                /*==============================================================*
                  *   Misc. Services                                             |
                  *==============================================================*/
 
@@ -352,5 +426,15 @@ class WpBookingsCqrsModule extends AbstractBaseModule
      */
     public function run(ContainerInterface $c = null)
     {
+        // Handler to auto migrate to the latest DB version
+        $this->_attach('init', $c->get('wp_bookings_cqrs_auto_migrations_handler'));
+
+        // Update the database version after migrating
+        $this->_attach('wp_bookings_cqrs_after_migration', function (EventInterface $event) use ($c) {
+            $target = $event->getParam('target');
+            $option = $c->get('wp_bookings_cqrs/migrations/db_version_option');
+
+            \update_option($option, $target);
+        });
     }
 }

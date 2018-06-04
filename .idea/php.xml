@@ -15,18 +15,13 @@
       <path value="$PROJECT_DIR$/vendor/satooshi/php-coveralls" />
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/vendor/rebelcode/modular" />
-      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
-      <path value="$PROJECT_DIR$/vendor/symfony/config" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
-      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
-      <path value="$PROJECT_DIR$/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/vendor/dhii/file-finder-abstract" />
       <path value="$PROJECT_DIR$/vendor/dhii/container-helper-base" />
@@ -37,7 +32,6 @@
       <path value="$PROJECT_DIR$/vendor/guzzle/guzzle" />
       <path value="$PROJECT_DIR$/vendor/dhii/validation-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/stringable-interface" />
-      <path value="$PROJECT_DIR$/vendor/dhii/normalization-helper-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/validation-abstract" />
       <path value="$PROJECT_DIR$/vendor/dhii/invocable-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/iterator-helper-base" />
@@ -77,18 +71,13 @@
       <path value="$PROJECT_DIR$/vendor/satooshi/php-coveralls" />
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/vendor/rebelcode/modular" />
-      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
-      <path value="$PROJECT_DIR$/vendor/symfony/config" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
-      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
-      <path value="$PROJECT_DIR$/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/vendor/dhii/file-finder-abstract" />
       <path value="$PROJECT_DIR$/vendor/dhii/container-helper-base" />
@@ -99,13 +88,11 @@
       <path value="$PROJECT_DIR$/vendor/guzzle/guzzle" />
       <path value="$PROJECT_DIR$/vendor/dhii/validation-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/stringable-interface" />
-      <path value="$PROJECT_DIR$/vendor/dhii/normalization-helper-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/validation-abstract" />
       <path value="$PROJECT_DIR$/vendor/dhii/invocable-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/iterator-helper-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/callback-abstract" />
       <path value="$PROJECT_DIR$/vendor/dhii/data-key-value-aware-abstract" />
-      <path value="$PROJECT_DIR$/vendor/dhii/output-renderer-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/factory-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/data-key-value-aware-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/data-container-interface" />
@@ -145,6 +132,22 @@
       <path value="$PROJECT_DIR$/vendor/dhii/expression-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/evaluable-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/expression-renderer-interface" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor/johnpbloch/wordpress-core" />
+      <path value="$PROJECT_DIR$/vendor/dhii/normalization-helper-base" />
+      <path value="$PROJECT_DIR$/vendor/dhii/output-renderer-interface" />
+      <path value="$PROJECT_DIR$/vendor/dhii/data-object-abstract" />
+      <path value="$PROJECT_DIR$/vendor/dhii/output-renderer-base" />
+      <path value="$PROJECT_DIR$/vendor/dhii/regex-abstract" />
+      <path value="$PROJECT_DIR$/vendor/dhii/output-renderer-abstract" />
+      <path value="$PROJECT_DIR$/vendor/dhii/placeholder-template" />
+      <path value="$PROJECT_DIR$/vendor/dhii/stringable-helper-base" />
+      <path value="$PROJECT_DIR$/vendor/dhii/placeholder-template-abstract" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />

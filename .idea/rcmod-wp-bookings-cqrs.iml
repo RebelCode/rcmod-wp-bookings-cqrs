@@ -17,6 +17,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/data-identifiable-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/data-key-value-aware-abstract" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/data-key-value-aware-interface" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/data-object-abstract" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/evaluable-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/event-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/exception" />
@@ -33,10 +34,16 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/iterator-helper-base" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/module-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/normalization-helper-base" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/output-renderer-abstract" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/output-renderer-base" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/output-renderer-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/php-cs-fixer-config" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/placeholder-template" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/placeholder-template-abstract" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/psr-14" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/regex-abstract" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/sql-interface" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/stringable-helper-base" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/stringable-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/time-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/type-interface" />
@@ -47,6 +54,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofphp/php-cs-fixer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzle/guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/johnpbloch/wordpress-core" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpspec/prophecy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-code-coverage" />
@@ -79,6 +87,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/filesystem" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/finder" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/process" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/stopwatch" />
