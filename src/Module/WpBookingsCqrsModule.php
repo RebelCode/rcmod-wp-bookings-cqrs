@@ -370,7 +370,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         RC_WP_BOOKINGS_CQRS_MIGRATIONS_DIR,
                         \get_option($c->get('wp_bookings_cqrs/migrations/db_version_option'), 0),
                         $c->get('wp_bookings_sql_placeholder_template_factory'),
-                        $c->get('cqrs')
+                        $c
                     );
                 },
 
