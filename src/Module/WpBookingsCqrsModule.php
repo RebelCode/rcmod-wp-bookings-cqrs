@@ -74,7 +74,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
     public function setup()
     {
         return $this->_setupContainer(
-            $this->_loadPhpConfigFile(RC_WP_BOOKINGS_CQRS_MODULE_CONFIG_FILE),
+            $config = $this->_loadPhpConfigFile(RC_WP_BOOKINGS_CQRS_MODULE_CONFIG_FILE),
             [
                 /*==============================================================*
                  *   Booking RMs                                                |
@@ -364,11 +364,26 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  *
                  * @since [*next-version*]
                  */
-                'wp_bookings_migrator' => function (ContainerInterface $c) {
+                'wp_bookings_migrator' => function (ContainerInterface $c) use ($config) {
                     return new Migrator(
-                        $c->get('eddbk_mysqli'),
+                        $c->get('wp_bookings_mysqli'),
                         RC_WP_BOOKINGS_CQRS_MIGRATIONS_DIR,
-                        \get_option($c->get('wp_bookings_cqrs/migrations/db_version_option'), 0)
+                        \get_option($c->get('wp_bookings_cqrs/migrations/db_version_option'), 0),
+                        $c->get('wp_bookings_sql_placeholder_template_factory'),
+                        $config
+                    );
+                },
+
+                /*
+                 * The SQL placeholder template factory - used to create SQL templates with placeholder tokens.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_bookings_sql_placeholder_template_factory' => function (ContainerInterface $c) {
+                    return new SqlPlaceholderTemplateFactory(
+                        $c->get('wp_bookings_cqrs/migrations/placeholder_token_start'),
+                        $c->get('wp_bookings_cqrs/migrations/placeholder_token_end'),
+                        $c->get('wp_bookings_cqrs/migrations/placeholder_default_value')
                     );
                 },
 
