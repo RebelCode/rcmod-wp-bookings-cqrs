@@ -312,7 +312,7 @@ class Migrator
     {
         $factory = $this->_getTemplateFactory();
 
-        if ($factory === null) {
+        if (!($factory instanceof TemplateFactoryInterface)) {
             throw $this->_createRuntimeException($this->__('Template factory is null'));
         }
 
