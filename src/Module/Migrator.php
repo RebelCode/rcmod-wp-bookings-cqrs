@@ -2,16 +2,22 @@
 
 namespace RebelCode\Storage\Resource\WordPress\Module;
 
+use ArrayAccess;
+use Dhii\Data\Container\NormalizeContainerCapableTrait;
+use Dhii\Data\Object\DataStoreAwareContainerTrait;
 use Dhii\Exception\CreateInvalidArgumentExceptionCapableTrait;
 use Dhii\Exception\CreateOutOfRangeExceptionCapableTrait;
 use Dhii\Exception\CreateRuntimeExceptionCapableTrait;
 use Dhii\I18n\StringTranslatingTrait;
+use Dhii\Output\TemplateFactoryInterface;
 use Dhii\Util\Normalization\NormalizeIntCapableTrait;
 use Dhii\Util\Normalization\NormalizeStringCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
 use InvalidArgumentException;
 use mysqli;
+use Psr\Container\ContainerInterface;
 use RuntimeException;
+use stdClass;
 
 /**
  * Performs database migrations through WPDB.
@@ -21,10 +27,19 @@ use RuntimeException;
 class Migrator
 {
     /* @since [*next-version*] */
+    use DataStoreAwareContainerTrait {
+        _getDataStore as _getPlaceholderValues;
+        _setDataStore as _setPlaceholderValues;
+    }
+
+    /* @since [*next-version*] */
     use NormalizeIntCapableTrait;
 
     /* @since [*next-version*] */
     use NormalizeStringCapableTrait;
+
+    /* @since [*next-version*] */
+    use NormalizeContainerCapableTrait;
 
     /* @since [*next-version*] */
     use CreateInvalidArgumentExceptionCapableTrait;
@@ -80,19 +95,38 @@ class Migrator
     protected $mysqli;
 
     /**
+     * The template factory.
+     *
+     * @since [*next-version*]
+     *
+     * @var TemplateFactoryInterface
+     */
+    protected $templateFactory;
+
+    /**
      * Constructor.
      *
      * @since [*next-version*]
      *
-     * @param mysqli                $mysqli        The mysqli handle.
-     * @param string|Stringable     $migrationsDir The migrations directory path.
-     * @param int|string|Stringable $dbVersion     The current database version.
+     * @param mysqli                                        $mysqli            The mysqli handle.
+     * @param string|Stringable                             $migrationsDir     The migrations directory path.
+     * @param int|string|Stringable                         $dbVersion         The current database version.
+     * @param TemplateFactoryInterface                      $templateFactory   The factory for creating SQL templates.
+     * @param array|stdClass|ArrayAccess|ContainerInterface $placeholderValues The replacement values for placeholders
+     *                                                                         in SQL templates.
      */
-    public function __construct($mysqli, $migrationsDir, $dbVersion)
-    {
+    public function __construct(
+        $mysqli,
+        $migrationsDir,
+        $dbVersion,
+        TemplateFactoryInterface $templateFactory,
+        $placeholderValues
+    ) {
         $this->mysqli = $mysqli;
         $this->_setMigrationsDir($migrationsDir);
         $this->_setDbVersion($dbVersion);
+        $this->_setTemplateFactory($templateFactory);
+        $this->_setPlaceholderValues($placeholderValues);
     }
 
     /**
@@ -174,6 +208,36 @@ class Migrator
     }
 
     /**
+     * Retrieves the template factory.
+     *
+     * @since [*next-version*]
+     *
+     * @return TemplateFactoryInterface The template factory instance.
+     */
+    protected function _getTemplateFactory()
+    {
+        return $this->templateFactory;
+    }
+
+    /**
+     * Retrieves the template factory.
+     *
+     * @since [*next-version*]
+     *
+     * @param TemplateFactoryInterface $templateFactory The template factory instance.
+     */
+    protected function _setTemplateFactory($templateFactory)
+    {
+        if (!($templateFactory instanceof TemplateFactoryInterface)) {
+            throw $this->_createInvalidArgumentException(
+                $this->__('Argument is not a template factory'), null, null, $templateFactory
+            );
+        }
+
+        $this->templateFactory = $templateFactory;
+    }
+
+    /**
      * Performs database migration.
      *
      * @since [*next-version*]
@@ -226,7 +290,7 @@ class Migrator
     {
         $mysqli   = $this->_getMysqli();
         $sqlQuery = $this->_readSqlMigrationFile($filePath);
-        $sqlQuery = $this->_replaceSqlTokens($sqlQuery);
+        $sqlQuery = $this->_replaceSqlTokens($sqlQuery, $this->_getPlaceholderValues());
         $success  = $mysqli->multi_query($sqlQuery);
 
         if (!$success) {
@@ -239,13 +303,18 @@ class Migrator
      *
      * @since [*next-version*]
      *
-     * @param string|Stringable $sql The SQL.
+     * @param string|Stringable                             $sql    The SQL.
+     * @param array|stdClass|ArrayAccess|ContainerInterface $values The placeholder values.
      *
      * @return string|Stringable The SQL with the replaced placeholder tokens.
      */
-    protected function _replaceSqlTokens($sql)
+    protected function _replaceSqlTokens($sql, $values)
     {
-        return str_replace('${table_prefix}', 'wp_eddbk_', $sql);
+        $template = $this->_getTemplateFactory()->make([
+            TemplateFactoryInterface::K_TEMPLATE => $sql
+        ]);
+
+        return $template->render($values);
     }
 
     /**
