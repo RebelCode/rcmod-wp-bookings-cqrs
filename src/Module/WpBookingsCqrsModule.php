@@ -270,13 +270,9 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                 'wp_unbooked_sessions_condition' => function (ContainerInterface $c) {
                     $b = $c->get('sql_expression_builder');
 
-                    return $b->or(
-                        $b->not(
-                            $b->eq(
-                                $b->ef('booking', 'id'),
-                                $b->lit(null)
-                            )
-                        )
+                    return $b->eq(
+                        $b->ef('booking', 'id'),
+                        $b->lit(null)
                     );
                 },
 
