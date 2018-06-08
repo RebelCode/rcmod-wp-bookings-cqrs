@@ -17,6 +17,7 @@ use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\SessionsWpdbInsertResourceModel;
+use RebelCode\Storage\Resource\WordPress\Wpdb\UnbookedSessionsWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbDeleteResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbInsertResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbSelectResourceModel;
@@ -241,6 +242,41 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $this->_normalizeArray($c->get('cqrs/sessions/select/tables')),
                         $this->_normalizeArray($c->get('cqrs/sessions/select/field_column_map')),
                         $this->_normalizeArray($c->get('cqrs/sessions/select/joins'))
+                    );
+                },
+
+                /*
+                 * The SELECT resource model for unbooked sessions.
+                 *
+                 * @since [*next-version*]
+                 */
+                'unbooked_sessions_select_rm'   => function (ContainerInterface $c) {
+                    return new UnbookedSessionsWpdbSelectResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/tables')),
+                        $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/field_column_map')),
+                        $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/joins')),
+                        $c->get('wp_unbooked_sessions_condition'),
+                        $c->get('sql_expression_builder')
+                    );
+                },
+
+                /*
+                 * The condition for the unbooked sessions SELECT resource model.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_unbooked_sessions_condition' => function (ContainerInterface $c) {
+                    $b = $c->get('sql_expression_builder');
+
+                    return $b->or(
+                        $b->not(
+                            $b->eq(
+                                $b->ef('booking', 'id'),
+                                $b->lit(null)
+                            )
+                        )
                     );
                 },
 
