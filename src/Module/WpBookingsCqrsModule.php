@@ -251,12 +251,14 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'unbooked_sessions_select_rm'   => function (ContainerInterface $c) {
+                    $joinsServiceKey = $c->get('cqrs/unbooked_sessions/select/joins');
+
                     return new UnbookedSessionsWpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/tables')),
                         $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/field_column_map')),
-                        $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/joins')),
+                        $c->get($joinsServiceKey),
                         $c->get('wp_unbooked_sessions_condition'),
                         $c->get('sql_expression_builder')
                     );
@@ -274,6 +276,31 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $b->ef('booking', 'id'),
                         $b->lit(null)
                     );
+                },
+
+                /*
+                 * The join conditions for unbooked sessions SELECT resource model.
+                 *
+                 * @since [*next-version*]
+                 */
+                'unbooked_sessions_select_join_conditions' => function (ContainerInterface $c) {
+                    // Expression builder
+                    $b = $c->get('sql_expression_builder');
+
+                    $tBooking  = $c->get('${cqrs/bookings/table');
+                    $tSession = $c->get('${cqrs/unbooked_sessions/table');
+
+                    return [
+                        // Join with booking table, on identical start and end times
+                        $tBooking => $b->and(
+                            $b->eq(
+                                $b->ef($tBooking, 'start'), $b->ef($tSession, 'start')
+                            ),
+                            $b->eq(
+                                $b->ef($tBooking, 'end'), $b->ef($tSession, 'end')
+                            )
+                        )
+                    ];
                 },
 
                 /*

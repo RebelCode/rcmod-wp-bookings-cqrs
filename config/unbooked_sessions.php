@@ -16,6 +16,6 @@ return [
     'select'           => [
         'tables'           => ['session' => '${cqrs/sessions/table}'],
         'field_column_map' => $sessionsFieldColumnMap,
-        'joins'            => [],
+        'joins'            => 'unbooked_sessions_select_join_conditions',
     ],
 ];
