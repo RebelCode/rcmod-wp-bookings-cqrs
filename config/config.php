@@ -11,7 +11,7 @@ return [
         'table_prefix'      => '${wpdb_prefix}',
         'bookings'          => include __DIR__ . '/bookings.php',
         'sessions'          => include __DIR__ . '/sessions.php',
-        'unbooked_sessions' => include __DIR__ . '/sessions.php',
+        'unbooked_sessions' => include __DIR__ . '/unbooked_sessions.php',
         'session_rules'     => include __DIR__ . '/session_rules.php',
         'transition_logs'   => include __DIR__ . '/transition_log.php',
     ],
