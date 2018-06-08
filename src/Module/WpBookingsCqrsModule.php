@@ -287,8 +287,8 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     // Expression builder
                     $b = $c->get('sql_expression_builder');
 
-                    $tBooking  = $c->get('${cqrs/bookings/table');
-                    $tSession = $c->get('${cqrs/unbooked_sessions/table');
+                    $tBooking  = $c->get('cqrs/bookings/table');
+                    $tSession = $c->get('cqrs/unbooked_sessions/table');
 
                     return [
                         // Join with booking table, on identical start and end times
