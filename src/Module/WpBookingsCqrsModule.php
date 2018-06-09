@@ -9,6 +9,7 @@ use Dhii\Exception\InternalException;
 use Dhii\Output\PlaceholderTemplateFactory;
 use Dhii\Util\Normalization\NormalizeArrayCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
+use InvalidArgumentException;
 use mysqli;
 use Psr\Container\ContainerInterface;
 use Psr\EventManager\EventInterface;
@@ -252,12 +253,28 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  */
                 'unbooked_sessions_select_rm'   => function (ContainerInterface $c) {
                     $joinsServiceKey = $c->get('cqrs/unbooked_sessions/select/joins');
+                    $fieldColumnMap  = $c->get('cqrs/unbooked_sessions/select/field_column_map');
+                    $fieldColumnMap  = $this->_normalizeArray($fieldColumnMap);
+
+                    // Turn array columns into entity fields
+                    $b = $c->get('sql_expression_builder');
+                    foreach ($fieldColumnMap as $_field => $_column) {
+                        try {
+                            $_column = $this->_normalizeArray($_column);
+                            $fieldColumnMap[$_field] = $b->ef(
+                                $_column[0],
+                                $_column[1]
+                            );
+                        } catch (InvalidArgumentException $exception) {
+                            continue;
+                        }
+                    }
 
                     return new UnbookedSessionsWpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/tables')),
-                        $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/field_column_map')),
+                        $fieldColumnMap,
                         $c->get($joinsServiceKey),
                         $c->get('wp_unbooked_sessions_condition'),
                         $c->get('sql_expression_builder')
