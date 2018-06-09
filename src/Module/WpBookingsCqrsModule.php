@@ -9,6 +9,7 @@ use Dhii\Exception\InternalException;
 use Dhii\Output\PlaceholderTemplateFactory;
 use Dhii\Util\Normalization\NormalizeArrayCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
+use InvalidArgumentException;
 use mysqli;
 use Psr\Container\ContainerInterface;
 use Psr\EventManager\EventInterface;
@@ -17,6 +18,7 @@ use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\SessionsWpdbInsertResourceModel;
+use RebelCode\Storage\Resource\WordPress\Wpdb\UnbookedSessionsWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbDeleteResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbInsertResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbSelectResourceModel;
@@ -242,6 +244,93 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $this->_normalizeArray($c->get('cqrs/sessions/select/field_column_map')),
                         $this->_normalizeArray($c->get('cqrs/sessions/select/joins'))
                     );
+                },
+
+                /*
+                 * The SELECT resource model for unbooked sessions.
+                 *
+                 * @since [*next-version*]
+                 */
+                'unbooked_sessions_select_rm'   => function (ContainerInterface $c) {
+                    $joinsServiceKey = $c->get('cqrs/unbooked_sessions/select/joins');
+                    $fieldColumnMap  = $c->get('cqrs/unbooked_sessions/select/field_column_map');
+                    $fieldColumnMap  = $this->_normalizeArray($fieldColumnMap);
+
+                    // Turn array columns into entity fields
+                    $b = $c->get('sql_expression_builder');
+                    foreach ($fieldColumnMap as $_field => $_column) {
+                        try {
+                            $_column = $this->_normalizeArray($_column);
+                            $fieldColumnMap[$_field] = $b->ef(
+                                $_column[0],
+                                $_column[1]
+                            );
+                        } catch (InvalidArgumentException $exception) {
+                            continue;
+                        }
+                    }
+
+                    return new UnbookedSessionsWpdbSelectResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/tables')),
+                        $fieldColumnMap,
+                        $c->get($joinsServiceKey),
+                        $c->get('wp_unbooked_sessions_condition'),
+                        $c->get('sql_expression_builder')
+                    );
+                },
+
+                /*
+                 * The condition for the unbooked sessions SELECT resource model.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_unbooked_sessions_condition' => function (ContainerInterface $c) {
+                    $b  = $c->get('sql_expression_builder');
+                    $bt = $c->get('cqrs/bookings/table');
+
+                    return $b->is(
+                        $b->ef($bt, 'id'),
+                        $b->lit(null)
+                    );
+                },
+
+                /*
+                 * The join conditions for unbooked sessions SELECT resource model.
+                 *
+                 * @since [*next-version*]
+                 */
+                'unbooked_sessions_select_join_conditions' => function (ContainerInterface $c) {
+                    // Expression builder
+                    $e = $c->get('sql_expression_builder');
+                    // The table names
+                    $b = $c->get('cqrs/bookings/table');
+                    $s = $c->get('cqrs/unbooked_sessions/table');
+                    // Booking start and end fields
+                    $bs = $e->ef($b, 'start');
+                    $be = $e->ef($b, 'end');
+                    // Session start and end fields
+                    $ss = $e->ef($s, 'start');
+                    $se = $e->ef($s, 'end');
+
+                    return [
+                        // Join with booking table
+                        $b => $e->and(
+                            // With bookings that conflict
+                            $e->or(
+                                // Booking starts during session
+                                $e->and($e->gte($bs, $ss), $e->lt($bs, $se)),
+                                // Session starts during booking
+                                $e->and($e->gte($ss, $bs), $e->lt($ss, $be))
+                            ),
+                            // AND have the same resource ID
+                            $e->eq(
+                                $e->ef($b, 'resource_id'),
+                                $e->ef($s, 'resource_id')
+                            )
+                        )
+                    ];
                 },
 
                 /*
