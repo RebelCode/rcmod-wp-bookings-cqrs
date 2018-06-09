@@ -285,19 +285,31 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  */
                 'unbooked_sessions_select_join_conditions' => function (ContainerInterface $c) {
                     // Expression builder
-                    $b = $c->get('sql_expression_builder');
-
-                    $tBooking  = $c->get('cqrs/bookings/table');
-                    $tSession = $c->get('cqrs/unbooked_sessions/table');
+                    $e = $c->get('sql_expression_builder');
+                    // The table names
+                    $b = $c->get('cqrs/bookings/table');
+                    $s = $c->get('cqrs/unbooked_sessions/table');
+                    // Booking start and end fields
+                    $bs = $e->ef($b, 'start');
+                    $be = $e->ef($b, 'end');
+                    // Session start and end fields
+                    $ss = $e->ef($s, 'start');
+                    $se = $e->ef($s, 'end');
 
                     return [
-                        // Join with booking table, on identical start and end times
-                        $tBooking => $b->and(
-                            $b->eq(
-                                $b->ef($tBooking, 'start'), $b->ef($tSession, 'start')
+                        // Join with booking table
+                        $b => $e->and(
+                            // With bookings that conflict
+                            $e->or(
+                                // Booking starts during session
+                                $e->and($e->gte($bs, $ss), $e->lt($bs, $se)),
+                                // Session starts during booking
+                                $e->and($e->gte($ss, $bs), $e->lt($ss, $be))
                             ),
-                            $b->eq(
-                                $b->ef($tBooking, 'end'), $b->ef($tSession, 'end')
+                            // AND have the same resource ID
+                            $e->eq(
+                                $e->ef($b, 'resource_id'),
+                                $e->ef($s, 'resource_id')
                             )
                         )
                     ];
