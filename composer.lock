@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cbd179d57e07a5bbcd7acb591788261a",
+    "content-hash": "25f911db5127b3b57b4d1b978596530f",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -2511,16 +2511,16 @@
         },
         {
             "name": "rebelcode/sql-cqrs-resource-models-abstract",
-            "version": "v0.1-alpha2",
+            "version": "v0.1-alpha3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/sql-cqrs-resource-models-abstract.git",
-                "reference": "d1cc6eff127f62b5253e47b91578eadf762eceef"
+                "reference": "970b4fb5860f3eb74177cf57129d61884d2138ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/sql-cqrs-resource-models-abstract/zipball/d1cc6eff127f62b5253e47b91578eadf762eceef",
-                "reference": "d1cc6eff127f62b5253e47b91578eadf762eceef",
+                "url": "https://api.github.com/repos/RebelCode/sql-cqrs-resource-models-abstract/zipball/970b4fb5860f3eb74177cf57129d61884d2138ab",
+                "reference": "970b4fb5860f3eb74177cf57129d61884d2138ab",
                 "shasum": ""
             },
             "require": {
@@ -2560,7 +2560,7 @@
                 }
             ],
             "description": "Abstract functionality for SQL CQRS resource models.",
-            "time": "2018-05-25T12:37:02+00:00"
+            "time": "2018-06-09T08:55:06+00:00"
         },
         {
             "name": "rebelcode/wp-cqrs-resource-models",
