@@ -2511,16 +2511,16 @@
         },
         {
             "name": "rebelcode/sql-cqrs-resource-models-abstract",
-            "version": "v0.1-alpha3",
+            "version": "v0.1-alpha4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/sql-cqrs-resource-models-abstract.git",
-                "reference": "970b4fb5860f3eb74177cf57129d61884d2138ab"
+                "reference": "8e0c226b7d0811ac3edb8a3611ccfa631f2fa0e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/sql-cqrs-resource-models-abstract/zipball/970b4fb5860f3eb74177cf57129d61884d2138ab",
-                "reference": "970b4fb5860f3eb74177cf57129d61884d2138ab",
+                "url": "https://api.github.com/repos/RebelCode/sql-cqrs-resource-models-abstract/zipball/8e0c226b7d0811ac3edb8a3611ccfa631f2fa0e1",
+                "reference": "8e0c226b7d0811ac3edb8a3611ccfa631f2fa0e1",
                 "shasum": ""
             },
             "require": {
@@ -2560,7 +2560,7 @@
                 }
             ],
             "description": "Abstract functionality for SQL CQRS resource models.",
-            "time": "2018-06-09T08:55:06+00:00"
+            "time": "2018-06-11T10:17:24+00:00"
         },
         {
             "name": "rebelcode/wp-cqrs-resource-models",
