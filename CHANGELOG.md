@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+
+## [0.1-alpha4] - 2018-06-13
 ### Fixed
 - No sessions being returned from unbooked sessions resource model due to incorrect JOIN type.
 - Incorrectly using the source SELECT table name in unbooked sessions resource model.
