@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [[*next-version*]] - YYYY-MM-DD
 ### Fixed
 - No sessions being returned from unbooked sessions resource model due to incorrect JOIN type.
+- Incorrectly using the source SELECT table name in unbooked sessions resource model.
 
 ## [0.1-alpha3] - 2018-06-11
 ### Added
