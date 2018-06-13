@@ -78,4 +78,14 @@ class UnbookedSessionsWpdbSelectResourceModel extends AbstractBaseWpdbSelectReso
 
         return parent::select($condition, $ordering, $limit, $offset);
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @since [*next-version*]
+     */
+    protected function _getSqlJoinType(ExpressionInterface $expression)
+    {
+        return 'LEFT';
+    }
 }
