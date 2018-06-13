@@ -306,7 +306,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     $e = $c->get('sql_expression_builder');
                     // The table names
                     $b = $c->get('cqrs/bookings/table');
-                    $s = $c->get('cqrs/unbooked_sessions/table');
+                    $s = 'session';
                     // Booking start and end fields
                     $bs = $e->ef($b, 'start');
                     $be = $e->ef($b, 'end');
