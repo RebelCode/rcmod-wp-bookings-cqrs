@@ -277,6 +277,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $fieldColumnMap,
                         $c->get($joinsServiceKey),
                         $c->get('wp_unbooked_sessions_condition'),
+                        $c->get('wp_unbooked_sessions_grouping_fields'),
                         $c->get('sql_expression_builder')
                     );
                 },
@@ -294,6 +295,19 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $b->ef($bt, 'id'),
                         $b->lit(null)
                     );
+                },
+
+                /*
+                 * The fields to group by for the unbooked sessions SELECT resource model.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_unbooked_sessions_grouping_fields' => function (ContainerInterface $c) {
+                    $b = $c->get('sql_expression_builder');
+
+                    return [
+                        $b->ef('session', 'id')
+                    ];
                 },
 
                 /*

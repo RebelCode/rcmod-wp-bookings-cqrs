@@ -15,7 +15,7 @@
         "php": "^5.4 | ^7.0",
         "rebelcode/modular": "^0.1-alpha1",
         "rebelcode/booking-interface": "^0.1-alpha1",
-        "rebelcode/sql-cqrs-resource-models-abstract": "^0.1-alpha3",
+        "rebelcode/sql-cqrs-resource-models-abstract": "^0.2-alpha1",
         "rebelcode/wp-cqrs-resource-models": "^0.1-alpha1",
         "dhii/data-object-abstract": "^0.1-alpha1",
         "dhii/placeholder-template": "^0.1-alpha2"
