@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "25f911db5127b3b57b4d1b978596530f",
+    "content-hash": "0f451c43cbb028b1e5bd2c232adb346c",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -2511,16 +2511,16 @@
         },
         {
             "name": "rebelcode/sql-cqrs-resource-models-abstract",
-            "version": "v0.1-alpha4",
+            "version": "v0.2-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/sql-cqrs-resource-models-abstract.git",
-                "reference": "8e0c226b7d0811ac3edb8a3611ccfa631f2fa0e1"
+                "reference": "00b6d29fb626c55569e6e6670247634c28ae79cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/sql-cqrs-resource-models-abstract/zipball/8e0c226b7d0811ac3edb8a3611ccfa631f2fa0e1",
-                "reference": "8e0c226b7d0811ac3edb8a3611ccfa631f2fa0e1",
+                "url": "https://api.github.com/repos/RebelCode/sql-cqrs-resource-models-abstract/zipball/00b6d29fb626c55569e6e6670247634c28ae79cf",
+                "reference": "00b6d29fb626c55569e6e6670247634c28ae79cf",
                 "shasum": ""
             },
             "require": {
@@ -2541,7 +2541,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.1.x-dev"
+                    "dev-develop": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -2560,20 +2560,20 @@
                 }
             ],
             "description": "Abstract functionality for SQL CQRS resource models.",
-            "time": "2018-06-11T10:17:24+00:00"
+            "time": "2018-06-14T14:59:00+00:00"
         },
         {
             "name": "rebelcode/wp-cqrs-resource-models",
-            "version": "v0.1-alpha1",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/wp-cqrs-resource-models.git",
-                "reference": "fa6ed0436ab14c1fe737c8d5a6aa5b2987bf23a6"
+                "reference": "677069deb99fe844ec00424b5678d9b3c8ee7cc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/wp-cqrs-resource-models/zipball/fa6ed0436ab14c1fe737c8d5a6aa5b2987bf23a6",
-                "reference": "fa6ed0436ab14c1fe737c8d5a6aa5b2987bf23a6",
+                "url": "https://api.github.com/repos/RebelCode/wp-cqrs-resource-models/zipball/677069deb99fe844ec00424b5678d9b3c8ee7cc2",
+                "reference": "677069deb99fe844ec00424b5678d9b3c8ee7cc2",
                 "shasum": ""
             },
             "require": {
@@ -2587,7 +2587,7 @@
                 "dhii/normalization-helper-base": "^0.1",
                 "php": "^5.4 | ^7.0",
                 "rebelcode/expression-wp-query-builder": "^0.1-alpha1",
-                "rebelcode/sql-cqrs-resource-models-abstract": "^0.1-alpha1"
+                "rebelcode/sql-cqrs-resource-models-abstract": "^0.2-alpha1"
             },
             "require-dev": {
                 "codeclimate/php-test-reporter": "<=0.3.2",
@@ -2624,7 +2624,7 @@
                 }
             ],
             "description": "Functionality for WordPress CQRS resource models.",
-            "time": "2018-05-16T14:30:00+00:00"
+            "time": "2018-06-14T16:37:35+00:00"
         }
     ],
     "packages-dev": [
