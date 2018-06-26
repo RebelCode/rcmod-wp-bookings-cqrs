@@ -16,7 +16,6 @@ use Psr\EventManager\EventInterface;
 use Psr\EventManager\EventManagerInterface;
 use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
-use RebelCode\Storage\Resource\WordPress\Wpdb\BookingWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\SessionsWpdbInsertResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\UnbookedSessionsWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbDeleteResourceModel;
@@ -89,8 +88,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'bookings_select_rm'            => function (ContainerInterface $c) {
-                    return new BookingWpdbSelectResourceModel(
-                        $c->get('booking_factory'),
+                    return new WpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $this->_normalizeArray($c->get('cqrs/bookings/select/tables')),
