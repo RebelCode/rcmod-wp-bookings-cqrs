@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.1-alpha6] - 2018-07-12
 ### Fixed
 - Installed missing `rebelcode/rcmod-wp-cqrs` dev dependency.
+- The Booking Select RM no longer creates booking instances.
 
 ## [0.1-alpha5] - 2018-06-14
 ### Fixed
