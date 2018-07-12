@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.1-alpha5] - 2018-06-14
 ### Fixed
-- The unbooked sessions SELECT CQRS resource model gives the same session multiple times if it matches multiple bookings.
+- The unbooked sessions SELECT CQRS resource model used to give the same session multiple times if it matches multiple bookings.
 
 ## [0.1-alpha4] - 2018-06-13
 ### Fixed
