@@ -148,6 +148,10 @@
       <path value="$PROJECT_DIR$/vendor/dhii/placeholder-template" />
       <path value="$PROJECT_DIR$/vendor/dhii/stringable-helper-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/placeholder-template-abstract" />
+      <path value="$PROJECT_DIR$/vendor/rebelcode/sql-expression-renderer" />
+      <path value="$PROJECT_DIR$/vendor/rebelcode/rcmod-wp-cqrs" />
+      <path value="$PROJECT_DIR$/vendor/dhii/expression-renderer-base" />
+      <path value="$PROJECT_DIR$/vendor/dhii/expression-renderer-abstract" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />
