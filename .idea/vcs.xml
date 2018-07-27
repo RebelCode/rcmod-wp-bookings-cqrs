@@ -7,8 +7,6 @@
     <mapping directory="$PROJECT_DIR$/vendor/dhii/cqrs-resource-model-interface" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/dhii/data-container-interface" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/dhii/expression-interface" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/vendor/dhii/expression-renderer-abstract" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/vendor/dhii/expression-renderer-base" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/dhii/expression-renderer-interface" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/dhii/factory-base" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/dhii/file-finder-abstract" vcs="Git" />
@@ -21,17 +19,13 @@
     <mapping directory="$PROJECT_DIR$/vendor/dhii/regex-abstract" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/dhii/sql-interface" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/dhii/stringable-helper-base" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/vendor/dhii/time-interface" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/dhii/type-interface" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/dhii/wp-events" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/johnpbloch/wordpress-core" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/vendor/rebelcode/booking-interface" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/rebelcode/expression-wp-query-builder" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/rebelcode/modular" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/rebelcode/module-iterator-abstract" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/vendor/rebelcode/rcmod-wp-cqrs" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/rebelcode/sql-cqrs-resource-models-abstract" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/vendor/rebelcode/sql-expression-renderer" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/rebelcode/wp-cqrs-resource-models" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/config" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/console" vcs="Git" />
@@ -41,6 +35,7 @@
     <mapping directory="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/process" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vendor/symfony/stopwatch" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/vendor/symfony/yaml" vcs="Git" />
   </component>
 </project>

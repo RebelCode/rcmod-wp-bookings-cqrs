@@ -14,7 +14,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/data-container-abstract" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/data-container-base" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/data-container-interface" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/data-identifiable-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/data-key-value-aware-abstract" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/data-key-value-aware-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/data-object-abstract" />
@@ -47,7 +46,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/sql-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/stringable-helper-base" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/stringable-interface" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/time-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/type-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/validation-abstract" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dhii/validation-base" />
@@ -69,7 +67,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ptrofimov/xpmock" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/rebelcode/booking-interface" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/rebelcode/expression-wp-query-builder" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/rebelcode/modular" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/rebelcode/module-iterator-abstract" />

@@ -17,7 +17,6 @@
       <path value="$PROJECT_DIR$/vendor/rebelcode/modular" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
@@ -73,7 +72,6 @@
       <path value="$PROJECT_DIR$/vendor/rebelcode/modular" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
@@ -116,9 +114,6 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/friendsofphp/php-cs-fixer" />
-      <path value="$PROJECT_DIR$/vendor/dhii/data-identifiable-interface" />
-      <path value="$PROJECT_DIR$/vendor/dhii/time-interface" />
-      <path value="$PROJECT_DIR$/vendor/rebelcode/booking-interface" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
@@ -152,6 +147,7 @@
       <path value="$PROJECT_DIR$/vendor/rebelcode/rcmod-wp-cqrs" />
       <path value="$PROJECT_DIR$/vendor/dhii/expression-renderer-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/expression-renderer-abstract" />
+      <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />

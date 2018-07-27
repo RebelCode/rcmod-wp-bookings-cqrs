@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "39b8df7b327e2d51f95d0cb53496a2a4",
+    "content-hash": "fc49da0fbcd03b642377dc3f8df6aa03",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -469,48 +469,6 @@
             ],
             "description": "Interfaces for working with data containers",
             "time": "2018-04-26T09:50:30+00:00"
-        },
-        {
-            "name": "dhii/data-identifiable-interface",
-            "version": "v0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Dhii/data-identifiable-interface.git",
-                "reference": "59e160c85c9d9246ce51ad611ce2bb686ba3dc2d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/data-identifiable-interface/zipball/59e160c85c9d9246ce51ad611ce2bb686ba3dc2d",
-                "reference": "59e160c85c9d9246ce51ad611ce2bb686ba3dc2d",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3 | ^7.0"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "<=0.3.2",
-                "dhii/php-cs-fixer-config": "dev-php-5.3",
-                "phpunit/phpunit": "^4.8",
-                "ptrofimov/xpmock": "^1.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhii\\Data\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dhii Team",
-                    "email": "development@dhii.co"
-                }
-            ],
-            "description": "Interfaces for objects that are identifiable.",
-            "time": "2017-03-07T16:25:09+00:00"
         },
         {
             "name": "dhii/data-key-value-aware-abstract",
@@ -1010,16 +968,16 @@
         },
         {
             "name": "dhii/factory-interface",
-            "version": "v0.1-alpha2",
+            "version": "v0.1-alpha3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/factory-interface.git",
-                "reference": "f5180bde74ba778a8e7269bf92e8420f7527c512"
+                "reference": "45323d53d3fe4cc82e66d2a38c6bb19f933b9c0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/factory-interface/zipball/f5180bde74ba778a8e7269bf92e8420f7527c512",
-                "reference": "f5180bde74ba778a8e7269bf92e8420f7527c512",
+                "url": "https://api.github.com/repos/Dhii/factory-interface/zipball/45323d53d3fe4cc82e66d2a38c6bb19f933b9c0e",
+                "reference": "45323d53d3fe4cc82e66d2a38c6bb19f933b9c0e",
                 "shasum": ""
             },
             "require": {
@@ -1056,7 +1014,7 @@
                 }
             ],
             "description": "Interfaces for working with factories.",
-            "time": "2018-03-07T11:08:40+00:00"
+            "time": "2018-07-19T10:15:04+00:00"
         },
         {
             "name": "dhii/file-finder-abstract",
@@ -1947,48 +1905,6 @@
             "time": "2017-01-23T15:08:20+00:00"
         },
         {
-            "name": "dhii/time-interface",
-            "version": "v0.1-alpha1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Dhii/time-interface.git",
-                "reference": "1ec468076d1a3124ac55942c0542f19a06d16def"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/time-interface/zipball/1ec468076d1a3124ac55942c0542f19a06d16def",
-                "reference": "1ec468076d1a3124ac55942c0542f19a06d16def",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3 | ^7.0"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "<=0.3.2",
-                "dhii/php-cs-fixer-config": "dev-php-5.3",
-                "phpunit/phpunit": "^4.8",
-                "ptrofimov/xpmock": "^1.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhii\\Time\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Dhii Team",
-                    "email": "development@dhii.co"
-                }
-            ],
-            "description": "Interfaces for dealing with time.",
-            "time": "2018-05-14T13:42:07+00:00"
-        },
-        {
             "name": "dhii/type-interface",
             "version": "dev-develop",
             "source": {
@@ -2297,57 +2213,6 @@
                 "psr"
             ],
             "time": "2017-02-14T16:28:37+00:00"
-        },
-        {
-            "name": "rebelcode/booking-interface",
-            "version": "v0.1-alpha1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/RebelCode/booking-interface.git",
-                "reference": "7685a647d3bef2da4cd60d74fa85d829628eccc6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/booking-interface/zipball/7685a647d3bef2da4cd60d74fa85d829628eccc6",
-                "reference": "7685a647d3bef2da4cd60d74fa85d829628eccc6",
-                "shasum": ""
-            },
-            "require": {
-                "dhii/data-identifiable-interface": "^0.1",
-                "dhii/factory-interface": "^0.1-alpha2",
-                "dhii/time-interface": "^0.1-alpha1",
-                "php": "^5.3 | ^7.0"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "<=0.3.2",
-                "dhii/php-cs-fixer-config": "dev-php-5.3",
-                "dhii/stringable-interface": "^0.1",
-                "phpunit/phpunit": "^4.8",
-                "ptrofimov/xpmock": "^1.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "develop": "0.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "RebelCode\\Bookings\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "RebelCode",
-                    "email": "dev@rebelcode.com"
-                }
-            ],
-            "description": "Interfaces for bookings.",
-            "time": "2018-05-14T14:14:42+00:00"
         },
         {
             "name": "rebelcode/expression-wp-query-builder",
@@ -3649,16 +3514,16 @@
         },
         {
             "name": "rebelcode/rcmod-wp-cqrs",
-            "version": "v0.1-alpha2",
+            "version": "0.1-alpha3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/rcmod-wp-cqrs.git",
-                "reference": "6dddb8b99d9b55bc638f73ff0388b1bb83910886"
+                "reference": "75c65b09138cda097fcc15484cb5684378acf8ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/rcmod-wp-cqrs/zipball/6dddb8b99d9b55bc638f73ff0388b1bb83910886",
-                "reference": "6dddb8b99d9b55bc638f73ff0388b1bb83910886",
+                "url": "https://api.github.com/repos/RebelCode/rcmod-wp-cqrs/zipball/75c65b09138cda097fcc15484cb5684378acf8ac",
+                "reference": "75c65b09138cda097fcc15484cb5684378acf8ac",
                 "shasum": ""
             },
             "require": {
@@ -3666,8 +3531,7 @@
                 "dhii/factory-base": "^0.1-alpha1",
                 "php": "^5.4 | ^7.0",
                 "rebelcode/modular": "^0.1-alpha1",
-                "rebelcode/sql-expression-renderer": "^0.1-alpha1",
-                "rebelcode/wp-cqrs-resource-models": "^0.1-alpha1"
+                "rebelcode/sql-expression-renderer": "^0.1-alpha1"
             },
             "require-dev": {
                 "codeclimate/php-test-reporter": "<=0.3.2",
@@ -3696,7 +3560,7 @@
                 }
             ],
             "description": "A RebelCode module that provides services for WordPress CQRS resource models.",
-            "time": "2018-06-11T10:37:52+00:00"
+            "time": "2018-07-12T12:29:12+00:00"
         },
         {
             "name": "rebelcode/sql-expression-renderer",
@@ -4185,7 +4049,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v2.8.42",
+            "version": "v2.8.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -4242,16 +4106,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.8.42",
+            "version": "v2.8.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "e8e59b74ad1274714dad2748349b55e3e6e630c7"
+                "reference": "42a0adc7dd656ca2e360285eb6d822df9ce0b160"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/e8e59b74ad1274714dad2748349b55e3e6e630c7",
-                "reference": "e8e59b74ad1274714dad2748349b55e3e6e630c7",
+                "url": "https://api.github.com/repos/symfony/console/zipball/42a0adc7dd656ca2e360285eb6d822df9ce0b160",
+                "reference": "42a0adc7dd656ca2e360285eb6d822df9ce0b160",
                 "shasum": ""
             },
             "require": {
@@ -4299,11 +4163,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-15T21:17:45+00:00"
+            "time": "2018-07-09T12:58:09+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v2.8.42",
+            "version": "v2.8.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
@@ -4360,7 +4224,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.42",
+            "version": "v2.8.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -4420,16 +4284,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.8.42",
+            "version": "v2.8.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "0f685c099aca7ba86bcc31850186dbfe84a4a8a1"
+                "reference": "5cfc856c5b665ef5de0df796e98c54bef0fe595b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/0f685c099aca7ba86bcc31850186dbfe84a4a8a1",
-                "reference": "0f685c099aca7ba86bcc31850186dbfe84a4a8a1",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/5cfc856c5b665ef5de0df796e98c54bef0fe595b",
+                "reference": "5cfc856c5b665ef5de0df796e98c54bef0fe595b",
                 "shasum": ""
             },
             "require": {
@@ -4466,11 +4330,11 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-06-21T09:24:14+00:00"
+            "time": "2018-07-09T13:24:25+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v2.8.42",
+            "version": "v2.8.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -4633,7 +4497,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v2.8.42",
+            "version": "v2.8.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -4682,7 +4546,7 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v2.8.42",
+            "version": "v2.8.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
@@ -4731,7 +4595,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.42",
+            "version": "v2.8.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
