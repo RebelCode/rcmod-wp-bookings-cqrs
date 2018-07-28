@@ -91,6 +91,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new WpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
+                        $c->get('map_factory'),
                         $this->_normalizeArray($c->get('cqrs/bookings/select/tables')),
                         $this->_normalizeArray($c->get('cqrs/bookings/select/field_column_map')),
                         $this->_normalizeArray($c->get('cqrs/bookings/select/joins'))
@@ -177,6 +178,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new WpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
+                        $c->get('map_factory'),
                         $this->_normalizeArray($c->get('cqrs/transition_logs/select/tables')),
                         $this->_normalizeArray($c->get('cqrs/transition_logs/select/field_column_map')),
                         $this->_normalizeArray($c->get('cqrs/transition_logs/select/joins'))
@@ -238,6 +240,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new WpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
+                        $c->get('map_factory'),
                         $this->_normalizeArray($c->get('cqrs/sessions/select/tables')),
                         $this->_normalizeArray($c->get('cqrs/sessions/select/field_column_map')),
                         $this->_normalizeArray($c->get('cqrs/sessions/select/joins'))
@@ -400,6 +403,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new WpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
+                        $c->get('map_factory'),
                         $this->_normalizeArray($c->get('cqrs/session_rules/select/tables')),
                         $this->_normalizeArray($c->get('cqrs/session_rules/select/field_column_map')),
                         $this->_normalizeArray($c->get('cqrs/session_rules/select/joins'))
