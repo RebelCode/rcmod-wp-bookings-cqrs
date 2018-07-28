@@ -153,6 +153,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new BookingStatusWpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
+                        $c->get('map_factory'),
                         $this->_normalizeArray($c->get('cqrs/bookings/select/tables')),
                         [
                             'status'       => 'status',
@@ -274,6 +275,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new UnbookedSessionsWpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
+                        $c->get('map_factory'),
                         $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/tables')),
                         $fieldColumnMap,
                         $c->get($joinsServiceKey),
