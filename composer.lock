@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc49da0fbcd03b642377dc3f8df6aa03",
+    "content-hash": "4070ed98ee645018d788245c862dc16b",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -258,16 +258,16 @@
         },
         {
             "name": "dhii/cqrs-resource-model-interface",
-            "version": "v0.1-alpha2",
+            "version": "v0.2-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/cqrs-resource-model-interface.git",
-                "reference": "38273c0314b80b9ab575ac8129071ee6fc0d5bdf"
+                "reference": "b58b1c41c24e7ea067d1c3c35c556d761f88aba2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/cqrs-resource-model-interface/zipball/38273c0314b80b9ab575ac8129071ee6fc0d5bdf",
-                "reference": "38273c0314b80b9ab575ac8129071ee6fc0d5bdf",
+                "url": "https://api.github.com/repos/Dhii/cqrs-resource-model-interface/zipball/b58b1c41c24e7ea067d1c3c35c556d761f88aba2",
+                "reference": "b58b1c41c24e7ea067d1c3c35c556d761f88aba2",
                 "shasum": ""
             },
             "require": {
@@ -275,6 +275,7 @@
             },
             "require-dev": {
                 "codeclimate/php-test-reporter": "<=0.3.2",
+                "dhii/collections-interface": "^0.2-alpha1",
                 "dhii/expression-interface": "^0.2",
                 "dhii/php-cs-fixer-config": "dev-php-5.3",
                 "dhii/sql-interface": "^0.1",
@@ -290,7 +291,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.1.x-dev"
+                    "dev-develop": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -309,7 +310,7 @@
                 }
             ],
             "description": "Interfaces for a CQRS approach to resource models.",
-            "time": "2018-03-08T10:51:04+00:00"
+            "time": "2018-06-25T16:35:24+00:00"
         },
         {
             "name": "dhii/data-container-abstract",
@@ -2429,22 +2430,22 @@
         },
         {
             "name": "rebelcode/wp-cqrs-resource-models",
-            "version": "v0.1-alpha2",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/wp-cqrs-resource-models.git",
-                "reference": "2d73f5248aeba61c3604cbd14da18459e8c919a9"
+                "reference": "d26ddc8cef8627ade845bf5d8dbd8e5faa90711d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/wp-cqrs-resource-models/zipball/2d73f5248aeba61c3604cbd14da18459e8c919a9",
-                "reference": "2d73f5248aeba61c3604cbd14da18459e8c919a9",
+                "url": "https://api.github.com/repos/RebelCode/wp-cqrs-resource-models/zipball/d26ddc8cef8627ade845bf5d8dbd8e5faa90711d",
+                "reference": "d26ddc8cef8627ade845bf5d8dbd8e5faa90711d",
                 "shasum": ""
             },
             "require": {
                 "dhii/callback-abstract": "^0.1-alpha4",
                 "dhii/container-helper-base": "^0.1",
-                "dhii/cqrs-resource-model-interface": "^0.1-alpha2",
+                "dhii/cqrs-resource-model-interface": "^0.2-alpha1",
                 "dhii/data-container-base": "^0.1",
                 "dhii/exception": "^0.1-alpha4",
                 "dhii/i18n-helper-base": "^0.1",
@@ -2456,6 +2457,7 @@
             },
             "require-dev": {
                 "codeclimate/php-test-reporter": "<=0.3.2",
+                "dhii/collections-interface": "^0.2-alpha5",
                 "dhii/expression-interface": "^0.2",
                 "dhii/factory-interface": "^0.1-alpha2",
                 "dhii/invocable-interface": "^0.1-alpha1",
@@ -2489,7 +2491,7 @@
                 }
             ],
             "description": "Functionality for WordPress CQRS resource models.",
-            "time": "2018-06-14T16:50:25+00:00"
+            "time": "2018-06-27T08:51:16+00:00"
         }
     ],
     "packages-dev": [
@@ -4646,7 +4648,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "rebelcode/wp-cqrs-resource-models": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
