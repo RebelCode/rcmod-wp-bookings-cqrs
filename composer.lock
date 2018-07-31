@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4070ed98ee645018d788245c862dc16b",
+    "content-hash": "4d09a2978c287884ae014d1fb5ec80c5",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -209,16 +209,16 @@
         },
         {
             "name": "dhii/container-helper-base",
-            "version": "v0.1-alpha7",
+            "version": "v0.1-alpha8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/container-helper-base.git",
-                "reference": "622671534124d95c1478a744e4d903b4d071f674"
+                "reference": "1b8206842e06b71abcff769aaddfc51bf8f317cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/container-helper-base/zipball/622671534124d95c1478a744e4d903b4d071f674",
-                "reference": "622671534124d95c1478a744e4d903b4d071f674",
+                "url": "https://api.github.com/repos/Dhii/container-helper-base/zipball/1b8206842e06b71abcff769aaddfc51bf8f317cd",
+                "reference": "1b8206842e06b71abcff769aaddfc51bf8f317cd",
                 "shasum": ""
             },
             "require": {
@@ -254,7 +254,7 @@
                 }
             ],
             "description": "Helper functionality for working with container.",
-            "time": "2018-04-10T15:03:55+00:00"
+            "time": "2018-07-30T09:59:15+00:00"
         },
         {
             "name": "dhii/cqrs-resource-model-interface",
@@ -1764,16 +1764,16 @@
         },
         {
             "name": "dhii/sql-interface",
-            "version": "dev-develop",
+            "version": "v0.1-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/sql-interface.git",
-                "reference": "465286d833deff37707ec2cc96884e60e31212d5"
+                "reference": "b600c3db8a41a739fe8f2006fad6f0412b245aad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/sql-interface/zipball/465286d833deff37707ec2cc96884e60e31212d5",
-                "reference": "465286d833deff37707ec2cc96884e60e31212d5",
+                "url": "https://api.github.com/repos/Dhii/sql-interface/zipball/b600c3db8a41a739fe8f2006fad6f0412b245aad",
+                "reference": "b600c3db8a41a739fe8f2006fad6f0412b245aad",
                 "shasum": ""
             },
             "require": {
@@ -1810,7 +1810,7 @@
                 }
             ],
             "description": "Interfaces for SQL resource abstraction.",
-            "time": "2018-04-06T11:15:17+00:00"
+            "time": "2018-07-31T12:24:35+00:00"
         },
         {
             "name": "dhii/stringable-helper-base",
@@ -2430,16 +2430,16 @@
         },
         {
             "name": "rebelcode/wp-cqrs-resource-models",
-            "version": "dev-develop",
+            "version": "v0.2-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/wp-cqrs-resource-models.git",
-                "reference": "d26ddc8cef8627ade845bf5d8dbd8e5faa90711d"
+                "reference": "4dfca05c2ec9e16927037e8930f55b0b73a7bff7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/wp-cqrs-resource-models/zipball/d26ddc8cef8627ade845bf5d8dbd8e5faa90711d",
-                "reference": "d26ddc8cef8627ade845bf5d8dbd8e5faa90711d",
+                "url": "https://api.github.com/repos/RebelCode/wp-cqrs-resource-models/zipball/4dfca05c2ec9e16927037e8930f55b0b73a7bff7",
+                "reference": "4dfca05c2ec9e16927037e8930f55b0b73a7bff7",
                 "shasum": ""
             },
             "require": {
@@ -2491,7 +2491,7 @@
                 }
             ],
             "description": "Functionality for WordPress CQRS resource models.",
-            "time": "2018-06-27T08:51:16+00:00"
+            "time": "2018-07-31T12:18:43+00:00"
         }
     ],
     "packages-dev": [
@@ -4648,13 +4648,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "rebelcode/wp-cqrs-resource-models": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^5.4 | ^7.0"
+        "php": "^5.4 | ^7.0",
+        "ext-mysqli": "^0.1"
     },
     "platform-dev": []
 }
