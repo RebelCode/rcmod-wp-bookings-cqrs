@@ -6,10 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
 
+## [0.1-alpha8] - 2018-07-31
+### Changed
+- Now providing resource model implementations from the newer `wp-cqrs-resource-models`, which implement `dhii/cqrs-resource-model-interface` version `0.2-alpha1`, and thus return lists of maps instead of just lists of containers.
+
 ## [0.1-alpha7] - 2018-07-27
 ### Changed
 - Removed unnecessary dependency on `rebelcode/booking-interface`.
-- Now providing resource model implementations from the newer `wp-cqrs-resource-models`, which implement `dhii/cqrs-resource-model-interface` version `0.2-alpha1`, and thus return lists of maps instead of just lists of containers.
 
 ## [0.1-alpha6] - 2018-07-12
 ### Fixed
