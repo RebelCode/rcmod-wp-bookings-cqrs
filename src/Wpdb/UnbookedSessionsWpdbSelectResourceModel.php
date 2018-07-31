@@ -2,14 +2,15 @@
 
 namespace RebelCode\Storage\Resource\WordPress\Wpdb;
 
+use Dhii\Collection\MapFactoryInterface;
 use Dhii\Expression\ExpressionInterface;
 use Dhii\Expression\LogicalExpressionInterface;
 use Dhii\Output\TemplateInterface;
 use Dhii\Storage\Resource\Sql\EntityFieldInterface;
+use Dhii\Util\String\StringableInterface as Stringable;
 use stdClass;
 use Traversable;
 use wpdb;
-use Dhii\Util\String\StringableInterface as Stringable;
 
 /**
  * The SELECT resource model for retrieving unbooked sessions.
@@ -56,6 +57,9 @@ class UnbookedSessionsWpdbSelectResourceModel extends AbstractBaseWpdbSelectReso
      * @param TemplateInterface                                                 $template       The template for
      *                                                                                          rendering SQL
      *                                                                                          expressions.
+     * @param MapFactoryInterface                                               $mapFactory     The factory that creates
+     *                                                                                          maps, for the returned
+     *                                                                                          records.
      * @param array|stdClass|Traversable                                        $tables         The tables names
      *                                                                                          (values) mapping to
      *                                                                                          their aliases (keys)
@@ -73,6 +77,7 @@ class UnbookedSessionsWpdbSelectResourceModel extends AbstractBaseWpdbSelectReso
     public function __construct(
         wpdb $wpdb,
         TemplateInterface $template,
+        MapFactoryInterface $mapFactory,
         $tables,
         $fieldColumnMap,
         $joins,
@@ -80,7 +85,7 @@ class UnbookedSessionsWpdbSelectResourceModel extends AbstractBaseWpdbSelectReso
         $grouping,
         $exprBuilder
     ) {
-        $this->_init($wpdb, $template, $tables, $fieldColumnMap, $joins);
+        $this->_init($wpdb, $template, $mapFactory, $tables, $fieldColumnMap, $joins);
         $this->internalCondition = $condition;
         $this->grouping          = $grouping;
         $this->exprBuilder       = $exprBuilder;
