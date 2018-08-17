@@ -68,6 +68,20 @@ class Migrator
     const DOWN_MIGRATION_FILENAME = 'up.sql';
 
     /**
+     * The direction value for migrating upwards (upgrading).
+     *
+     * @since [*next-version*]
+     */
+    const DIRECTION_UP = 1;
+
+    /**
+     * The direction value for migrating downwards (downgrading).
+     *
+     * @since [*next-version*]
+     */
+    const DIRECTION_DOWN = -1;
+
+    /**
      * The migrations directory path.
      *
      * @since [*next-version*]
@@ -258,15 +272,20 @@ class Migrator
             return;
         }
 
-        // Maximise the values to 1, since DB version 0 is not a real version and represents an uninitialized DB state
-        $current = max(1, $current);
-        $target  = max(1, $target);
+        // Maximise the values to 0, since negative DB versions are not allowed
+        $current = max(0, $current);
+        $target  = max(0, $target);
+
+        // Get direction, 1 for up and -1 for down
+        $direction = (int) (absint($difference) / $difference);
         // Get the list of migration versions to run
-        $migrations = range($current, $target);
+        $migrations = ($direction === static::DIRECTION_UP)
+            ? range($current + 1, $target)
+            : range($current, $target + 1);
         // Determine the file names to look for, depending on migration direction
-        $filename = ($difference < 0)
-            ? static::DOWN_MIGRATION_FILENAME
-            : static::UP_MIGRATION_FILENAME;
+        $filename = ($direction === static::DIRECTION_UP)
+            ? static::UP_MIGRATION_FILENAME
+            : static::DOWN_MIGRATION_FILENAME;
         // The root migrations directory
         $directory = $this->_getMigrationsDir();
 
