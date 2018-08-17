@@ -22,7 +22,7 @@ return [
              *
              * @since [*next-version*]
              */
-            'target_db_version'            => 1,
+            'target_db_version'            => 2,
 
             /*
              * The WordPress option name where the database version is saved.
