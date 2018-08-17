@@ -34,13 +34,6 @@ class WpBookingsCqrsModule extends AbstractBaseModule
     use NormalizeArrayCapableTrait;
 
     /**
-     * The database version.
-     *
-     * @since [*next-version*]
-     */
-    const DB_VERSION = 1;
-
-    /**
      * Constructor.
      *
      * @since [*next-version*]
@@ -504,7 +497,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                 'wp_bookings_cqrs_auto_migrations_handler' => function (ContainerInterface $c) {
                     return new AutoMigrationsHandler(
                         $c->get('wp_bookings_migrator'),
-                        static::DB_VERSION,
+                        $c->get('wp_bookings_cqrs/migrations/target_db_version'),
                         $c->get('event_manager'),
                         $c->get('event_factory')
                     );
