@@ -18,6 +18,13 @@ return [
     'wp_bookings_cqrs' => [
         'migrations' => [
             /*
+             * The target version to migrate to.
+             *
+             * @since [*next-version*]
+             */
+            'target_db_version'            => 2,
+
+            /*
              * The WordPress option name where the database version is saved.
              *
              * @since [*next-version*]
