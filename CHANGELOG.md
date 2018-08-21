@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+
+## [0.1-alpha9] - 2018-08-21
 ### Changed
 - All `enum` table columns have been changed to `varchar` columns.
 - The target database version is now stored in config.
