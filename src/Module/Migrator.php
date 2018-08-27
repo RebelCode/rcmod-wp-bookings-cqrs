@@ -312,7 +312,9 @@ class Migrator
         $sqlQuery = $this->_replaceSqlTokens($sqlQuery, $this->_getPlaceholderValues());
         $success  = $mysqli->multi_query($sqlQuery);
 
-        while ($mysqli->next_result()) {}
+        while ($mysqli->more_results()) {
+            $mysqli->next_result();
+        }
 
         if (!$success) {
             throw $this->_createRuntimeException($mysqli->error);
