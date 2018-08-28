@@ -27,7 +27,6 @@
       <path value="$PROJECT_DIR$/vendor/dhii/data-container-base" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
-      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/vendor/guzzle/guzzle" />
       <path value="$PROJECT_DIR$/vendor/dhii/validation-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/stringable-interface" />
@@ -82,7 +81,6 @@
       <path value="$PROJECT_DIR$/vendor/dhii/data-container-base" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
-      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/vendor/guzzle/guzzle" />
       <path value="$PROJECT_DIR$/vendor/dhii/validation-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/stringable-interface" />
@@ -114,8 +112,6 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/friendsofphp/php-cs-fixer" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
-      <path value="$PROJECT_DIR$/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/vendor/dhii/cqrs-resource-model-interface" />
       <path value="$PROJECT_DIR$/vendor/rebelcode/sql-cqrs-resource-models-abstract" />
@@ -127,11 +123,7 @@
       <path value="$PROJECT_DIR$/vendor/dhii/expression-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/evaluable-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/expression-renderer-interface" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
-      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
       <path value="$PROJECT_DIR$/vendor/symfony/finder" />
-      <path value="$PROJECT_DIR$/vendor/symfony/config" />
       <path value="$PROJECT_DIR$/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/vendor/johnpbloch/wordpress-core" />
       <path value="$PROJECT_DIR$/vendor/dhii/normalization-helper-base" />
@@ -148,6 +140,16 @@
       <path value="$PROJECT_DIR$/vendor/dhii/expression-renderer-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/expression-renderer-abstract" />
       <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
+      <path value="$PROJECT_DIR$/vendor/dhii/data-identifiable-interface" />
+      <path value="$PROJECT_DIR$/vendor/dhii/time-interface" />
+      <path value="$PROJECT_DIR$/vendor/rebelcode/booking-interface" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />
