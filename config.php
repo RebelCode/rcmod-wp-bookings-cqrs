@@ -9,11 +9,11 @@
 return [
     'cqrs'             => [
         'table_prefix'      => '${wpdb_prefix}',
-        'bookings'          => include __DIR__ . '/bookings.php',
-        'sessions'          => include __DIR__ . '/sessions.php',
-        'unbooked_sessions' => include __DIR__ . '/unbooked_sessions.php',
-        'session_rules'     => include __DIR__ . '/session_rules.php',
-        'transition_logs'   => include __DIR__ . '/transition_log.php',
+        'bookings'          => include __DIR__ . '/config/bookings.php',
+        'sessions'          => include __DIR__ . '/config/sessions.php',
+        'unbooked_sessions' => include __DIR__ . '/config/unbooked_sessions.php',
+        'session_rules'     => include __DIR__ . '/config/session_rules.php',
+        'transition_logs'   => include __DIR__ . '/config/transition_log.php',
     ],
     'wp_bookings_cqrs' => [
         'migrations' => [
