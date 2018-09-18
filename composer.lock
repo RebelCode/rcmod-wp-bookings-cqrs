@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8467e31210021aa892da4be75d6ace44",
+    "content-hash": "75556575c72d22988a2d341218c49754",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -762,16 +762,16 @@
         },
         {
             "name": "dhii/exception-interface",
-            "version": "v0.2-alpha3",
+            "version": "v0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/exception-interface.git",
-                "reference": "8271ae49553695bc8d2cc4707f8a1459a031e64f"
+                "reference": "b69feebf7cb2879cd43977a03342e2393b73f7fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/exception-interface/zipball/8271ae49553695bc8d2cc4707f8a1459a031e64f",
-                "reference": "8271ae49553695bc8d2cc4707f8a1459a031e64f",
+                "url": "https://api.github.com/repos/Dhii/exception-interface/zipball/b69feebf7cb2879cd43977a03342e2393b73f7fb",
+                "reference": "b69feebf7cb2879cd43977a03342e2393b73f7fb",
                 "shasum": ""
             },
             "require": {
@@ -806,7 +806,7 @@
                 }
             ],
             "description": "Interfaces for most common exceptions",
-            "time": "2018-02-23T13:24:59+00:00"
+            "time": "2018-08-29T10:42:04+00:00"
         },
         {
             "name": "dhii/expression-interface",
@@ -969,16 +969,16 @@
         },
         {
             "name": "dhii/factory-interface",
-            "version": "v0.1-alpha3",
+            "version": "v0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/factory-interface.git",
-                "reference": "45323d53d3fe4cc82e66d2a38c6bb19f933b9c0e"
+                "reference": "b8d217aec8838e64ccaa770cb03dc164bf6f0515"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/factory-interface/zipball/45323d53d3fe4cc82e66d2a38c6bb19f933b9c0e",
-                "reference": "45323d53d3fe4cc82e66d2a38c6bb19f933b9c0e",
+                "url": "https://api.github.com/repos/Dhii/factory-interface/zipball/b8d217aec8838e64ccaa770cb03dc164bf6f0515",
+                "reference": "b8d217aec8838e64ccaa770cb03dc164bf6f0515",
                 "shasum": ""
             },
             "require": {
@@ -1015,7 +1015,7 @@
                 }
             ],
             "description": "Interfaces for working with factories.",
-            "time": "2018-07-19T10:15:04+00:00"
+            "time": "2018-08-29T11:15:09+00:00"
         },
         {
             "name": "dhii/file-finder-abstract",
@@ -2065,16 +2065,16 @@
         },
         {
             "name": "dhii/validation-interface",
-            "version": "v0.2-alpha2",
+            "version": "v0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/validation-interface.git",
-                "reference": "520a35f21f4dd0db30a193421b5ca75c684efe96"
+                "reference": "a26026ae5cdf0a650b3511a22dbcb9329073b82c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/validation-interface/zipball/520a35f21f4dd0db30a193421b5ca75c684efe96",
-                "reference": "520a35f21f4dd0db30a193421b5ca75c684efe96",
+                "url": "https://api.github.com/repos/Dhii/validation-interface/zipball/a26026ae5cdf0a650b3511a22dbcb9329073b82c",
+                "reference": "a26026ae5cdf0a650b3511a22dbcb9329073b82c",
                 "shasum": ""
             },
             "require": {
@@ -2092,7 +2092,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.2.x-dev"
+                    "dev-develop": "0.3.x-dev"
                 }
             },
             "autoload": {
@@ -2111,7 +2111,7 @@
                 }
             ],
             "description": "A base interface for validators",
-            "time": "2018-03-07T12:54:40+00:00"
+            "time": "2018-08-29T11:39:22+00:00"
         },
         {
             "name": "dhii/wp-events",
@@ -2267,16 +2267,16 @@
         },
         {
             "name": "rebelcode/modular",
-            "version": "v0.1-alpha1",
+            "version": "0.2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RebelCode/modular.git",
-                "reference": "3e66d4158fd8b26acb4ad2f169b964682b73e8d0"
+                "reference": "46f8c8aac83266dda8bad9adab579e08e299bfdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/modular/zipball/3e66d4158fd8b26acb4ad2f169b964682b73e8d0",
-                "reference": "3e66d4158fd8b26acb4ad2f169b964682b73e8d0",
+                "url": "https://api.github.com/repos/RebelCode/modular/zipball/46f8c8aac83266dda8bad9adab579e08e299bfdb",
+                "reference": "46f8c8aac83266dda8bad9adab579e08e299bfdb",
                 "shasum": ""
             },
             "require": {
@@ -2308,6 +2308,11 @@
                 "ptrofimov/xpmock": "^1.1"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "RebelCode\\Modular\\": "src"
@@ -2324,7 +2329,7 @@
                 }
             ],
             "description": "A module system.",
-            "time": "2018-05-11T11:17:08+00:00"
+            "time": "2018-09-17T12:40:18+00:00"
         },
         {
             "name": "rebelcode/module-iterator-abstract",
@@ -3515,24 +3520,79 @@
             "time": "2014-01-02T16:42:27+00:00"
         },
         {
-            "name": "rebelcode/rcmod-wp-cqrs",
-            "version": "0.1-alpha3",
+            "name": "rebelcode/module-testing",
+            "version": "dev-task/initial-code",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RebelCode/rcmod-wp-cqrs.git",
-                "reference": "75c65b09138cda097fcc15484cb5684378acf8ac"
+                "url": "https://github.com/RebelCode/module-testing.git",
+                "reference": "578717bd4e17f4735734ea40ee2314191d355569"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RebelCode/rcmod-wp-cqrs/zipball/75c65b09138cda097fcc15484cb5684378acf8ac",
-                "reference": "75c65b09138cda097fcc15484cb5684378acf8ac",
+                "url": "https://api.github.com/repos/RebelCode/module-testing/zipball/578717bd4e17f4735734ea40ee2314191d355569",
+                "reference": "578717bd4e17f4735734ea40ee2314191d355569",
+                "shasum": ""
+            },
+            "require": {
+                "dhii/container-helper-base": "^0.1-alpha7",
+                "dhii/data-container-base": "^0.1-alpha2",
+                "dhii/data-container-interface": "^0.2-alpha3",
+                "dhii/factory-base": "^0.1-alpha3",
+                "php": "^5.4 | ^7.0",
+                "phpunit/phpunit": "^4.8",
+                "ptrofimov/xpmock": "^1.1",
+                "rebelcode/modular": "^0.2"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "<=0.3.2",
+                "dhii/php-cs-fixer-config": "^0.1"
+            },
+            "bin": [
+                "bin/rcmod-gen-test.php"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RebelCode\\Modular\\Testing\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "RebelCode",
+                    "email": "dev@rebelcode.com"
+                }
+            ],
+            "description": "Tools for testing RebelCode modules.",
+            "time": "2018-09-17T15:45:02+00:00"
+        },
+        {
+            "name": "rebelcode/rcmod-wp-cqrs",
+            "version": "dev-task/add-tests",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RebelCode/rcmod-wp-cqrs.git",
+                "reference": "1beb895e7036c1ce1f15f3be42c89a389c06917f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RebelCode/rcmod-wp-cqrs/zipball/1beb895e7036c1ce1f15f3be42c89a389c06917f",
+                "reference": "1beb895e7036c1ce1f15f3be42c89a389c06917f",
                 "shasum": ""
             },
             "require": {
                 "dhii/data-object-abstract": "^0.1-alpha1",
                 "dhii/factory-base": "^0.1-alpha1",
                 "php": "^5.4 | ^7.0",
-                "rebelcode/modular": "^0.1-alpha1",
+                "rebelcode/modular": "^0.2",
                 "rebelcode/sql-expression-renderer": "^0.1-alpha1"
             },
             "require-dev": {
@@ -3541,7 +3601,8 @@
                 "dhii/php-cs-fixer-config": "^0.1",
                 "johnpbloch/wordpress-core": "^4.0",
                 "phpunit/phpunit": "^4.8",
-                "ptrofimov/xpmock": "^1.1"
+                "ptrofimov/xpmock": "^1.1",
+                "rebelcode/module-testing": "dev-task/initial-code"
             },
             "type": "rc-module",
             "autoload": {
@@ -3562,7 +3623,7 @@
                 }
             ],
             "description": "A RebelCode module that provides services for WordPress CQRS resource models.",
-            "time": "2018-07-12T12:29:12+00:00"
+            "time": "2018-09-18T12:03:09+00:00"
         },
         {
             "name": "rebelcode/sql-expression-renderer",
@@ -4651,15 +4712,15 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "rebelcode/module-testing": 20,
+        "rebelcode/rcmod-wp-cqrs": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^5.4 | ^7.0",
         "ext-mysqli": "^0.1"
     },
-    "platform-dev": [],
-    "platform-overrides": {
-        "php": "5.4.9"
-    }
+    "platform-dev": []
 }

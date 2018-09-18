@@ -14,7 +14,7 @@
     "require": {
         "php": "^5.4 | ^7.0",
         "ext-mysqli": "^0.1",
-        "rebelcode/modular": "^0.1-alpha1",
+        "rebelcode/modular": "^0.2",
         "rebelcode/sql-cqrs-resource-models-abstract": "^0.2-alpha1",
         "rebelcode/wp-cqrs-resource-models": "^0.2-alpha1",
         "dhii/data-object-abstract": "^0.1-alpha1",
@@ -25,9 +25,10 @@
         "ptrofimov/xpmock": "^1.1",
         "dhii/php-cs-fixer-config": "^0.1",
         "codeclimate/php-test-reporter": "<=0.3.2",
+        "rebelcode/module-testing": "dev-task/initial-code",
         "dhii/output-renderer-interface": "^0.3-alpha2",
         "johnpbloch/wordpress-core": "^4.0",
-        "rebelcode/rcmod-wp-cqrs": "^0.1-alpha1"
+        "rebelcode/rcmod-wp-cqrs": "dev-task/add-tests"
     },
     "autoload": {
         "psr-4": {

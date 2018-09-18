@@ -12,8 +12,12 @@ define('RC_WP_BOOKINGS_CQRS_MIGRATIONS_DIR', RC_WP_BOOKINGS_CQRS_MODULE_DIR . '/
 
 return function (ContainerInterface $c) {
     return new WpBookingsCqrsModule(
-        RC_WP_BOOKINGS_CQRS_MODULE_KEY,
-        ['wp_cqrs'],
+        [
+            'key'                => 'wp_bookings_cqrs',
+            'dependencies'       => ['wp_cqrs'],
+            'config_file_path'   => __DIR__ . '/config.php',
+            'services_file_path' => __DIR__ . '/services.php',
+        ],
         $c->get('config_factory'),
         $c->get('container_factory'),
         $c->get('composite_container_factory'),
