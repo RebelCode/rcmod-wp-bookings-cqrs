@@ -1,12 +1,7 @@
 /vendor/
-/nbproject/private/
+/.idea/
+/nbproject/
 /test/coverage/
 /test/log/
 /build/
 /.idea/dictionaries/
-/.idea/inspectionProfiles/
-/.idea/workspace.xml
-/.idea/tasks.xml
-/.idea/deployment.xml
-/.idea/vagrant.xml
-/.idea/misc.xml
