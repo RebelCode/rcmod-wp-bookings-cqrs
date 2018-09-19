@@ -2,12 +2,9 @@
 
 namespace RebelCode\Storage\FuncTest\Resource\WordPress;
 
-;
-
 use Dhii\Modular\Module\ModuleInterface;
 use Exception;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
-use RebelCode\Expression\Builder\ExpressionBuilder;
 use RebelCode\Modular\Testing\ModuleTestCase;
 use WP_Mock;
 
