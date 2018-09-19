@@ -277,7 +277,7 @@ class Migrator
         $target  = max(0, $target);
 
         // Get direction, 1 for up and -1 for down
-        $direction = (int) (absint($difference) / $difference);
+        $direction = (int) (abs($difference) / $difference);
         // Get the list of migration versions to run
         $migrations = ($direction === static::DIRECTION_UP)
             ? range($current + 1, $target)
