@@ -24,6 +24,7 @@
         "phpunit/phpunit": "^4.8",
         "ptrofimov/xpmock": "^1.1",
         "10up/wp_mock": "^0.1",
+        "mikey179/vfsStream": "^1.6.0",
         "dhii/php-cs-fixer-config": "^0.1",
         "codeclimate/php-test-reporter": "<=0.3.2",
         "rebelcode/module-testing": "dev-task/initial-code",
