@@ -10,6 +10,7 @@ return function (ContainerInterface $c) {
             'dependencies'       => ['wp_cqrs'],
             'config_file_path'   => __DIR__ . '/config.php',
             'services_file_path' => __DIR__ . '/services.php',
+            'migrations_dir'     => __DIR__ . '/migrations',
         ],
         $c->get('config_factory'),
         $c->get('container_factory'),
