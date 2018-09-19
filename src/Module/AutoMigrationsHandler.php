@@ -78,7 +78,7 @@ class AutoMigrationsHandler implements InvocableInterface
      *
      * @param Migrator $migrator The migrator instance.
      */
-    protected function _setMigrator($migrator)
+    protected function _setMigrator(Migrator $migrator)
     {
         $this->migrator = $migrator;
     }
