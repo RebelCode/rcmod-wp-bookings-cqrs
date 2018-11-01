@@ -169,7 +169,7 @@ class AutoMigrationsHandler implements InvocableInterface
             // - this specific direction and target from the current version
             $this->_trigger('wp_bookings_cqrs_before_migration', $params);
             $this->_trigger(sprintf('wp_bookings_cqrs_before_%s_migration', $dir), $params);
-            $this->_trigger(sprintf('wp_bookings_cqrs_before_%s_migration_%d', $dir, $ver), $params);
+            $this->_trigger(sprintf('wp_bookings_cqrs_before_%s_migration_to_%d', $dir, $ver), $params);
             $this->_trigger(sprintf('wp_bookings_cqrs_before_migration_from_%d_to_%d', $curr, $ver), $params);
 
             // Migrate
@@ -181,7 +181,7 @@ class AutoMigrationsHandler implements InvocableInterface
             // - this specific direction and target
             // - this specific direction and target from the current version
             $this->_trigger(sprintf('wp_bookings_cqrs_after_migration_from_%d_to_%d', $curr, $ver), $params);
-            $this->_trigger(sprintf('wp_bookings_cqrs_after_%s_migration_%d', $dir, $ver), $params);
+            $this->_trigger(sprintf('wp_bookings_cqrs_after_%s_migration_to_%d', $dir, $ver), $params);
             $this->_trigger(sprintf('wp_bookings_cqrs_after_%s_migration', $dir), $params);
             $this->_trigger('wp_bookings_cqrs_after_migration', $params);
         } catch (Exception $exception) {
