@@ -111,7 +111,7 @@ class AutoMigrationsHandler implements InvocableInterface
     }
 
     /**
-     * Retrieves the target DB migration version.
+     * Sets the target DB migration version.
      *
      * @since [*next-version*]
      *
