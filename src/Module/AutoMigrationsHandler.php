@@ -4,6 +4,7 @@ namespace RebelCode\Storage\Resource\WordPress\Module;
 
 use Dhii\Event\EventFactoryInterface;
 use Dhii\Invocation\InvocableInterface;
+use Dhii\Util\Normalization\NormalizeIntCapableTrait;
 use Dhii\Util\Normalization\NormalizeStringCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
 use Exception;
@@ -19,6 +20,9 @@ class AutoMigrationsHandler implements InvocableInterface
 {
     /* @since [*next-version*] */
     use EventsConsumerTrait;
+
+    /* @since [*next-version*] */
+    use NormalizeIntCapableTrait;
 
     /* @since [*next-version*] */
     use NormalizeStringCapableTrait;
@@ -149,20 +153,39 @@ class AutoMigrationsHandler implements InvocableInterface
      */
     public function __invoke()
     {
-        $target   = $this->_getTargetVersion();
+        $curr = $this->_normalizeInt($this->_getCurrentVersion());
+        $ver  = $this->_normalizeInt($this->_getTargetVersion());
+        $diff = $ver - $curr;
+        $dir  = ($diff > 0) ? 'up' : 'down';
+
+        $params   = ['target' => $ver, 'current' => $curr];
         $migrator = $this->_getMigrator();
 
         try {
-            // Trigger "before" event
-            $this->_trigger('wp_bookings_cqrs_before_migration', ['target' => $target]);
+            // Trigger "before" events for:
+            // - all migrations
+            // - this specific direction
+            // - this specific direction and target
+            // - this specific direction and target from the current version
+            $this->_trigger('wp_bookings_cqrs_before_migration', $params);
+            $this->_trigger(sprintf('wp_bookings_cqrs_before_%s_migration', $dir), $params);
+            $this->_trigger(sprintf('wp_bookings_cqrs_before_%s_migration_%d', $dir, $ver), $params);
+            $this->_trigger(sprintf('wp_bookings_cqrs_before_migration_from_%d_to_%d', $curr, $ver), $params);
 
             // Migrate
-            $migrator->migrate($target);
+            $migrator->migrate($ver);
 
-            // Trigger "after" event
-            $this->_trigger('wp_bookings_cqrs_after_migration', ['target' => $target]);
+            // Trigger "after" events (in reverse order) for:
+            // - all migrations
+            // - this specific direction
+            // - this specific direction and target
+            // - this specific direction and target from the current version
+            $this->_trigger(sprintf('wp_bookings_cqrs_after_migration_from_%d_to_%d', $curr, $ver), $params);
+            $this->_trigger(sprintf('wp_bookings_cqrs_after_%s_migration_%d', $dir, $ver), $params);
+            $this->_trigger(sprintf('wp_bookings_cqrs_after_%s_migration', $dir), $params);
+            $this->_trigger('wp_bookings_cqrs_after_migration', $params);
         } catch (Exception $exception) {
-            $this->_trigger('wp_bookings_cqrs_on_migration_failed', ['target' => $target]);
+            $this->_trigger('wp_bookings_cqrs_on_migration_failed', $params);
         }
     }
 }
