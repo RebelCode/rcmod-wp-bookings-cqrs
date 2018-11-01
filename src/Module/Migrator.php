@@ -65,7 +65,7 @@ class Migrator
      *
      * @since [*next-version*]
      */
-    const DOWN_MIGRATION_FILENAME = 'up.sql';
+    const DOWN_MIGRATION_FILENAME = 'down.sql';
 
     /**
      * The direction value for migrating upwards (upgrading).
