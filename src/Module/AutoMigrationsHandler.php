@@ -162,28 +162,32 @@ class AutoMigrationsHandler implements InvocableInterface
         $migrator = $this->_getMigrator();
 
         try {
-            // Trigger "before" events for:
-            // - all migrations
-            // - this specific direction
-            // - this specific direction and target
-            // - this specific direction and target from the current version
-            $this->_trigger('wp_bookings_cqrs_before_migration', $params);
-            $this->_trigger(sprintf('wp_bookings_cqrs_before_%s_migration', $dir), $params);
-            $this->_trigger(sprintf('wp_bookings_cqrs_before_%s_migration_to_%d', $dir, $ver), $params);
-            $this->_trigger(sprintf('wp_bookings_cqrs_before_migration_from_%d_to_%d', $curr, $ver), $params);
+            if ($diff !== 0) {
+                // Trigger "before" events for:
+                // - all migrations
+                // - this specific direction
+                // - this specific direction and target
+                // - this specific direction and target from the current version
+                $this->_trigger('wp_bookings_cqrs_before_migration', $params);
+                $this->_trigger(sprintf('wp_bookings_cqrs_before_%s_migration', $dir), $params);
+                $this->_trigger(sprintf('wp_bookings_cqrs_before_%s_migration_to_%d', $dir, $ver), $params);
+                $this->_trigger(sprintf('wp_bookings_cqrs_before_migration_from_%d_to_%d', $curr, $ver), $params);
+            }
 
             // Migrate
             $migrator->migrate($ver);
 
-            // Trigger "after" events (in reverse order) for:
-            // - all migrations
-            // - this specific direction
-            // - this specific direction and target
-            // - this specific direction and target from the current version
-            $this->_trigger(sprintf('wp_bookings_cqrs_after_migration_from_%d_to_%d', $curr, $ver), $params);
-            $this->_trigger(sprintf('wp_bookings_cqrs_after_%s_migration_to_%d', $dir, $ver), $params);
-            $this->_trigger(sprintf('wp_bookings_cqrs_after_%s_migration', $dir), $params);
-            $this->_trigger('wp_bookings_cqrs_after_migration', $params);
+            if ($diff !== 0) {
+                // Trigger "after" events (in reverse order) for:
+                // - all migrations
+                // - this specific direction
+                // - this specific direction and target
+                // - this specific direction and target from the current version
+                $this->_trigger(sprintf('wp_bookings_cqrs_after_migration_from_%d_to_%d', $curr, $ver), $params);
+                $this->_trigger(sprintf('wp_bookings_cqrs_after_%s_migration_to_%d', $dir, $ver), $params);
+                $this->_trigger(sprintf('wp_bookings_cqrs_after_%s_migration', $dir), $params);
+                $this->_trigger('wp_bookings_cqrs_after_migration', $params);
+            }
         } catch (Exception $exception) {
             $this->_trigger('wp_bookings_cqrs_on_migration_failed', $params);
         }
