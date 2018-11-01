@@ -498,6 +498,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return new AutoMigrationsHandler(
                         $c->get('wp_bookings_migrator'),
                         $c->get('wp_bookings_cqrs/migrations/target_db_version'),
+                        \get_option($c->get('wp_bookings_cqrs/migrations/db_version_option'), 0),
                         $c->get('event_manager'),
                         $c->get('event_factory')
                     );

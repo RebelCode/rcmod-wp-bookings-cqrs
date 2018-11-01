@@ -42,19 +42,30 @@ class AutoMigrationsHandler implements InvocableInterface
     protected $targetVersion;
 
     /**
+     * The current DB version.
+     *
+     * @since [*next-version*]
+     *
+     * @var int|string|Stringable
+     */
+    protected $currentVersion;
+
+    /**
      * Constructor.
      *
      * @since [*next-version*]
      *
-     * @param Migrator              $migrator      The migrator instance.
-     * @param Stringable|int|string $targetVersion The target DB version to migrate to.
-     * @param EventManagerInterface $eventManager  The event manager instance.
-     * @param EventFactoryInterface $eventFactory  The event factory instance for creating events.
+     * @param Migrator              $migrator       The migrator instance.
+     * @param Stringable|int|string $targetVersion  The target DB version to migrate to.
+     * @param Stringable|int|string $currentVersion The current DB version.
+     * @param EventManagerInterface $eventManager   The event manager instance.
+     * @param EventFactoryInterface $eventFactory   The event factory instance for creating events.
      */
-    public function __construct(Migrator $migrator, $targetVersion, $eventManager, $eventFactory)
+    public function __construct(Migrator $migrator, $targetVersion, $currentVersion, $eventManager, $eventFactory)
     {
         $this->_setMigrator($migrator);
         $this->_setTargetVersion($targetVersion);
+        $this->_setCurrentVersion($currentVersion);
         $this->_setEventManager($eventManager);
         $this->_setEventFactory($eventFactory);
     }
@@ -105,6 +116,30 @@ class AutoMigrationsHandler implements InvocableInterface
     protected function _setTargetVersion($targetVersion)
     {
         $this->targetVersion = $this->_normalizeString($targetVersion);
+    }
+
+    /**
+     * Retrieves the current DB version.
+     *
+     * @since [*next-version*]
+     *
+     * @return int|string|Stringable The current DB version.
+     */
+    protected function _getCurrentVersion()
+    {
+        return $this->currentVersion;
+    }
+
+    /**
+     * Sets the current DB version.
+     *
+     * @since [*next-version*]
+     *
+     * @param int|string|Stringable $currentVersion The current DB version.
+     */
+    protected function _setCurrentVersion($currentVersion)
+    {
+        $this->currentVersion = $this->_normalizeString($currentVersion);
     }
 
     /**
