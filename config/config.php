@@ -14,6 +14,7 @@ return [
         'unbooked_sessions' => include __DIR__ . '/unbooked_sessions.php',
         'session_rules'     => include __DIR__ . '/session_rules.php',
         'transition_logs'   => include __DIR__ . '/transition_log.php',
+        'resources'         => include __DIR__ . '/resources.php',
     ],
     'wp_bookings_cqrs' => [
         'migrations' => [
@@ -22,7 +23,7 @@ return [
              *
              * @since [*next-version*]
              */
-            'target_db_version'            => 3,
+            'target_db_version'         => 3,
 
             /*
              * The WordPress option name where the database version is saved.
