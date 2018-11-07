@@ -134,6 +134,68 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                 },
 
                 /*==============================================================*
+                 *   Resources RMs                                              |
+                 *==============================================================*/
+
+                /*
+                 * The SELECT resource model for resources.
+                 *
+                 * @since [*next-version*]
+                 */
+                'resources_select_rm'            => function (ContainerInterface $c) {
+                    return new WpdbSelectResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $c->get('map_factory'),
+                        $this->_normalizeArray($c->get('cqrs/resources/select/tables')),
+                        $this->_normalizeArray($c->get('cqrs/resources/select/field_column_map')),
+                        $this->_normalizeArray($c->get('cqrs/resources/select/joins'))
+                    );
+                },
+
+                /*
+                 * The INSERT resource model for resources.
+                 *
+                 * @since [*next-version*]
+                 */
+                'resources_insert_rm'            => function (ContainerInterface $c) {
+                    return new WpdbInsertResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('cqrs/resources/insert/table'),
+                        $this->_normalizeArray($c->get('cqrs/resources/insert/field_column_map')),
+                        $c->get('cqrs/resources/insert/insert_bulk')
+                    );
+                },
+
+                /*
+                 * The UPDATE resource model for resources.
+                 *
+                 * @since [*next-version*]
+                 */
+                'resources_update_rm'            => function (ContainerInterface $c) {
+                    return new WpdbUpdateResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $c->get('cqrs/resources/insert/table'),
+                        $this->_normalizeArray($c->get('cqrs/resources/insert/field_column_map'))
+                    );
+                },
+
+                /*
+                 * The DELETE resource model for resources.
+                 *
+                 * @since [*next-version*]
+                 */
+                'resources_delete_rm'            => function (ContainerInterface $c) {
+                    return new WpdbDeleteResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $c->get('cqrs/resources/insert/table'),
+                        $this->_normalizeArray($c->get('cqrs/resources/insert/field_column_map'))
+                    );
+                },
+
+                /*==============================================================*
                  *   Booking Status RMs                                         |
                  *==============================================================*/
 
