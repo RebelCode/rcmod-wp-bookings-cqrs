@@ -37,5 +37,11 @@ INSERT INTO `${cqrs/session_resources/table}` (session_id, resource_id)
 SELECT id as session_id, resource_id
 FROM `${cqrs/sessions/table}`;
 
+-- Remove `resource_id` column from bookings table
+ALTER TABLE `${cqrs/bookings/table}` DROP COLUMN `resource_id`;
+
+-- Remove `resource_id` column from sessions table
+ALTER TABLE `${cqrs/sessions/table}` DROP COLUMN `resource_id`;
+
 -- Change `service_id` in availability rules to `resource_id`
 ALTER TABLE `${cqrs/session_rules/table}` CHANGE `service_id` `resource_id` bigint NOT NULL;
