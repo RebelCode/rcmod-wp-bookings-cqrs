@@ -15,6 +15,7 @@ use Psr\Container\ContainerInterface;
 use Psr\EventManager\EventInterface;
 use Psr\EventManager\EventManagerInterface;
 use RebelCode\Modular\Module\AbstractBaseModule;
+use RebelCode\Storage\Resource\WordPress\Wpdb\BookingsSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\SessionsWpdbInsertResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\UnbookedSessionsWpdbSelectResourceModel;
@@ -81,13 +82,20 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'bookings_select_rm'            => function (ContainerInterface $c) {
-                    return new WpdbSelectResourceModel(
+                    $joinsCfg = $this->_normalizeArray($c->get('cqrs/bookings/select/joins'));
+                    $joins    = array_map(function ($key) use ($c) {
+                        return $c->get($key);
+                    }, $joinsCfg);
+
+                    return new BookingsSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('map_factory'),
                         $this->_normalizeArray($c->get('cqrs/bookings/select/tables')),
                         $this->_normalizeArray($c->get('cqrs/bookings/select/field_column_map')),
-                        $this->_normalizeArray($c->get('cqrs/bookings/select/joins'))
+                        $c->get('sql_expression_builder'),
+                        $joins,
+                        $c->get('bookings_select_rm_grouping')
                     );
                 },
 
@@ -131,6 +139,36 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('cqrs/bookings/insert/table'),
                         $this->_normalizeArray($c->get('cqrs/bookings/insert/field_column_map'))
                     );
+                },
+
+                /**
+                 * The JOIN condition for bookings and their resources.
+                 *
+                 * @since [*next-version*]
+                 */
+                'bookings_select_rm_resources_join' => function (ContainerInterface $c) {
+                    $exp = $c->get('sql_expression_builder');
+                    $bkr = $c->get('cqrs/booking_resources/table');
+
+                    return [
+                        $bkr => $exp->eq(
+                            $exp->ef('booking', 'id'),
+                            $exp->ef('booking_resources', 'booking_id')
+                        )
+                    ];
+                },
+
+                /**
+                 * The grouping for the bookings SELECT RM.
+                 *
+                 * @since [*next-version*]
+                 */
+                'bookings_select_rm_grouping' => function (ContainerInterface $c) {
+                    $e = $c->get('sql_expression_builder');
+
+                    return [
+                        $e->ef('booking', 'id')
+                    ];
                 },
 
                 /*==============================================================*

@@ -22,7 +22,9 @@ return [
             'booking' => '${cqrs/bookings/table}',
         ],
         'field_column_map' => $bookingsFieldColumnMap,
-        'joins'            => [],
+        'joins'            => [
+            'bookings_select_rm_resources_join'
+        ],
     ],
 
     // Config for INSERT RMs
