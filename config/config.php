@@ -15,6 +15,8 @@ return [
         'session_rules'     => include __DIR__ . '/session_rules.php',
         'transition_logs'   => include __DIR__ . '/transition_log.php',
         'resources'         => include __DIR__ . '/resources.php',
+        'booking_resources' => include __DIR__ . '/booking_resources.php',
+        'session_resources' => include __DIR__ . '/session_resources.php',
     ],
     'wp_bookings_cqrs' => [
         'migrations' => [
