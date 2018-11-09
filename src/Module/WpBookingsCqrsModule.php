@@ -9,6 +9,7 @@ use Dhii\Exception\InternalException;
 use Dhii\Output\PlaceholderTemplateFactory;
 use Dhii\Util\Normalization\NormalizeArrayCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
+use Exception;
 use InvalidArgumentException;
 use mysqli;
 use Psr\Container\ContainerInterface;
@@ -636,6 +637,18 @@ class WpBookingsCqrsModule extends AbstractBaseModule
             $option = $c->get('wp_bookings_cqrs/migrations/db_version_option');
 
             \update_option($option, $target);
+        });
+
+        $this->_attach('wp_bookings_cqrs_on_migration_failed', function (EventInterface $event) {
+            $exception = $event->getParam('exception');
+
+            if (!($exception instanceof Exception)) {
+                return;
+            }
+
+            $this->_attach('admin_notices', function () use ($exception) {
+                printf('<div class="notice notice-error is-dismissible"><p>%s</p></div>', $exception->getMessage());
+            });
         });
     }
 }
