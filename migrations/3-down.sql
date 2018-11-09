@@ -6,10 +6,10 @@ WHERE `meta_key` = "eddbk_session_types";
 DROP TABLE IF EXISTS `${cqrs/resources/table}`;
 
 -- Delete the session-resources relationship table
-DROP TABLE IF EXISTS booking_resources;
+DROP TABLE IF EXISTS `${cqrs/booking_resources/table}`;
 
 -- Delete the session-resources relationship table
-DROP TABLE IF EXISTS session_resources;
+DROP TABLE IF EXISTS `${cqrs/session_resources/table}`;
 
 -- Re-add the resource_id column to the bookings table
 ALTER table `${cqrs/bookings/table}` ADD `resource_id` int NOT NULL;
