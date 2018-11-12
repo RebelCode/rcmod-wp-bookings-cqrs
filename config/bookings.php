@@ -8,7 +8,6 @@ return [
         'start'       => ['booking', 'start'],
         'end'         => ['booking', 'end'],
         'service_id'  => ['booking', 'service_id'],
-        'resource_id' => ['booking', 'resource_id'],
         'payment_id'  => ['booking', 'payment_id'],
         'client_id'   => ['booking', 'client_id'],
         'client_tz'   => ['booking', 'client_tz'],

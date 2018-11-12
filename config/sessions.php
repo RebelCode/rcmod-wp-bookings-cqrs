@@ -8,7 +8,6 @@ return [
         'start'       => 'start',
         'end'         => 'end',
         'service_id'  => 'service_id',
-        'resource_id' => 'resource_id',
         'rule_id'     => 'rule_id',
     ],
 
