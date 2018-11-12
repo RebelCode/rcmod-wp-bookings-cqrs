@@ -28,9 +28,9 @@ CREATE TABLE `${cqrs/session_resources/table}`
 );
 
 -- Create schedule resources for every service
-INSERT INTO `${cqrs/resources/table}` (id, type, name)
-SELECT ID, "schedule", CONCAT("Schedule for \"", post_title, "\"")
-FROM `${cqrs/table_prefix}posts`
+INSERT INTO `${cqrs/resources/table}` (`id`, `type`, `name`)
+SELECT `ID`, "schedule", CONCAT("Schedule for \"", post_title, "\"")
+FROM `${wpdb_prefix}posts`
 WHERE `post_type` = "download";
 
 -- Populate booking resources table with existing booking.resource_id data
