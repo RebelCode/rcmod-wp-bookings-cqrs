@@ -15,7 +15,9 @@ return [
     'select'           => [
         'tables'           => ['session' => '${cqrs/sessions/table}'],
         'field_column_map' => $sessionsFieldColumnMap,
-        'joins'            => [],
+        'joins'            => [
+            'sessions_select_rm_resources_join'
+        ],
     ],
 
     // Config for INSERT RMs

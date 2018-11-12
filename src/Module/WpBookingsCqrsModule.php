@@ -18,6 +18,7 @@ use Psr\EventManager\EventManagerInterface;
 use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingsSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
+use RebelCode\Storage\Resource\WordPress\Wpdb\SessionsSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\SessionsWpdbInsertResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\UnbookedSessionsWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\WpdbDeleteResourceModel;
@@ -332,14 +333,53 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'sessions_select_rm'            => function (ContainerInterface $c) {
-                    return new WpdbSelectResourceModel(
+                    $joinsCfg = $this->_normalizeArray($c->get('cqrs/sessions/select/joins'));
+                    $joins    = array_map(function ($key) use ($c) {
+                        return $c->get($key);
+                    }, $joinsCfg);
+
+                    return new SessionsSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('map_factory'),
                         $this->_normalizeArray($c->get('cqrs/sessions/select/tables')),
                         $this->_normalizeArray($c->get('cqrs/sessions/select/field_column_map')),
-                        $this->_normalizeArray($c->get('cqrs/sessions/select/joins'))
+                        $c->get('sql_expression_builder'),
+                        $joins,
+                        $c->get('sessions_select_rm_grouping')
                     );
+                },
+
+                /**
+                 * The JOIN condition for sessions and their resources.
+                 *
+                 * @since [*next-version*]
+                 */
+                'sessions_select_rm_resources_join' => function (ContainerInterface $c) {
+                    $exp = $c->get('sql_expression_builder');
+                    $ssr = $c->get('cqrs/session_resources/table');
+
+                    return [
+                        // Join with session_resources table
+                        // On session.id = session_resources.session_id
+                        $ssr => $exp->eq(
+                            $exp->ef('session', 'id'),
+                            $exp->ef('session_resources', 'session_id')
+                        )
+                    ];
+                },
+
+                /*
+                 * The grouping for the sessions SELECT RM.
+                 *
+                 * @since [*next-version*]
+                 */
+                'sessions_select_rm_grouping' => function(ContainerInterface $c) {
+                    $e = $c->get('sql_expression_builder');
+
+                    return [
+                        $e->ef('session', 'id')
+                    ];
                 },
 
                 /*
