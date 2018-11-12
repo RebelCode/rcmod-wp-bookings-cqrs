@@ -8,13 +8,15 @@ return [
         'start'       => ['session', 'start'],
         'end'         => ['session', 'end'],
         'service_id'  => ['session', 'service_id'],
-        'resource_id' => ['session', 'resource_id'],
     ],
 
     // Config for SELECT RMs
     'select'           => [
         'tables'           => ['session' => '${cqrs/sessions/table}'],
         'field_column_map' => $sessionsFieldColumnMap,
-        'joins'            => 'unbooked_sessions_select_join_conditions',
+        'joins'            => [
+            'sessions_select_rm_resources_join',
+            'unbooked_sessions_select_join_conditions',
+        ]
     ],
 ];

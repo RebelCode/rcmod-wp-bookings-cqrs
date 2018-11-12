@@ -440,11 +440,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'wp_unbooked_sessions_grouping_fields' => function (ContainerInterface $c) {
-                    $b = $c->get('sql_expression_builder');
-
-                    return [
-                        $b->ef('session', 'id')
-                    ];
+                    return $c->get('sessions_select_rm_grouping');
                 },
 
                 /*
@@ -465,23 +461,26 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     $ss = $e->ef($s, 'start');
                     $se = $e->ef($s, 'end');
 
-                    return [
-                        // Join with booking table
-                        $b => $e->and(
-                            // With bookings that conflict
-                            $e->or(
-                                // Booking starts during session
-                                $e->and($e->gte($bs, $ss), $e->lt($bs, $se)),
-                                // Session starts during booking
-                                $e->and($e->gte($ss, $bs), $e->lt($ss, $be))
-                            ),
-                            // AND have the same resource ID
-                            $e->eq(
-                                $e->ef($b, 'resource_id'),
-                                $e->ef($s, 'resource_id')
-                            )
+                    // Get the joins for the normal sessions SELECT RM
+                    $joins = $c->get('sessions_select_rm_resources_join');
+
+                    // Join with booking table
+                    $joins[$b] = $e->and(
+                        // With bookings that conflict
+                        $e->or(
+                            // Booking starts during session
+                            $e->and($e->gte($bs, $ss), $e->lt($bs, $se)),
+                            // Session starts during booking
+                            $e->and($e->gte($ss, $bs), $e->lt($ss, $be))
+                        ),
+                        // AND have the same resource ID
+                        $e->eq(
+                            $e->ef($b, 'resource_id'),
+                            $e->ef($s, 'resource_id')
                         )
-                    ];
+                    );
+
+                    return $joins;
                 },
 
                 /*
