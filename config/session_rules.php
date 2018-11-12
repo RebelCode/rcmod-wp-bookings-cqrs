@@ -5,7 +5,7 @@ return [
     'table'            => '${cqrs/table_prefix}session_rules',
     'field_column_map' => $sessionRulesFieldColumnMap = [
         'id'                  => 'id',
-        'service_id'          => 'service_id',
+        'resource_id'         => 'resource_id',
         'start'               => 'start',
         'end'                 => 'end',
         'all_day'             => 'all_day',
