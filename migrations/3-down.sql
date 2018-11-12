@@ -20,3 +20,6 @@ UPDATE `${cqrs/bookings/table}` SET `resource_id` = `service_id`;
 ALTER table `${cqrs/sessions/table}` ADD `resource_id` int NOT NULL;
 -- Set all resource IDs in the sessions table to be equal to service IDs
 UPDATE `${cqrs/bookings/table}` SET `resource_id` = `service_id`;
+
+-- Change `resource_id` in availability rules back to `service_id`
+ALTER TABLE `${cqrs/session_rules/table}` CHANGE `resource_id` `service_id` bigint NOT NULL;
