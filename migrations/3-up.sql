@@ -27,6 +27,12 @@ CREATE TABLE `${cqrs/session_resources/table}`
   resource_id int NOT NULL
 );
 
+-- Create schedule resources for every service
+INSERT INTO `${cqrs/resources/table}` (id, type, name)
+SELECT ID, "schedule", CONCAT("Schedule for \"", post_title, "\"")
+FROM `${cqrs/table_prefix}posts`
+WHERE `post_type` = "download";
+
 -- Populate booking resources table with existing booking.resource_id data
 INSERT INTO `${cqrs/booking_resources/table}` (booking_id, resource_id)
 SELECT id as booking_id, resource_id
