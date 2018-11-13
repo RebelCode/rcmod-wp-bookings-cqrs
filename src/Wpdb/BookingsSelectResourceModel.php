@@ -25,7 +25,7 @@ class BookingsSelectResourceModel extends EddBkWpdbSelectResourceModel
      *
      * @since [*next-version*]
      */
-    const RESOURCES_COLUMN = 'resources';
+    const RESOURCES_COLUMN = 'resource_ids';
 
     /**
      * The name of the resource IDs field in results.
