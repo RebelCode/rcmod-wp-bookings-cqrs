@@ -638,6 +638,18 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     );
                 },
 
+                /*
+                 * The migration error notice handler.
+                 *
+                 * @since [*next-version*]
+                 */
+                'wp_bookings_migration_error_notice_handler' => function (ContainerInterface $c) {
+                    return new MigrationErrorNoticeHandler(
+                        $c->get('event_manager'),
+                        $c->get('event_factory')
+                    );
+                },
+
                 /*==============================================================*
                  *   Misc. Services                                             |
                  *==============================================================*/
@@ -672,16 +684,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
             \update_option($option, $target);
         });
 
-        $this->_attach('wp_bookings_cqrs_on_migration_failed', function (EventInterface $event) {
-            $exception = $event->getParam('exception');
-
-            if (!($exception instanceof Exception)) {
-                return;
-            }
-
-            $this->_attach('admin_notices', function () use ($exception) {
-                printf('<div class="notice notice-error is-dismissible"><p>%s</p></div>', $exception->getMessage());
-            });
-        });
+        // The migration error notice handler
+        $this->_attach('wp_bookings_cqrs_on_migration_failed', $c->get('wp_bookings_migration_error_notice_handler'));
     }
 }
