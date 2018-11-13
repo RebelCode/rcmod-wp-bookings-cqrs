@@ -11,6 +11,12 @@ CREATE TABLE `${cqrs/resources/table}`
 	`name` varchar(255) NOT NULL
 );
 
+-- Create schedule resources for every service
+INSERT INTO `${cqrs/resources/table}` (`id`, `type`, `name`)
+SELECT `ID`, "schedule", CONCAT("Schedule for \"", post_title, "\"")
+FROM `${wpdb_prefix}posts`
+WHERE `post_type` = "download";
+
 -- Create session-resources relationship table
 CREATE TABLE `${cqrs/booking_resources/table}`
 (
@@ -19,20 +25,6 @@ CREATE TABLE `${cqrs/booking_resources/table}`
   `resource_id` int NOT NULL
 );
 
--- Create session-resources relationship table
-CREATE TABLE `${cqrs/session_resources/table}`
-(
-  `id` bigint AUTO_INCREMENT PRIMARY KEY,
-  `session_id` int NOT NULL,
-  `resource_id` int NOT NULL
-);
-
--- Create schedule resources for every service
-INSERT INTO `${cqrs/resources/table}` (`id`, `type`, `name`)
-SELECT `ID`, "schedule", CONCAT("Schedule for \"", post_title, "\"")
-FROM `${wpdb_prefix}posts`
-WHERE `post_type` = "download";
-
 -- Populate booking resources table with existing booking.resource_id data
 INSERT INTO `${cqrs/booking_resources/table}` (`booking_id`, `resource_id`)
 SELECT `id` as booking_id, `resource_id`
@@ -40,12 +32,12 @@ FROM `${cqrs/bookings/table}`;
 -- Remove `resource_id` column from bookings table
 ALTER TABLE `${cqrs/bookings/table}` DROP COLUMN `resource_id`;
 
--- Populate session resources table with existing session.resource_id data
-INSERT INTO `${cqrs/session_resources/table}` (`session_id`, `resource_id`)
-SELECT `id` as session_id, `resource_id`
-FROM `${cqrs/sessions/table}`;
 -- Remove `resource_id` column from sessions table
 ALTER TABLE `${cqrs/sessions/table}` DROP COLUMN `resource_id`;
+-- Add the new `resources` column to the sessions table
+ALTER TABLE `${cqrs/sessions/table}` ADD `resources` VARCHAR(100) NOT NULL;
+-- Set values for the new resources column in the sessions table
+UPDATE `${cqrs/sessions/table}` SET `resources` = `service_id`;
 
 -- Change `service_id` in availability rules to `resource_id`
 ALTER TABLE `${cqrs/session_rules/table}` CHANGE `service_id` `resource_id` bigint NOT NULL;
