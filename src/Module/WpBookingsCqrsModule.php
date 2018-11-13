@@ -10,7 +10,6 @@ use Dhii\Output\PlaceholderTemplateFactory;
 use Dhii\Util\Normalization\NormalizeArrayCapableTrait;
 use Dhii\Util\String\StringableInterface as Stringable;
 use Exception;
-use InvalidArgumentException;
 use mysqli;
 use Psr\Container\ContainerInterface;
 use Psr\EventManager\EventInterface;
@@ -84,10 +83,15 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'bookings_select_rm'            => function (ContainerInterface $c) {
-                    $joinsCfg = $this->_normalizeArray($c->get('cqrs/bookings/select/joins'));
-                    $joins    = array_map(function ($key) use ($c) {
+                    $joinsCfg   = $this->_normalizeArray($c->get('cqrs/bookings/select/joins'));
+                    $joinArrays = array_map(function ($key) use ($c) {
                         return $c->get($key);
                     }, $joinsCfg);
+
+                    $joins = [];
+                    foreach ($joinArrays as $joinArray) {
+                        $joins = array_merge($joins, $this->_normalizeArray($joinArray));
+                    }
 
                     return new BookingsSelectResourceModel(
                         $c->get('wpdb'),
@@ -95,6 +99,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('map_factory'),
                         $this->_normalizeArray($c->get('cqrs/bookings/select/tables')),
                         $this->_normalizeArray($c->get('cqrs/bookings/select/field_column_map')),
+                        $c->get('cqrs/booking_resources/table'),
                         $c->get('sql_expression_builder'),
                         $joins,
                         $c->get('bookings_select_rm_grouping')
@@ -155,7 +160,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                     return [
                         $bkr => $exp->eq(
                             $exp->ef('booking', 'id'),
-                            $exp->ef('booking_resources', 'booking_id')
+                            $exp->ef($bkr, 'booking_id')
                         )
                     ];
                 },
@@ -168,9 +173,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                 'bookings_select_rm_grouping' => function (ContainerInterface $c) {
                     $e = $c->get('sql_expression_builder');
 
-                    return [
-                        $e->ef('booking', 'id')
-                    ];
+                    return [$e->ef('booking', 'id')];
                 },
 
                 /*==============================================================*
@@ -334,9 +337,14 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  */
                 'sessions_select_rm'            => function (ContainerInterface $c) {
                     $joinsCfg = $this->_normalizeArray($c->get('cqrs/sessions/select/joins'));
-                    $joins    = array_map(function ($key) use ($c) {
+                    $joinArrays = array_map(function ($key) use ($c) {
                         return $c->get($key);
                     }, $joinsCfg);
+
+                    $joins = [];
+                    foreach ($joinArrays as $joinArray) {
+                        $joins = array_merge($joins, $this->_normalizeArray($joinArray));
+                    }
 
                     return new SessionsSelectResourceModel(
                         $c->get('wpdb'),
@@ -345,8 +353,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $this->_normalizeArray($c->get('cqrs/sessions/select/tables')),
                         $this->_normalizeArray($c->get('cqrs/sessions/select/field_column_map')),
                         $c->get('sql_expression_builder'),
-                        $joins,
-                        $c->get('sessions_select_rm_grouping')
+                        $joins
                     );
                 },
 
@@ -364,21 +371,8 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         // On session.id = session_resources.session_id
                         $ssr => $exp->eq(
                             $exp->ef('session', 'id'),
-                            $exp->ef('session_resources', 'session_id')
+                            $exp->ef($ssr, 'session_id')
                         )
-                    ];
-                },
-
-                /*
-                 * The grouping for the sessions SELECT RM.
-                 *
-                 * @since [*next-version*]
-                 */
-                'sessions_select_rm_grouping' => function(ContainerInterface $c) {
-                    $e = $c->get('sql_expression_builder');
-
-                    return [
-                        $e->ef('session', 'id')
                     ];
                 },
 
@@ -388,22 +382,14 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'unbooked_sessions_select_rm'   => function (ContainerInterface $c) {
-                    $joinsServiceKey = $c->get('cqrs/unbooked_sessions/select/joins');
-                    $fieldColumnMap  = $c->get('cqrs/unbooked_sessions/select/field_column_map');
-                    $fieldColumnMap  = $this->_normalizeArray($fieldColumnMap);
+                    $joinsCfg = $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/joins'));
+                    $joinArrays = array_map(function ($key) use ($c) {
+                        return $c->get($key);
+                    }, $joinsCfg);
 
-                    // Turn array columns into entity fields
-                    $b = $c->get('sql_expression_builder');
-                    foreach ($fieldColumnMap as $_field => $_column) {
-                        try {
-                            $_column = $this->_normalizeArray($_column);
-                            $fieldColumnMap[$_field] = $b->ef(
-                                $_column[0],
-                                $_column[1]
-                            );
-                        } catch (InvalidArgumentException $exception) {
-                            continue;
-                        }
+                    $joins = [];
+                    foreach ($joinArrays as $joinArray) {
+                        $joins = array_merge($joins, $this->_normalizeArray($joinArray));
                     }
 
                     return new UnbookedSessionsWpdbSelectResourceModel(
@@ -411,8 +397,8 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('sql_expression_template'),
                         $c->get('map_factory'),
                         $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/tables')),
-                        $fieldColumnMap,
-                        $c->get($joinsServiceKey),
+                        $this->_normalizeArray($c->get('cqrs/unbooked_sessions/select/field_column_map')),
+                        $joins,
                         $c->get('wp_unbooked_sessions_condition'),
                         $c->get('wp_unbooked_sessions_grouping_fields'),
                         $c->get('sql_expression_builder')
@@ -440,7 +426,9 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'wp_unbooked_sessions_grouping_fields' => function (ContainerInterface $c) {
-                    return $c->get('sessions_select_rm_grouping');
+                    $e = $c->get('sql_expression_builder');
+
+                    return [$e->ef('session', 'id')];
                 },
 
                 /*
@@ -450,37 +438,43 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  */
                 'unbooked_sessions_select_join_conditions' => function (ContainerInterface $c) {
                     // Expression builder
-                    $e = $c->get('sql_expression_builder');
+                    $exp = $c->get('sql_expression_builder');
                     // The table names
-                    $b = $c->get('cqrs/bookings/table');
-                    $s = 'session';
+                    $bk  = $c->get('cqrs/bookings/table');
+                    $br = $c->get('cqrs/booking_resources/table');
+                    $sn = 'session';
                     // Booking start and end fields
-                    $bs = $e->ef($b, 'start');
-                    $be = $e->ef($b, 'end');
+                    $b_s = $exp->ef($bk, 'start');
+                    $b_e = $exp->ef($bk, 'end');
                     // Session start and end fields
-                    $ss = $e->ef($s, 'start');
-                    $se = $e->ef($s, 'end');
+                    $s_s = $exp->ef($sn, 'start');
+                    $s_e = $exp->ef($sn, 'end');
 
-                    // Get the joins for the normal sessions SELECT RM
-                    $joins = $c->get('sessions_select_rm_resources_join');
-
-                    // Join with booking table
-                    $joins[$b] = $e->and(
-                        // With bookings that conflict
-                        $e->or(
-                            // Booking starts during session
-                            $e->and($e->gte($bs, $ss), $e->lt($bs, $se)),
-                            // Session starts during booking
-                            $e->and($e->gte($ss, $bs), $e->lt($ss, $be))
+                    return [
+                        // Join with booking table
+                        $bk => $exp->and(
+                            // With bookings that overlap
+                            // (Booking starts during session period or session starts during booking period)
+                            $exp->or(
+                                $exp->and($exp->gte($b_s, $s_s), $exp->lt($b_s, $s_e)),
+                                $exp->and($exp->gte($s_s, $b_s), $exp->lt($s_s, $b_e))
+                            )
                         ),
-                        // AND have the same resource ID
-                        $e->eq(
-                            $e->ef($b, 'resource_id'),
-                            $e->ef($s, 'resource_id')
+                        // Join with booking resources table
+                        $br => $exp->and(
+                            // Booking ID from booking table and booking-resources table are equal
+                            $exp->eq(
+                                $exp->ef($bk, 'id'),
+                                $exp->ef($br, 'booking_id')
+                            ),
+                            // The booking resource ID is in the session's resource ID list
+                            $exp->fn(
+                                'FIND_IN_SET',
+                                $exp->ef($br, 'resource_id'),
+                                $exp->ef($sn, 'resource_ids')
+                            )
                         )
-                    );
-
-                    return $joins;
+                    ];
                 },
 
                 /*
