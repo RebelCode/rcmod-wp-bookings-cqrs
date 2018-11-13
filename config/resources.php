@@ -12,7 +12,7 @@ return [
     // Config for SELECT RMs
     'select'           => [
         'tables'           => [
-            'booking' => '${cqrs/resources/table}',
+            'resource' => '${cqrs/resources/table}',
         ],
         'field_column_map' => $resourcesFcMap,
         'joins'            => [],
