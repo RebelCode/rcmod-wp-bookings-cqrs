@@ -18,7 +18,7 @@ use wpdb;
  *
  * @since [*next-version*]
  */
-class BookingsSelectResourceModel extends WpdbSelectResourceModel
+class BookingsSelectResourceModel extends EddBkWpdbSelectResourceModel
 {
     /**
      * The name of the resource IDs aggregate column.
@@ -28,13 +28,11 @@ class BookingsSelectResourceModel extends WpdbSelectResourceModel
     const RESOURCES_COLUMN = 'resources';
 
     /**
-     * The expression builder.
+     * The name of the resource IDs field in results.
      *
      * @since [*next-version*]
-     *
-     * @var object
      */
-    protected $expBuilder;
+    const RESOURCES_FIELD = 'resource_ids';
 
     /**
      * The fields to group by.
@@ -50,8 +48,9 @@ class BookingsSelectResourceModel extends WpdbSelectResourceModel
      *
      * @since [*next-version*]
      *
-     * @param object                                                            $expBuilder The expression builder.
-     * @param string[]|Stringable[]|EntityFieldInterface[]|stdClass|Traversable $grouping   The fields to group by.
+     * @param string[]|Stringable[]|EntityFieldInterface[]|stdClass|Traversable $grouping       The fields to group by.
+     * @param string|Stringable                                                 $resourcesTable The booking-resources
+     *                                                                                          relationship table name.
      */
     public function __construct(
         wpdb $wpdb,
@@ -59,19 +58,19 @@ class BookingsSelectResourceModel extends WpdbSelectResourceModel
         MapFactoryInterface $factory,
         $tables,
         $fieldColumnMap,
+        $resourcesTable,
         $expBuilder,
         $joins = [],
         $grouping = []
     ) {
-        $this->expBuilder = $expBuilder;
-        $this->grouping   = $grouping;
+        $this->grouping = $grouping;
 
         $fieldColumnMap[static::RESOURCES_COLUMN] = $expBuilder->fn(
             'GROUP_CONCAT',
-            [$expBuilder->ef('booking_resources', 'resource_id')]
+            $expBuilder->ef($resourcesTable, 'resource_id')
         );
 
-        parent::__construct($wpdb, $expressionTemplate, $factory, $tables, $fieldColumnMap, $joins);
+        parent::__construct($wpdb, $expressionTemplate, $factory, $tables, $fieldColumnMap, $expBuilder, $joins);
     }
 
     /**
@@ -82,5 +81,22 @@ class BookingsSelectResourceModel extends WpdbSelectResourceModel
     protected function _getSqlSelectGrouping()
     {
         return $this->grouping;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @since [*next-version*]
+     */
+    protected function _createResult($rawResult)
+    {
+        // Create array result
+        $rawResult = $this->_normalizeArray($rawResult);
+        // Add resources field - explode comma list into an array
+        $rawResult[static::RESOURCES_FIELD] = explode(',', $rawResult[static::RESOURCES_COLUMN]);
+        // Remove old resources column entry
+        unset($rawResult[static::RESOURCES_COLUMN]);
+
+        return parent::_createResult($rawResult);
     }
 }
