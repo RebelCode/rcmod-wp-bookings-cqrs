@@ -13,7 +13,7 @@ ALTER table `${cqrs/bookings/table}` ADD `resource_id` int NOT NULL;
 UPDATE `${cqrs/bookings/table}` SET `resource_id` = `service_id`;
 
 -- Remove `resource_id` column from sessions table
-ALTER TABLE `${cqrs/sessions/table}` DROP COLUMN `resources`;
+ALTER TABLE `${cqrs/sessions/table}` DROP COLUMN `resource_ids`;
 -- Re-add the resource_id column to the bookings table
 ALTER table `${cqrs/sessions/table}` ADD `resource_id` int NOT NULL;
 -- Set all resource IDs in the sessions table to be equal to service IDs

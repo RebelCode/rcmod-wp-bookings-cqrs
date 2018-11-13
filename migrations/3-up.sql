@@ -35,9 +35,9 @@ ALTER TABLE `${cqrs/bookings/table}` DROP COLUMN `resource_id`;
 -- Remove `resource_id` column from sessions table
 ALTER TABLE `${cqrs/sessions/table}` DROP COLUMN `resource_id`;
 -- Add the new `resources` column to the sessions table
-ALTER TABLE `${cqrs/sessions/table}` ADD `resources` VARCHAR(100) NOT NULL;
+ALTER TABLE `${cqrs/sessions/table}` ADD `resource_ids` VARCHAR(100) NOT NULL;
 -- Set values for the new resources column in the sessions table
-UPDATE `${cqrs/sessions/table}` SET `resources` = `service_id`;
+UPDATE `${cqrs/sessions/table}` SET `resource_ids` = `service_id`;
 
 -- Change `service_id` in availability rules to `resource_id`
 ALTER TABLE `${cqrs/session_rules/table}` CHANGE `service_id` `resource_id` bigint NOT NULL;
