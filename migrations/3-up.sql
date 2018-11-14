@@ -3,7 +3,8 @@ CREATE TABLE `${cqrs/resources/table}`
 (
 	`id` bigint AUTO_INCREMENT PRIMARY KEY,
 	`type` varchar(100) NOT NULL,
-	`name` varchar(255) NOT NULL
+	`name` varchar(255) NOT NULL,
+	`data` longtext DEFAULT ""
 );
 -- Create booking-resources relationship table
 CREATE TABLE `${cqrs/booking_resources/table}`
