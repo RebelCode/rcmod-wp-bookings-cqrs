@@ -22,7 +22,7 @@ return [
     'insert'           => [
         'table'            => '${cqrs/resources/table}',
         'field_column_map' => $resourcesFcMap,
-        'insert_bulk'      => true,
+        'insert_bulk'      => false,
     ],
 
     // Config for UPDATE RMs
