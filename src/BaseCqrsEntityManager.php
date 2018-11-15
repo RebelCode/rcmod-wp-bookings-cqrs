@@ -1,6 +1,6 @@
 <?php
 
-namespace RebelCode\EddBookings\Logic\Storage;
+namespace RebelCode\Storage\Resource\WordPress;
 
 use ArrayAccess;
 use Dhii\Collection\MapInterface;

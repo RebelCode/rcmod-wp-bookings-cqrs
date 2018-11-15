@@ -1,11 +1,10 @@
 <?php
 
-namespace RebelCode\Storage\Resource\WordPress\Storage;
+namespace RebelCode\Storage\Resource\WordPress;
 
 use ArrayAccess;
 use DateTime;
 use DateTimeZone;
-use Dhii\Collection\MapInterface;
 use Dhii\Data\Container\ContainerGetCapableTrait;
 use Dhii\Data\Container\ContainerGetPathCapableTrait;
 use Dhii\Data\Container\ContainerHasCapableTrait;
@@ -21,12 +20,11 @@ use Dhii\Storage\Resource\SelectCapableInterface;
 use Dhii\Storage\Resource\UpdateCapableInterface;
 use Dhii\Util\Normalization\NormalizeIterableCapableTrait;
 use Dhii\Util\Normalization\NormalizeStringCapableTrait;
+use Dhii\Util\String\StringableInterface as Stringable;
 use Exception;
 use InvalidArgumentException;
 use OutOfRangeException;
 use Psr\Container\ContainerInterface;
-use RebelCode\EddBookings\Logic\Storage\BaseCqrsEntityManager;
-use Dhii\Util\String\StringableInterface as Stringable;
 use stdClass;
 use Traversable;
 
