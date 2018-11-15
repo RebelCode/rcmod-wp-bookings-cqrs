@@ -154,7 +154,7 @@ class BaseCqrsEntityManager implements EntityManagerInterface
         $results = $this->_normalizeArray($results);
 
         if (count($results) > 0 && $result = reset($results)) {
-            return $result;
+            return $this->_recordToEntity($result);
         }
 
         throw $this->_createNotFoundException(
