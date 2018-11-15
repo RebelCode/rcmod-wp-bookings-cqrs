@@ -15,6 +15,7 @@ use Psr\EventManager\EventInterface;
 use Psr\EventManager\EventManagerInterface;
 use RebelCode\EddBookings\Logic\Storage\BaseCqrsEntityManager;
 use RebelCode\Modular\Module\AbstractBaseModule;
+use RebelCode\Storage\Resource\WordPress\Storage\ResourcesEntityManager;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingsSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\SessionsSelectResourceModel;
@@ -202,11 +203,15 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'resources_entity_manager' => function (ContainerInterface $c) {
-                    return new BaseCqrsEntityManager(
+                    return new ResourcesEntityManager(
                         $c->get('resources_select_rm'),
                         $c->get('resources_insert_rm'),
                         $c->get('resources_update_rm'),
                         $c->get('resources_delete_rm'),
+                        $c->get('session_rules_select_rm'),
+                        $c->get('session_rules_insert_rm'),
+                        $c->get('session_rules_update_rm'),
+                        $c->get('session_rules_delete_rm'),
                         $c->get('sql_order_factory'),
                         $c->get('sql_expression_builder')
                     );
