@@ -227,8 +227,8 @@ class BaseCqrsEntityManager implements EntityManagerInterface
     public function query($query = [], $limit = null, $offset = null, $orderBy = null, $desc = false)
     {
         $condition = $this->_queryToCondition($query);
-        $order     = ($orderBy !== null) ? $this->_createOrder($orderBy, $desc) : null;
-        $records   = $this->selectRm->select($condition, [$order], $limit, $offset);
+        $ordering  = ($orderBy !== null) ? [$this->_createOrder($orderBy, $desc)] : null;
+        $records   = $this->selectRm->select($condition, $ordering, $limit, $offset);
         $entities  = [];
 
         foreach ($records as $_record) {
