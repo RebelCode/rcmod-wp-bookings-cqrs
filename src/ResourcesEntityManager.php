@@ -9,7 +9,6 @@ use Dhii\Data\Container\ContainerGetCapableTrait;
 use Dhii\Data\Container\ContainerGetPathCapableTrait;
 use Dhii\Data\Container\ContainerHasCapableTrait;
 use Dhii\Data\Container\ContainerSetCapableTrait;
-use Dhii\Data\Container\ContainerSetPathCapableTrait;
 use Dhii\Data\Container\NormalizeKeyCapableTrait;
 use Dhii\Exception\CreateOutOfRangeExceptionCapableTrait;
 use Dhii\Expression\LogicalExpressionInterface;
@@ -37,9 +36,6 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
 {
     /* @since [*next-version*] */
     use ContainerGetPathCapableTrait;
-
-    /* @since [*next-version*] */
-    use ContainerSetPathCapableTrait;
 
     /* @since [*next-version*] */
     use ContainerGetCapableTrait;
@@ -210,7 +206,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         $resourceId = $record['id'];
         $rules      = $this->rulesSelectRm->select($this->_createResourceIdExpression($resourceId));
 
-        $this->_containerSetPath($resource, $this->_getSessionRulesPath(), $rules);
+        $this->_arraySetPath($resource, $this->_getSessionRulesPath(), $rules);
 
         return $resource;
     }
@@ -434,6 +430,35 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
                 $this->__('Invalid timezone name: "%1$s"', [$argTz]), null, $exception, $argTz
             );
         }
+    }
+
+    /**
+     * Utility method for setting a deep value in an array using a path.
+     *
+     * @since [*next-version*]
+     *
+     * @param array $array The array.
+     * @param array $path  The path.
+     *
+     * @return array The array.
+     */
+    protected function _arraySetPath(&$array, $path, $value)
+    {
+        $head = array_shift($path);
+
+        if ($head === null) {
+            return $array;
+        }
+
+        if (count($path) > 1) {
+            $array[$head] = [];
+
+            return $this->_arraySetPath($array, $path, $value);
+        }
+
+        $array[$head] = $value;
+
+        return $array;
     }
 
     /**
