@@ -7,6 +7,7 @@ return [
         'id'   => 'id',
         'type' => 'type',
         'name' => 'name',
+        'data' => 'data'
     ],
 
     // Config for SELECT RMs
