@@ -219,7 +219,8 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     protected function _entityToRecord($entity)
     {
         $entity = $this->_normalizeArray($entity);
-        $entity = $this->_arrayUnsetPath($entity, $this->_getSessionRulesPath());
+
+        $this->_arrayUnsetPath($entity, $this->_getSessionRulesPath());
 
         return $entity;
     }
@@ -439,26 +440,23 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      *
      * @param array $array The array.
      * @param array $path  The path.
-     *
-     * @return array The array.
      */
     protected function _arraySetPath(&$array, $path, $value)
     {
         $head = array_shift($path);
 
         if ($head === null) {
-            return $array;
+            return;
         }
 
         if (count($path) > 1) {
             $array[$head] = [];
+            $this->_arraySetPath($array, $path, $value);
 
-            return $this->_arraySetPath($array, $path, $value);
+            return;
         }
 
         $array[$head] = $value;
-
-        return $array;
     }
 
     /**
@@ -468,23 +466,21 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      *
      * @param array $array The array.
      * @param array $path  The path.
-     *
-     * @return array The array.
      */
     protected function _arrayUnsetPath(&$array, $path)
     {
         $head = array_shift($path);
 
         if ($head === null || !isset($array[$head])) {
-            return $array;
+            return;
         }
 
-        if (count($path)) {
-            return $this->_arrayUnsetPath($array[$head], $path);
+        if (count($path) > 0) {
+            $this->_arrayUnsetPath($array[$head], $path);
+
+            return;
         }
 
         unset($array[$head]);
-
-        return $array;
     }
 }
