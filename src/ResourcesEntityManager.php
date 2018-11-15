@@ -203,7 +203,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     protected function _recordToEntity($record)
     {
         $resource   = $this->_normalizeArray($record);
-        $resourceId = $record['id'];
+        $resourceId = $resource['id'];
         $rules      = $this->rulesSelectRm->select($this->_createResourceIdExpression($resourceId));
 
         $this->_arraySetPath($resource, $this->_getSessionRulesPath(), $rules);
