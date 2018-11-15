@@ -1,6 +1,6 @@
 <?php
 
-namespace RebelCode\EddBookings\Logic\Module;
+namespace RebelCode\EddBookings\Logic\Storage;
 
 use ArrayAccess;
 use Dhii\Collection\MapInterface;
