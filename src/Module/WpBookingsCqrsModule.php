@@ -14,6 +14,7 @@ use mysqli;
 use Psr\Container\ContainerInterface;
 use Psr\EventManager\EventInterface;
 use Psr\EventManager\EventManagerInterface;
+use RebelCode\EddBookings\Logic\Module\BaseCqrsEntityManager;
 use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingsSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
@@ -76,6 +77,22 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                 /*==============================================================*
                  *   Booking RMs                                                |
                  *==============================================================*/
+
+                /*
+                 * The bookings entity manager.
+                 *
+                 * @since [*next-version*]
+                 */
+                'bookings_entity_manager' => function (ContainerInterface $c) {
+                    return new BaseCqrsEntityManager(
+                        $c->get('bookings_select_rm'),
+                        $c->get('bookings_insert_rm'),
+                        $c->get('bookings_update_rm'),
+                        $c->get('bookings_delete_rm'),
+                        $c->get('sql_order_factory'),
+                        $c->get('sql_expression_builder')
+                    );
+                },
 
                 /*
                  * The SELECT resource model for bookings.
@@ -179,6 +196,22 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                 /*==============================================================*
                  *   Resources RMs                                              |
                  *==============================================================*/
+
+                /*
+                 * The resources entity manager.
+                 *
+                 * @since [*next-version*]
+                 */
+                'resources_entity_manager' => function (ContainerInterface $c) {
+                    return new BaseCqrsEntityManager(
+                        $c->get('resources_select_rm'),
+                        $c->get('resources_insert_rm'),
+                        $c->get('resources_update_rm'),
+                        $c->get('resources_delete_rm'),
+                        $c->get('sql_order_factory'),
+                        $c->get('sql_expression_builder')
+                    );
+                },
 
                 /*
                  * The SELECT resource model for resources.
