@@ -329,7 +329,9 @@ class BaseCqrsEntityManager implements EntityManagerInterface
         }
 
         // Create an AND expression with all the terms
-        return call_user_func_array([$b, 'and'], $t);
+        return count($t)
+            ? call_user_func_array([$b, 'and'], $t)
+            : null;
     }
 
     /**
