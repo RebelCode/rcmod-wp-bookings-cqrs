@@ -113,10 +113,10 @@ class BaseCqrsEntityManager implements EntityManagerInterface
      *
      * @since [*next-version*]
      *
-     * @param SelectCapableInterface $selectRm     The resources SELECT resource model.
-     * @param InsertCapableInterface $insertRm     The resources INSERT resource model.
-     * @param UpdateCapableInterface $updateRm     The resources UPDATE resource model.
-     * @param DeleteCapableInterface $deleteRm     The resources DELETE resource model.
+     * @param SelectCapableInterface $selectRm     The SELECT resource model.
+     * @param InsertCapableInterface $insertRm     The INSERT resource model.
+     * @param UpdateCapableInterface $updateRm     The UPDATE resource model.
+     * @param DeleteCapableInterface $deleteRm     The DELETE resource model.
      * @param FactoryInterface       $orderFactory The factory for creating order object instances.
      * @param object                 $exprBuilder  The expression builder.
      */
