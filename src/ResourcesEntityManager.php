@@ -24,6 +24,7 @@ use Exception;
 use InvalidArgumentException;
 use OutOfRangeException;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use stdClass;
 use Traversable;
 
@@ -84,6 +85,24 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      * @since [*next-version*]
      */
     const K_ENTITY_TIMEZONE = 'availability/timezone';
+
+    /**
+     * The key in resource DB records where the image ID is stored.
+     *
+     * May be a path, delimited by forward slashes.
+     *
+     * @since [*next-version*]
+     */
+    const K_RECORD_IMAGE_ID = 'data/imageId';
+
+    /**
+     * The key in resource entities where the image URL is stored.
+     *
+     * May be a path, delimited by forward slashes.
+     *
+     * @since [*next-version*]
+     */
+    const K_ENTITY_IMAGE_URL = 'data/imageUrl';
 
     /**
      * The session rules SELECT resource model.
@@ -228,9 +247,13 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
             $resource['data'] = unserialize($resource['data']);
         }
 
-        // Include image URL if image ID is present
-        if (isset($resource['data']['imageId'])) {
-            $resource['data']['imageUrl'] = $this->_wpGetImageUrl($resource['data']['imageId']);
+        try {
+            // Get image ID from record
+            $imageId = $this->_containerGetPath($resource, $this->_getImageIdPath());
+            // Set image URL in entity
+            $this->_arraySetPath($resource, $this->_getImageUrlPath(), $this->_wpGetImageUrl($imageId);
+        } catch (NotFoundExceptionInterface $exception) {
+            // do nothing
         }
 
         return $resource;
@@ -246,6 +269,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         $entity = $this->_normalizeArray($entity);
 
         $this->_arrayUnsetPath($entity, $this->_getSessionRulesPath());
+        $this->_arrayUnsetPath($entity, $this->_getImageUrlPath());
 
         return $entity;
     }
@@ -272,6 +296,30 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     protected function _getTimezonePath()
     {
         return explode('/', static::K_ENTITY_TIMEZONE);
+    }
+
+    /**
+     * Retrieves the DB record path for the image ID.
+     *
+     * @since [*next-version*]
+     *
+     * @return string[]|Stringable[] An array of path segments.
+     */
+    protected function _getImageIdPath()
+    {
+        return explode('/', static::K_RECORD_IMAGE_ID);
+    }
+
+    /**
+     * Retrieves the entity path for the image URL.
+     *
+     * @since [*next-version*]
+     *
+     * @return string[]|Stringable[] An array of path segments.
+     */
+    protected function _getImageUrlPath()
+    {
+        return explode('/', static::K_ENTITY_IMAGE_URL);
     }
 
     /**
