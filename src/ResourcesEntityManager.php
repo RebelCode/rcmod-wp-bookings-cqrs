@@ -223,6 +223,16 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         // Store rules in resource according to path
         $this->_arraySetPath($resource, $this->_getSessionRulesPath(), $rules);
 
+        // Unserialize the data if present in resource
+        if (isset($resource['data']) && is_string($resource['data'])) {
+            $resource['data'] = unserialize($resource['data']);
+        }
+
+        // Include image URL if image ID is present
+        if (isset($resource['data']['imageId'])) {
+            $resource['data']['imageUrl'] = $this->_wpGetImageUrl($resource['data']['imageId']);
+        }
+
         return $resource;
     }
 
@@ -446,6 +456,20 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
                 $this->__('Invalid timezone name: "%1$s"', [$argTz]), null, $exception, $argTz
             );
         }
+    }
+
+    /**
+     * Retrieves the URL for a WordPress image, by ID.
+     *
+     * @since [*next-version*]
+     *
+     * @param int|string|Stringable $id The ID of the image for which to retrieve the URL.
+     *
+     * @return false|string The URL or false if no image with the given ID was found.
+     */
+    protected function _wpGetImageUrl($id)
+    {
+        return wp_get_attachment_url($id);
     }
 
     /**
