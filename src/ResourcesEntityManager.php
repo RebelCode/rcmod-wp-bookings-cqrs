@@ -449,9 +449,9 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
             return;
         }
 
-        if (count($path) > 1) {
+        if (count($path) > 0) {
             $array[$head] = [];
-            $this->_arraySetPath($array, $path, $value);
+            $this->_arraySetPath($array[$head], $path, $value);
 
             return;
         }
