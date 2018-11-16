@@ -251,7 +251,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
             // Get image ID from record
             $imageId = $this->_containerGetPath($resource, $this->_getImageIdPath());
             // Set image URL in entity
-            $this->_arraySetPath($resource, $this->_getImageUrlPath(), $this->_wpGetImageUrl($imageId);
+            $this->_arraySetPath($resource, $this->_getImageUrlPath(), $this->_wpGetImageUrl($imageId));
         } catch (NotFoundExceptionInterface $exception) {
             // do nothing
         }
