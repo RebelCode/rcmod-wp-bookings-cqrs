@@ -11,7 +11,8 @@ CREATE TABLE `${cqrs/booking_resources/table}`
 (
   `id` bigint AUTO_INCREMENT PRIMARY KEY,
   `booking_id` int NOT NULL,
-  `resource_id` int NOT NULL
+  `resource_id` int NOT NULL,
+  `timezone` VARCHAR(100) DEFAULT "UTC"
 );
 
 -- Rename session lengths to session types
