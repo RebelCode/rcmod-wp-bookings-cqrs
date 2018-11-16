@@ -202,10 +202,13 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      */
     protected function _recordToEntity($record)
     {
-        $resource   = $this->_normalizeArray($record);
-        $resourceId = $resource['id'];
-        $rules      = $this->rulesSelectRm->select($this->_createResourceIdExpression($resourceId));
+        $resource = $this->_normalizeArray($record);
 
+        if (isset($resource['timezone'])) {
+            $this->_arraySetPath($resource, $this->_getTimezonePath(), $resource['timezone']);
+        }
+
+        $rules = $this->rulesSelectRm->select($this->_createResourceIdExpression($resource['id']));
         $this->_arraySetPath($resource, $this->_getSessionRulesPath(), $rules);
 
         return $resource;
