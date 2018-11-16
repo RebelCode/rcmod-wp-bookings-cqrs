@@ -24,7 +24,6 @@ use Exception;
 use InvalidArgumentException;
 use OutOfRangeException;
 use Psr\Container\ContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use stdClass;
 use Traversable;
 
@@ -247,13 +246,11 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
             $resource['data'] = unserialize($resource['data']);
         }
 
-        try {
-            // Get image ID from record
-            $imageId = $this->_containerGetPath($resource, $this->_getImageIdPath());
-            // Set image URL in entity
+        // Get image ID from record
+        $imageId = $this->_arrayGetPath($resource, $this->_getImageIdPath(), null);
+        // If found, set image URL in entity
+        if ($imageId !== null) {
             $this->_arraySetPath($resource, $this->_getImageUrlPath(), $this->_wpGetImageUrl($imageId));
-        } catch (NotFoundExceptionInterface $exception) {
-            // do nothing
         }
 
         return $resource;
@@ -518,6 +515,30 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     protected function _wpGetImageUrl($id)
     {
         return wp_get_attachment_url($id);
+    }
+
+    /**
+     * Utility method for retrieving a deep value from an array using a path.
+     *
+     * @since [*next-version*]
+     *
+     * @param array      $array   The array.
+     * @param array      $path    The path.
+     * @param mixed|null $default The default value to return if a value does not exist at the given path.
+     *
+     * @return mixed
+     */
+    protected function _arrayGetPath(&$array, $path, $default = null)
+    {
+        $head = array_shift($path);
+
+        if ($head === null || !array_key_exists($head, $array)) {
+            return $default;
+        }
+
+        return count($path) > 0
+            ? $this->_arrayGetPath($array[$head], $path, $default)
+            : $array[$head];
     }
 
     /**
