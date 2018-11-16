@@ -242,9 +242,9 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         $this->_arraySetPath($resource, $this->_getSessionRulesPath(), $rules);
 
         // Unserialize the data if present in resource
-        if (isset($resource['data']) && is_string($resource['data'])) {
-            $resource['data'] = unserialize($resource['data']);
-        }
+        $resource['data'] = (isset($resource['data']) && is_string($resource['data']))
+            ? unserialize($resource['data'])
+            : [];
 
         // Get image ID from record
         $imageId = $this->_arrayGetPath($resource, $this->_getImageIdPath(), null);
@@ -510,11 +510,13 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      *
      * @param int|string|Stringable $id The ID of the image for which to retrieve the URL.
      *
-     * @return false|string The URL or false if no image with the given ID was found.
+     * @return null|string The URL, or null if no image with the given ID was found.
      */
     protected function _wpGetImageUrl($id)
     {
-        return wp_get_attachment_url($id);
+        $url = wp_get_attachment_url($id);
+
+        return is_string($url) ? $url : null;
     }
 
     /**
