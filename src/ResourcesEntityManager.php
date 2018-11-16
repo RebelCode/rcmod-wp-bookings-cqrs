@@ -65,7 +65,16 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      *
      * @since [*next-version*]
      */
-    const SESSION_RULES_ENTITY_KEY = 'availability/rules';
+    const K_ENTITY_SESSION_RULES = 'availability/rules';
+
+    /**
+     * The key in resource DB records where the timezone is stored.
+     *
+     * May be a path, delimited by forward slashes.
+     *
+     * @since [*next-version*]
+     */
+    const K_RECORD_TIMEZONE = 'timezone';
 
     /**
      * The key in resource entities where the timezone is stored.
@@ -74,7 +83,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      *
      * @since [*next-version*]
      */
-    const TIMEZONE_ENTITY_KEY = 'availability/timezone';
+    const K_ENTITY_TIMEZONE = 'availability/timezone';
 
     /**
      * The session rules SELECT resource model.
@@ -240,7 +249,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      */
     protected function _getSessionRulesPath()
     {
-        return explode('/', static::SESSION_RULES_ENTITY_KEY);
+        return explode('/', static::K_ENTITY_SESSION_RULES);
     }
 
     /**
@@ -252,7 +261,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      */
     protected function _getTimezonePath()
     {
-        return explode('/', static::TIMEZONE_ENTITY_KEY);
+        return explode('/', static::K_ENTITY_TIMEZONE);
     }
 
     /**
