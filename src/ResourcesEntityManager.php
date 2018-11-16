@@ -204,11 +204,14 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     {
         $resource = $this->_normalizeArray($record);
 
+        // Move timezone according to defined path
         if (isset($resource['timezone'])) {
             $this->_arraySetPath($resource, $this->_getTimezonePath(), $resource['timezone']);
         }
 
+        // Retrieve rules for resource
         $rules = $this->rulesSelectRm->select($this->_createResourceIdExpression($resource['id']));
+        // Store rules in resource according to path
         $this->_arraySetPath($resource, $this->_getSessionRulesPath(), $rules);
 
         return $resource;
