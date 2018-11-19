@@ -268,10 +268,15 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         // Store rules in resource according to path
         $this->_arraySetPath($resource, $this->_getEntitySessionRulesPath(), $rules);
 
-        // Unserialize the data if present in resource
-        $resource['data'] = (isset($resource['data']) && is_string($resource['data']))
-            ? unserialize($resource['data'])
-            : [];
+        $rDataPath = $this->_getRecordDataPath();
+        $eDataPath = $this->_getEntityDataPath();
+        // Get data from record
+        // Unserialize the data if present
+        $dataStr = $this->_arrayGetPath($resource, $rDataPath, null);
+        $data    = ($dataStr !== null) ? unserialize($dataStr) : [];
+        // Remove old data string and add new unserialized data
+        $this->_arrayUnsetPath($resource, $rDataPath);
+        $this->_arraySetPath($resource, $eDataPath, $data);
 
         // Get image ID from record
         $imageId = $this->_arrayGetPath($resource, $this->_getRecordImageIdPath(), null);
@@ -295,7 +300,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         $this->_arrayUnsetPath($record, $this->_getEntitySessionRulesPath());
         $this->_arrayUnsetPath($record, $this->_getEntityImageUrlPath());
 
-        $dataPath = $this->_getDataPath();
+        $dataPath = $this->_getEntityDataPath();
 
         $data = $this->_arrayGetPath($record, $dataPath, null);
         if ($data !== null) {
