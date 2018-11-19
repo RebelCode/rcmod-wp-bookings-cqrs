@@ -576,7 +576,10 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         }
 
         if (count($path) > 0) {
-            $array[$head] = [];
+            if (!isset($array[$head])) {
+                $array[$head] = [];
+            }
+
             $this->_arraySetPath($array[$head], $path, $value);
 
             return;
