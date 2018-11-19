@@ -158,7 +158,7 @@ class BaseCqrsEntityManager implements EntityManagerInterface
         }
 
         throw $this->_createNotFoundException(
-            $this->__('Entity with id "%s" was not found', [$id]), null, null, $this, $id
+            $this->__('Entity with id "%s" was not found', [$id]), null, null, $this, (string) $id
         );
     }
 
