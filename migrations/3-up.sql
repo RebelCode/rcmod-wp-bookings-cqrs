@@ -29,6 +29,12 @@ LEFT JOIN `${wpdb_prefix}postmeta` AS `meta` ON
   `meta`.`meta_key` = "eddbk_bookings_enabled" AND
   `meta`.`meta_value` = "1"
 WHERE `post`.`post_type` = "download";
+-- Set schedule timezones equal to service timezones
+UPDATE `${cqrs/resources/table}` AS `resource`
+RIGHT JOIN `${wpdb_prefix}postmeta` AS `meta` ON
+  `meta`.`post_id` = `resource`.`id` AND
+  `meta`.`meta_key` = "eddbk_timezone"
+SET `resource`.`timezone` = `meta`.`meta_value`;
 
 -- Populate booking resources table with existing booking.resource_id data
 INSERT INTO `${cqrs/booking_resources/table}` (`booking_id`, `resource_id`)
