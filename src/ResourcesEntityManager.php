@@ -278,49 +278,49 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     }
 
     /**
-     * Retrieves the path for the session rules.
+     * Retrieves the path for the session rules in entities.
      *
      * @since [*next-version*]
      *
      * @return string[]|Stringable[] An array of path segments.
      */
-    protected function _getSessionRulesPath()
+    protected function _getEntitySessionRulesPath()
     {
         return explode('/', static::K_ENTITY_SESSION_RULES);
     }
 
     /**
-     * Retrieves the path for the timezone.
+     * Retrieves the path for the timezone in entities.
      *
      * @since [*next-version*]
      *
      * @return string[]|Stringable[] An array of path segments.
      */
-    protected function _getTimezonePath()
+    protected function _getEntityTimezonePath()
     {
         return explode('/', static::K_ENTITY_TIMEZONE);
     }
 
     /**
-     * Retrieves the DB record path for the image ID.
+     * Retrieves the DB record path for the image ID in records.
      *
      * @since [*next-version*]
      *
      * @return string[]|Stringable[] An array of path segments.
      */
-    protected function _getImageIdPath()
+    protected function _getRecordImageIdPath()
     {
         return explode('/', static::K_RECORD_IMAGE_ID);
     }
 
     /**
-     * Retrieves the entity path for the image URL.
+     * Retrieves the entity path for the image URL in entities.
      *
      * @since [*next-version*]
      *
      * @return string[]|Stringable[] An array of path segments.
      */
-    protected function _getImageUrlPath()
+    protected function _getEntityImageUrlPath()
     {
         return explode('/', static::K_ENTITY_IMAGE_URL);
     }
