@@ -24,6 +24,7 @@ use Exception;
 use InvalidArgumentException;
 use OutOfRangeException;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use stdClass;
 use Traversable;
 
@@ -102,6 +103,13 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      * @since [*next-version*]
      */
     const K_ENTITY_IMAGE_URL = 'data/imageUrl';
+
+    /**
+     * The default resource timezone for resources that do not explicitly have a timezone.
+     *
+     * @since [*next-version*]
+     */
+    const DEFAULT_TIMEZONE = 'UTC';
 
     /**
      * The session rules SELECT resource model.
@@ -348,8 +356,17 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     {
         $b = $this->exprBuilder;
 
-        $rules    = $this->_containerGetPath($data, $this->_getSessionRulesPath());
-        $timezone = $this->_containerGetPath($data, $this->_getTimezonePath());
+        try {
+            $rules = $this->_containerGetPath($data, $this->_getEntitySessionRulesPath());
+        } catch (NotFoundExceptionInterface $exception) {
+            $rules = [];
+        }
+
+        try {
+            $timezone = $this->_containerGetPath($data, $this->_getEntityTimezonePath());
+        } catch (NotFoundExceptionInterface $exception) {
+            $timezone = static::DEFAULT_TIMEZONE;
+        }
 
         $ruleIds = [];
 
