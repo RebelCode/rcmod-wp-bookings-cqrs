@@ -60,6 +60,24 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     use CreateOutOfRangeExceptionCapableTrait;
 
     /**
+     * The key in resource DB records where the resource data is stored.
+     *
+     * May be a path, delimited by forward slashes.
+     *
+     * @since [*next-version*]
+     */
+    const K_RECORD_DATA = 'data';
+
+    /**
+     * The key in resource entities where the resource data is stored.
+     *
+     * May be a path, delimited by forward slashes.
+     *
+     * @since [*next-version*]
+     */
+    const K_ENTITY_DATA = 'data';
+
+    /**
      * The key in resource entities where availability rules are stored.
      *
      * May be a path, delimited by forward slashes.
@@ -278,6 +296,30 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     }
 
     /**
+     * Retrieves the path for resource data in records.
+     *
+     * @since [*next-version*]
+     *
+     * @return string[]|Stringable[] An array of path segments.
+     */
+    protected function _getRecordDataPath()
+    {
+        return explode('/', static::K_RECORD_DATA);
+    }
+
+    /**
+     * Retrieves the path for resource data in entities.
+     *
+     * @since [*next-version*]
+     *
+     * @return string[]|Stringable[] An array of path segments.
+     */
+    protected function _getEntityDataPath()
+    {
+        return explode('/', static::K_ENTITY_DATA);
+    }
+
+    /**
      * Retrieves the path for the session rules in entities.
      *
      * @since [*next-version*]
@@ -299,6 +341,18 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     protected function _getEntityTimezonePath()
     {
         return explode('/', static::K_ENTITY_TIMEZONE);
+    }
+
+    /**
+     * Retrieves the path for the timezone in records.
+     *
+     * @since [*next-version*]
+     *
+     * @return string[]|Stringable[] An array of path segments.
+     */
+    protected function _getRecordTimezonePath()
+    {
+        return explode('/', static::K_RECORD_TIMEZONE);
     }
 
     /**
