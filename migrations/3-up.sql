@@ -4,15 +4,15 @@ CREATE TABLE `${cqrs/resources/table}`
 	`id` bigint AUTO_INCREMENT PRIMARY KEY,
 	`type` varchar(100) NOT NULL,
 	`name` varchar(255) NOT NULL,
-	`data` longtext
+	`data` longtext,
+  `timezone` VARCHAR(100) DEFAULT "UTC"
 );
 -- Create booking-resources relationship table
 CREATE TABLE `${cqrs/booking_resources/table}`
 (
   `id` bigint AUTO_INCREMENT PRIMARY KEY,
   `booking_id` int NOT NULL,
-  `resource_id` int NOT NULL,
-  `timezone` VARCHAR(100) DEFAULT "UTC"
+  `resource_id` int NOT NULL
 );
 
 -- Rename session lengths to session types
