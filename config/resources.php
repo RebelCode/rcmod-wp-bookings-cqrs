@@ -4,10 +4,11 @@ return [
     // Config for all resource RMs
     'table'            => '${cqrs/table_prefix}resources',
     'field_column_map' => $resourcesFcMap = [
-        'id'   => 'id',
-        'type' => 'type',
-        'name' => 'name',
-        'data' => 'data'
+        'id'       => 'id',
+        'type'     => 'type',
+        'name'     => 'name',
+        'data'     => 'data',
+        'timezone' => 'timezone',
     ],
 
     // Config for SELECT RMs
