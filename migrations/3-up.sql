@@ -23,8 +23,12 @@ WHERE `meta_key` = "eddbk_session_lengths";
 -- Create schedule resources for every service
 INSERT INTO `${cqrs/resources/table}` (`id`, `type`, `name`)
 SELECT `ID`, "schedule", CONCAT("Schedule for \"", post_title, "\"")
-FROM `${wpdb_prefix}posts`
-WHERE `post_type` = "download";
+FROM `${wpdb_prefix}posts` AS `post`
+LEFT JOIN `${wpdb_prefix}postmeta` AS `meta` ON
+  `meta`.`post_id` = `post`.`ID` AND
+  `meta`.`meta_key` = "eddbk_bookings_enabled" AND
+  `meta`.`meta_value` = "1"
+WHERE `post`.`post_type` = "download";
 
 -- Populate booking resources table with existing booking.resource_id data
 INSERT INTO `${cqrs/booking_resources/table}` (`booking_id`, `resource_id`)
