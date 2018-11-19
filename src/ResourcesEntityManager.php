@@ -187,7 +187,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         $id = parent::add($entity);
 
         // Update the session rules
-        $this->_updateSessionRules($id, $entity);
+        $this->_updateSessionRules($id);
 
         return $id;
     }
@@ -224,10 +224,8 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     {
         $this->updateRm->update($this->_entityToRecord($data), $this->_createIdExpression($id), null, 1);
 
-        // Re-fetch the updated entity to get the full data
-        $entity = $this->get($id);
         // Update the session rules
-        $this->_updateSessionRules($id, $entity);
+        $this->_updateSessionRules($id);
     }
 
     /**
@@ -349,12 +347,13 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      *
      * @since [*next-version*]
      *
-     * @param int|string|Stringable                         $id   The ID of the service.
-     * @param array|stdClass|ArrayAccess|ContainerInterface $data The resource entity data..
+     * @param int|string|Stringable $id The ID of the service.
      */
-    protected function _updateSessionRules($id, $data)
+    protected function _updateSessionRules($id)
     {
         $b = $this->exprBuilder;
+
+        $data = $this->get($id);
 
         try {
             $rules = $this->_containerGetPath($data, $this->_getEntitySessionRulesPath());
