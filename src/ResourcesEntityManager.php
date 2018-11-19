@@ -255,15 +255,18 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     {
         $resource = $this->_normalizeArray($record);
 
-        // Move timezone according to defined path
-        if (isset($resource['timezone'])) {
-            $this->_arraySetPath($resource, $this->_getTimezonePath(), $resource['timezone']);
+        // Move timezone according to defined paths
+        $tzPath   = $this->_getRecordTimezonePath();
+        $timezone = $this->_arrayGetPath($resource, $tzPath, null);
+        if ($timezone !== null) {
+            $this->_arrayUnsetPath($resource, $tzPath);
+            $this->_arraySetPath($resource, $this->_getEntityTimezonePath(), $timezone);
         }
 
         // Retrieve rules for resource
         $rules = $this->rulesSelectRm->select($this->_createResourceIdExpression($resource['id']));
         // Store rules in resource according to path
-        $this->_arraySetPath($resource, $this->_getSessionRulesPath(), $rules);
+        $this->_arraySetPath($resource, $this->_getEntitySessionRulesPath(), $rules);
 
         // Unserialize the data if present in resource
         $resource['data'] = (isset($resource['data']) && is_string($resource['data']))
@@ -271,10 +274,10 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
             : [];
 
         // Get image ID from record
-        $imageId = $this->_arrayGetPath($resource, $this->_getImageIdPath(), null);
+        $imageId = $this->_arrayGetPath($resource, $this->_getRecordImageIdPath(), null);
         // If found, set image URL in entity
         if ($imageId !== null) {
-            $this->_arraySetPath($resource, $this->_getImageUrlPath(), $this->_wpGetImageUrl($imageId));
+            $this->_arraySetPath($resource, $this->_getEntityImageUrlPath(), $this->_wpGetImageUrl($imageId));
         }
 
         return $resource;
@@ -287,12 +290,19 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      */
     protected function _entityToRecord($entity)
     {
-        $entity = $this->_normalizeArray($entity);
+        $record = $this->_normalizeArray($entity);
 
-        $this->_arrayUnsetPath($entity, $this->_getSessionRulesPath());
-        $this->_arrayUnsetPath($entity, $this->_getImageUrlPath());
+        $this->_arrayUnsetPath($record, $this->_getEntitySessionRulesPath());
+        $this->_arrayUnsetPath($record, $this->_getEntityImageUrlPath());
 
-        return $entity;
+        $dataPath = $this->_getDataPath();
+
+        $data = $this->_arrayGetPath($record, $dataPath, null);
+        if ($data !== null) {
+            $this->_arraySetPath($record, $dataPath, serialize($data));
+        }
+
+        return $record;
     }
 
     /**
