@@ -240,7 +240,11 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      */
     public function update($id, $data)
     {
-        $this->updateRm->update($this->_entityToRecord($data), $this->_createIdExpression($id), null, 1);
+        $changeset = $this->_entityToRecord($data);
+
+        if (!empty($changeset)) {
+            $this->updateRm->update($changeset, $this->_createIdExpression($id), null, 1);
+        }
 
         // Update the session rules
         $this->_updateSessionRules($id);
@@ -306,6 +310,9 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         if ($data !== null) {
             $this->_arraySetPath($record, $dataPath, serialize($data));
         }
+
+        $record = array_map('array_filter', $record);
+        $record = array_filter($record);
 
         return $record;
     }
