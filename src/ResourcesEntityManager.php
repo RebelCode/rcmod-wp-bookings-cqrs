@@ -311,7 +311,13 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
             $this->_arraySetPath($record, $dataPath, serialize($data));
         }
 
-        $record = array_map('array_filter', $record);
+        $record = array_map($fn = function ($e) use (&$fn) {
+            if (is_array($e)) {
+                return array_filter(array_map($fn, $e));
+            }
+
+            return $e;
+        }, $record);
         $record = array_filter($record);
 
         return $record;
