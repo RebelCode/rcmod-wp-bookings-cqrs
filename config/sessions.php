@@ -8,8 +8,7 @@ return [
         'start'        => ['session', 'start'],
         'end'          => ['session', 'end'],
         'service_id'   => ['session', 'service_id'],
-        'rule_id'      => ['session', 'rule_id'],
-        'resource_ids' => ['session', 'resource_ids']
+        'resource_ids' => ['session', 'resource_ids'],
     ],
 
     // Config for SELECT RMs

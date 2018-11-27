@@ -43,6 +43,8 @@ FROM `${cqrs/bookings/table}`;
 -- Remove `resource_id` column from bookings table
 ALTER TABLE `${cqrs/bookings/table}` DROP COLUMN `resource_id`;
 
+-- Remove `rule_id` column from sessions table
+ALTER TABLE `${cqrs/sessions/table}` DROP COLUMN `rule_id`;
 -- Remove `resource_id` column from sessions table
 ALTER TABLE `${cqrs/sessions/table}` DROP COLUMN `resource_id`;
 -- Add the new `resources` column to the sessions table

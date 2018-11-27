@@ -16,6 +16,8 @@ UPDATE `${cqrs/bookings/table}` SET `resource_id` = `service_id`;
 ALTER TABLE `${cqrs/sessions/table}` DROP COLUMN `resource_ids`;
 -- Re-add the resource_id column to the bookings table
 ALTER table `${cqrs/sessions/table}` ADD `resource_id` int NOT NULL;
+-- Re-add the rule_id column to the bookings table
+ALTER table `${cqrs/sessions/table}` ADD `rule_id` int NOT NULL;
 -- Set all resource IDs in the sessions table to be equal to service IDs
 UPDATE `${cqrs/sessions/table}` SET `resource_id` = `service_id`;
 
