@@ -242,8 +242,10 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     {
         $changeset = $this->_entityToRecord($data);
 
-        if (!empty($changeset)) {
+        try {
             $this->updateRm->update($changeset, $this->_createIdExpression($id), null, 1);
+        } catch (InvalidArgumentException $exception) {
+            // The change set is empty
         }
 
         // Update the session rules
@@ -429,7 +431,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      *
      * @since [*next-version*]
      *
-     * @param int|string|Stringable $id The ID of the service.
+     * @param int|string|Stringable                         $id   The ID of the service.
      * @param array|stdClass|ArrayAccess|ContainerInterface $data The resource data.
      */
     protected function _updateSessionRules($id, $data)
