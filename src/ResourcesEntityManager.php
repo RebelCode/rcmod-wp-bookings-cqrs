@@ -453,21 +453,23 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         $ruleIds = [];
 
         foreach ($rules as $_ruleData) {
-            $_rule = $this->_processSessionRuleData($id, $_ruleData, $timezone);
+            $_rule   = $this->_processSessionRuleData($id, $_ruleData, $timezone);
+            $_ruleId = $this->_containerHas($_rule, 'id')
+                ? $this->_containerGet($_rule, 'id')
+                : null;
 
-            // If rule has an ID, update the existing rule
-            if ($this->_containerHas($_rule, 'id')) {
-                $_ruleId  = $this->_containerGet($_rule, 'id');
+            // If rule has no ID, insert as a new rule
+            if ($_ruleId === null) {
+                $_newRuleIds = $this->rulesInsertRm->insert([$_rule]);
+                $_ruleId     = $_newRuleIds[0];
+            } else{
+                // If rule has an ID, update the existing rule
                 $_ruleExp = $b->eq(
                     $b->var('id'),
                     $b->lit($_ruleId)
                 );
 
                 $this->rulesUpdateRm->update($_rule, $_ruleExp);
-            } else {
-                // If rule has no ID, insert as a new rule
-                $_newRuleIds = $this->rulesInsertRm->insert([$_rule]);
-                $_ruleId     = $_newRuleIds[0];
             }
 
             $ruleIds[] = $_ruleId;
