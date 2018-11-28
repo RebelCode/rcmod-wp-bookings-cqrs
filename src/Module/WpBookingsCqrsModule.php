@@ -113,12 +113,12 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $joins = array_merge($joins, $this->_normalizeArray($joinArray));
                     }
 
-                    $fieldColumnMap = $c->get('cqrs/bookings/select/field_column_map');
-                    $fieldColumnMap = array_map(function ($e) {
-                        return is_array($e)
-                            ? new EntityFieldTerm($e[0], $e[1])
-                            : $e;
-                    }, $fieldColumnMap);
+                    $fieldColumnMap = [];
+                    foreach ($c->get('cqrs/bookings/select/field_column_map') as $_field => $_column) {
+                        $fieldColumnMap[$_field] = is_array($_column)
+                            ? new EntityFieldTerm($_column[0], $_column[1])
+                            : $_column;
+                    }
 
                     return new BookingsSelectResourceModel(
                         $c->get('wpdb'),
