@@ -349,6 +349,16 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'booking_status_select_rm' => function(ContainerInterface $c) {
+                    $joinsCfg   = $this->_normalizeArray($c->get('cqrs/bookings/select/joins'));
+                    $joinArrays = array_map(function ($key) use ($c) {
+                        return $c->get($key);
+                    }, $joinsCfg);
+
+                    $joins = [];
+                    foreach ($joinArrays as $joinArray) {
+                        $joins = array_merge($joins, $this->_normalizeArray($joinArray));
+                    }
+
                     return new BookingStatusWpdbSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
@@ -361,7 +371,7 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                             ),
                         ],
                         ['status'],
-                        $this->_normalizeArray($c->get('cqrs/bookings/select/joins'))
+                        $joins
                     );
                 },
 
