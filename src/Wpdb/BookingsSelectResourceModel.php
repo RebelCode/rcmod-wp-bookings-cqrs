@@ -92,10 +92,15 @@ class BookingsSelectResourceModel extends EddBkWpdbSelectResourceModel
     {
         // Create array result
         $rawResult = $this->_normalizeArray($rawResult);
-        // Add resources field - explode comma list into an array
-        $rawResult[static::RESOURCES_FIELD] = explode(',', $rawResult[static::RESOURCES_COLUMN]);
-        // Remove old resources column entry
+
+        // Get a copy of the resources column value and remove it from the record
+        // This ensures that the field added further below is not accidentally removed, should the column name be the
+        // same as the field name.
+        $resources = $rawResult[static::RESOURCES_COLUMN];
         unset($rawResult[static::RESOURCES_COLUMN]);
+
+        // Add resources field - explode comma list into an array
+        $rawResult[static::RESOURCES_FIELD] = explode(',', $resources);
 
         return parent::_createResult($rawResult);
     }
