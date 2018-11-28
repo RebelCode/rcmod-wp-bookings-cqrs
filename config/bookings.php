@@ -29,7 +29,17 @@ return [
     // Config for INSERT RMs
     'insert'           => [
         'table'            => '${cqrs/bookings/table}',
-        'field_column_map' => $bookingsFieldColumnMap,
+        'field_column_map' => [
+            'id'          => 'id',
+            'start'       => 'start',
+            'end'         => 'end',
+            'service_id'  => 'service_id',
+            'payment_id'  => 'payment_id',
+            'client_id'   => 'client_id',
+            'client_tz'   => 'client_tz',
+            'admin_notes' => 'admin_notes',
+            'status'      => 'status',
+        ],
         'insert_bulk'      => false,
     ],
 
