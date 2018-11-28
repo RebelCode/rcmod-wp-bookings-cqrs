@@ -14,7 +14,7 @@ use Psr\Container\ContainerInterface;
 use Psr\EventManager\EventInterface;
 use Psr\EventManager\EventManagerInterface;
 use RebelCode\Modular\Module\AbstractBaseModule;
-use RebelCode\Storage\Resource\WordPress\BaseCqrsEntityManager;
+use RebelCode\Storage\Resource\WordPress\BookingsEntityManager;
 use RebelCode\Storage\Resource\WordPress\ResourcesEntityManager;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingsSelectResourceModel;
 use RebelCode\Storage\Resource\WordPress\Wpdb\BookingStatusWpdbSelectResourceModel;
@@ -84,11 +84,13 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                  * @since [*next-version*]
                  */
                 'bookings_entity_manager' => function (ContainerInterface $c) {
-                    return new BaseCqrsEntityManager(
+                    return new BookingsEntityManager(
                         $c->get('bookings_select_rm'),
                         $c->get('bookings_insert_rm'),
                         $c->get('bookings_update_rm'),
                         $c->get('bookings_delete_rm'),
+                        $c->get('booking_resources_insert_rm'),
+                        $c->get('booking_resources_delete_rm'),
                         $c->get('sql_order_factory'),
                         $c->get('sql_expression_builder')
                     );
@@ -272,6 +274,68 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $c->get('sql_expression_template'),
                         $c->get('cqrs/resources/insert/table'),
                         $this->_normalizeArray($c->get('cqrs/resources/insert/field_column_map'))
+                    );
+                },
+
+                /*==============================================================*
+                 *   Booking-Resources RMs                                      |
+                 *==============================================================*/
+
+                /*
+                 * The SELECT resource model for booking-resources.
+                 *
+                 * @since [*next-version*]
+                 */
+                'booking_resources_select_rm'            => function (ContainerInterface $c) {
+                    return new WpdbSelectResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $c->get('map_factory'),
+                        $this->_normalizeArray($c->get('cqrs/booking_resources/select/tables')),
+                        $this->_normalizeArray($c->get('cqrs/booking_resources/select/field_column_map')),
+                        $this->_normalizeArray($c->get('cqrs/booking_resources/select/joins'))
+                    );
+                },
+
+                /*
+                 * The INSERT resource model for booking-resources.
+                 *
+                 * @since [*next-version*]
+                 */
+                'booking_resources_insert_rm'            => function (ContainerInterface $c) {
+                    return new WpdbInsertResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('cqrs/booking_resources/insert/table'),
+                        $this->_normalizeArray($c->get('cqrs/booking_resources/insert/field_column_map')),
+                        $c->get('cqrs/booking_resources/insert/insert_bulk')
+                    );
+                },
+
+                /*
+                 * The UPDATE resource model for booking-resources.
+                 *
+                 * @since [*next-version*]
+                 */
+                'booking_resources_update_rm'            => function (ContainerInterface $c) {
+                    return new WpdbUpdateResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $c->get('cqrs/booking_resources/insert/table'),
+                        $this->_normalizeArray($c->get('cqrs/booking_resources/insert/field_column_map'))
+                    );
+                },
+
+                /*
+                 * The DELETE resource model for booking-resources.
+                 *
+                 * @since [*next-version*]
+                 */
+                'booking_resources_delete_rm'            => function (ContainerInterface $c) {
+                    return new WpdbDeleteResourceModel(
+                        $c->get('wpdb'),
+                        $c->get('sql_expression_template'),
+                        $c->get('cqrs/booking_resources/insert/table'),
+                        $this->_normalizeArray($c->get('cqrs/booking_resources/insert/field_column_map'))
                     );
                 },
 
