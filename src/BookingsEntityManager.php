@@ -224,4 +224,17 @@ class BookingsEntityManager extends BaseCqrsEntityManager
             )
         );
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @since [*next-version*]
+     */
+    protected function _createIdExpression($id)
+    {
+        return $this->exprBuilder->eq(
+            $this->exprBuilder->var('id'),
+            $this->exprBuilder->lit($id)
+        );
+    }
 }
