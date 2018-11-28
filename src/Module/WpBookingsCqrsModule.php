@@ -13,6 +13,7 @@ use mysqli;
 use Psr\Container\ContainerInterface;
 use Psr\EventManager\EventInterface;
 use Psr\EventManager\EventManagerInterface;
+use RebelCode\Expression\EntityFieldTerm;
 use RebelCode\Modular\Module\AbstractBaseModule;
 use RebelCode\Storage\Resource\WordPress\BookingsEntityManager;
 use RebelCode\Storage\Resource\WordPress\ResourcesEntityManager;
@@ -112,12 +113,19 @@ class WpBookingsCqrsModule extends AbstractBaseModule
                         $joins = array_merge($joins, $this->_normalizeArray($joinArray));
                     }
 
+                    $fieldColumnMap = $c->get('cqrs/bookings/select/field_column_map');
+                    $fieldColumnMap = array_map(function ($e) {
+                        return is_array($e)
+                            ? new EntityFieldTerm($e[0], $e[1])
+                            : $e;
+                    }, $fieldColumnMap);
+
                     return new BookingsSelectResourceModel(
                         $c->get('wpdb'),
                         $c->get('sql_expression_template'),
                         $c->get('map_factory'),
                         $this->_normalizeArray($c->get('cqrs/bookings/select/tables')),
-                        $this->_normalizeArray($c->get('cqrs/bookings/select/field_column_map')),
+                        $fieldColumnMap,
                         $c->get('cqrs/booking_resources/table'),
                         $c->get('sql_expression_builder'),
                         $joins,
