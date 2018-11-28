@@ -35,15 +35,6 @@ class BookingsSelectResourceModel extends EddBkWpdbSelectResourceModel
     const RESOURCES_FIELD = 'resource_ids';
 
     /**
-     * The fields to group by.
-     *
-     * @since [*next-version*]
-     *
-     * @var string[]|Stringable[]|EntityFieldInterface[]|stdClass|Traversable
-     */
-    protected $grouping;
-
-    /**
      * {@inheritdoc}
      *
      * @since [*next-version*]
@@ -63,24 +54,21 @@ class BookingsSelectResourceModel extends EddBkWpdbSelectResourceModel
         $joins = [],
         $grouping = []
     ) {
-        $this->grouping = $grouping;
-
         $fieldColumnMap[static::RESOURCES_COLUMN] = $expBuilder->fn(
             'GROUP_CONCAT',
             $expBuilder->ef($resourcesTable, 'resource_id')
         );
 
-        parent::__construct($wpdb, $expressionTemplate, $factory, $tables, $fieldColumnMap, $expBuilder, $joins);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @since [*next-version*]
-     */
-    protected function _getSqlSelectGrouping()
-    {
-        return $this->grouping;
+        parent::__construct(
+            $wpdb,
+            $expressionTemplate,
+            $factory,
+            $tables,
+            $fieldColumnMap,
+            $expBuilder,
+            $joins,
+            $grouping
+        );
     }
 
     /**
