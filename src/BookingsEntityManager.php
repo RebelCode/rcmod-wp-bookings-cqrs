@@ -70,7 +70,7 @@ class BookingsEntityManager extends BaseCqrsEntityManager
      *
      * @since [*next-version*]
      */
-    const K_DATA_RESOURCES = 'resources';
+    const K_DATA_RESOURCES = 'resource_ids';
 
     /**
      * The key in booking-resource records where the booking ID is stored.
