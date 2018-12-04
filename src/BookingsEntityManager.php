@@ -219,7 +219,7 @@ class BookingsEntityManager extends BaseCqrsEntityManager
 
         $this->bkResourcesDeleteRm->delete(
             $b->eq(
-                $b->var('booking_id'),
+                $b->var(static::K_BK_RESOURCES_RECORD_BOOKING_ID),
                 $b->lit($id)
             )
         );
