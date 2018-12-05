@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+
+## [0.1-alpha12] - 2018-12-05
 ### Added
 - New migration for DB version 3.
 - More migration events for more granular migration detection and handling.
