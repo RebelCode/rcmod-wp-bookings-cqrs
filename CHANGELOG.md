@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+### Fixed
+- Timezone was not being saved correctly for resources.
 
 ## [0.1-alpha12] - 2018-12-05
 ### Added
