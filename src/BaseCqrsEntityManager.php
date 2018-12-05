@@ -322,16 +322,33 @@ class BaseCqrsEntityManager implements EntityManagerInterface
 
         // Add an equivalence condition to the terms for each query filter
         foreach ($query as $_key => $_value) {
-            $t[] = $b->eq(
-                $b->var($_key),
-                $b->lit($_value)
-            );
+            $t[] = $this->_buildFieldQueryCompareExpression($_key, $_value);
         }
 
         // Create an AND expression with all the terms
         return count($t)
             ? call_user_func_array([$b, 'and'], $t)
             : null;
+    }
+
+    /**
+     * Builds the query comparison expression for a particular field.
+     *
+     * @since [*next-version*]
+     *
+     * @param string $key The field key.
+     * @param mixed $value The query value.
+     *
+     * @return LogicalExpressionInterface The field comparison expression.
+     */
+    protected function _buildFieldQueryCompareExpression($key, $value)
+    {
+        $b = $this->exprBuilder;
+
+        return $b->eq(
+            $b->var($key),
+            $b->lit($value)
+        );
     }
 
     /**
