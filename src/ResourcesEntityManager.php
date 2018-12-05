@@ -306,6 +306,11 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         $this->_arrayUnsetPath($record, $this->_getEntitySessionRulesPath());
         $this->_arrayUnsetPath($record, $this->_getEntityImageUrlPath());
 
+        // Move timezone out of availability to root of record
+        $timezone = $this->_arrayGetPath($record, $this->_getEntityTimezonePath());
+        $this->_arraySetPath($record, $this->_getRecordTimezonePath(), $timezone);
+        $this->_arrayUnsetPath($record, $this->_getEntityTimezonePath());
+
         $dataPath = $this->_getEntityDataPath();
 
         $data = $this->_arrayGetPath($record, $dataPath, null);
