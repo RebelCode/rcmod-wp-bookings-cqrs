@@ -467,7 +467,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
             if ($_ruleId === null) {
                 $_newRuleIds = $this->rulesInsertRm->insert([$_rule]);
                 $_ruleId     = $_newRuleIds[0];
-            } else{
+            } else {
                 // If rule has an ID, update the existing rule
                 $_ruleExp = $b->eq(
                     $b->var('id'),
