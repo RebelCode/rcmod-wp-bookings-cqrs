@@ -307,18 +307,34 @@ class Migrator
      */
     protected function _runMigrationFile($filePath)
     {
-        $mysqli   = $this->_getMysqli();
-        $sqlQuery = $this->_readSqlMigrationFile($filePath);
-        $sqlQuery = $this->_replaceSqlTokens($sqlQuery, $this->_getPlaceholderValues());
-        $success  = $mysqli->multi_query($sqlQuery);
+        $mysqli = $this->_getMysqli();
+        $mysqli->autocommit(false);
 
-        while ($mysqli->more_results()) {
-            $mysqli->next_result();
+        $migrationSql = $this->_readSqlMigrationFile($filePath);
+        $migrationSql = $this->_replaceSqlTokens($migrationSql, $this->_getPlaceholderValues());
+        $sqlQueries   = explode(';', $migrationSql);
+        $sqlQueries   = array_filter(array_map('trim', $sqlQueries));
+        $errors       = [];
+
+        $mysqli->begin_transaction();
+
+        foreach ($sqlQueries as $query) {
+            $result = $mysqli->query($query . ';');
+
+            if (!(bool) $result) {
+                $errors[] = $mysqli->error;
+            }
         }
 
-        if (!$success) {
-            throw $this->_createRuntimeException($mysqli->error);
+        // If errors occurred, roll back the database
+        if (!empty($errors)) {
+            $mysqli->rollback();
+
+            throw $this->_createRuntimeException(implode("\n", $errors));
         }
+
+        // If there were no errors, commit the transaction
+        $mysqli->commit();
     }
 
     /**

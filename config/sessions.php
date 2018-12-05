@@ -4,12 +4,11 @@ return [
     // Config for all session RMs
     'table'            => '${cqrs/table_prefix}sessions',
     'field_column_map' => $sessionsFieldColumnMap = [
-        'id'          => 'id',
-        'start'       => 'start',
-        'end'         => 'end',
-        'service_id'  => 'service_id',
-        'resource_id' => 'resource_id',
-        'rule_id'     => 'rule_id',
+        'id'           => 'id',
+        'start'        => 'start',
+        'end'          => 'end',
+        'service_id'   => 'service_id',
+        'resource_ids' => 'resource_ids',
     ],
 
     // Config for SELECT RMs

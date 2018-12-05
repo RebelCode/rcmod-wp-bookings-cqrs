@@ -4,16 +4,15 @@ return [
     // Config for all booking RMs
     'table'            => '${cqrs/table_prefix}bookings',
     'field_column_map' => $bookingsFieldColumnMap = [
-        'id'          => 'id',
-        'start'       => 'start',
-        'end'         => 'end',
-        'service_id'  => 'service_id',
-        'resource_id' => 'resource_id',
-        'payment_id'  => 'payment_id',
-        'client_id'   => 'client_id',
-        'client_tz'   => 'client_tz',
-        'admin_notes' => 'admin_notes',
-        'status'      => 'status',
+        'id'          => ['booking', 'id'],
+        'start'       => ['booking', 'start'],
+        'end'         => ['booking', 'end'],
+        'service_id'  => ['booking', 'service_id'],
+        'payment_id'  => ['booking', 'payment_id'],
+        'client_id'   => ['booking', 'client_id'],
+        'client_tz'   => ['booking', 'client_tz'],
+        'admin_notes' => ['booking', 'admin_notes'],
+        'status'      => ['booking', 'status'],
     ],
 
     // Config for SELECT RMs
@@ -22,13 +21,25 @@ return [
             'booking' => '${cqrs/bookings/table}',
         ],
         'field_column_map' => $bookingsFieldColumnMap,
-        'joins'            => [],
+        'joins'            => [
+            'bookings_select_rm_resources_join'
+        ],
     ],
 
     // Config for INSERT RMs
     'insert'           => [
         'table'            => '${cqrs/bookings/table}',
-        'field_column_map' => $bookingsFieldColumnMap,
+        'field_column_map' => [
+            'id'          => 'id',
+            'start'       => 'start',
+            'end'         => 'end',
+            'service_id'  => 'service_id',
+            'payment_id'  => 'payment_id',
+            'client_id'   => 'client_id',
+            'client_tz'   => 'client_tz',
+            'admin_notes' => 'admin_notes',
+            'status'      => 'status',
+        ],
         'insert_bulk'      => false,
     ],
 

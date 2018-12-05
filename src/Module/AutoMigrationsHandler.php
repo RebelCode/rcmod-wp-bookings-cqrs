@@ -189,7 +189,7 @@ class AutoMigrationsHandler implements InvocableInterface
                 $this->_trigger('wp_bookings_cqrs_after_migration', $params);
             }
         } catch (Exception $exception) {
-            $this->_trigger('wp_bookings_cqrs_on_migration_failed', $params);
+            $this->_trigger('wp_bookings_cqrs_on_migration_failed', $params + ['exception' => $exception]);
         }
     }
 }

@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - New migration for DB version 3.
 - More migration events for more granular migration detection and handling.
+- New table for bookable resources.
+- CQRS resource models for resources.
+- Bookings Entity Manager
+- Resources Entity Manager
+- Bookings and sessions may now have multiple resources.
 
 ## [0.1-alpha11] - 2018-08-28
 ### Changed
