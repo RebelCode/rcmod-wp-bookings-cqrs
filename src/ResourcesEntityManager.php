@@ -358,7 +358,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
 
             return $b->like(
                 $b->var(static::K_RECORD_NAME),
-                $b->var('%' . $value . '%')
+                $b->lit('%' . $value . '%')
             );
         }
 
