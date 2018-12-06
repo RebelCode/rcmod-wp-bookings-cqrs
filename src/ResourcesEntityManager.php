@@ -322,6 +322,11 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         $this->_arrayUnsetPath($record, $this->_getEntitySessionRulesPath());
         $this->_arrayUnsetPath($record, $this->_getEntityImageUrlPath());
 
+        // Move timezone out of availability to root of record
+        $timezone = $this->_arrayGetPath($record, $this->_getEntityTimezonePath());
+        $this->_arraySetPath($record, $this->_getRecordTimezonePath(), $timezone);
+        $this->_arrayUnsetPath($record, $this->_getEntityTimezonePath());
+
         $dataPath = $this->_getEntityDataPath();
 
         $data = $this->_arrayGetPath($record, $dataPath, null);
@@ -353,7 +358,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
 
             return $b->like(
                 $b->var(static::K_RECORD_NAME),
-                $b->var('%' . $value . '%')
+                $b->lit('%' . $value . '%')
             );
         }
 
@@ -497,7 +502,7 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
             if ($_ruleId === null) {
                 $_newRuleIds = $this->rulesInsertRm->insert([$_rule]);
                 $_ruleId     = $_newRuleIds[0];
-            } else{
+            } else {
                 // If rule has an ID, update the existing rule
                 $_ruleExp = $b->eq(
                     $b->var('id'),

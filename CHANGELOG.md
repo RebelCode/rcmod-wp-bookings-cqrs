@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Resources may now be searched by name from the entity manager using the `search` query field.
 
+### Fixed
+- Timezones were not being saved correctly for resources.
+
 ## [0.1-alpha12] - 2018-12-05
 ### Added
 - New migration for DB version 3.
