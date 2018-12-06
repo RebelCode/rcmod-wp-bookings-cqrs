@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+
+## [0.1-alpha13] - 2018-12-06
 ### Added
 - Resources may now be searched by name from the entity manager using the `search` query field.
 
