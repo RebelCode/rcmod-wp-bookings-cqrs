@@ -78,6 +78,15 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
     const K_ENTITY_DATA = 'data';
 
     /**
+     * The key in resource DB records where the resource name is stored.
+     *
+     * This is used for searching for resources by name.
+     *
+     * @since [*next-version*]
+     */
+    const K_RECORD_NAME = 'name';
+
+    /**
      * The key in resource entities where availability rules are stored.
      *
      * May be a path, delimited by forward slashes.
@@ -121,6 +130,13 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
      * @since [*next-version*]
      */
     const K_ENTITY_IMAGE_URL = 'data/imageUrl';
+
+    /**
+     * The query field to use for searching for resources by name.
+     *
+     * @since [*next-version*]
+     */
+    const RESOURCES_NAME_SEARCH_FIELD = 'search';
 
     /**
      * The default resource timezone for resources that do not explicitly have a timezone.
@@ -328,6 +344,25 @@ class ResourcesEntityManager extends BaseCqrsEntityManager
         $record = array_filter($record);
 
         return $record;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @since [*next-version*]
+     */
+    protected function _buildFieldQueryCompareExpression($key, $value)
+    {
+        if ($key === static::RESOURCES_NAME_SEARCH_FIELD) {
+            $b = $this->exprBuilder;
+
+            return $b->like(
+                $b->var(static::K_RECORD_NAME),
+                $b->var('%' . $value . '%')
+            );
+        }
+
+        return parent::_buildFieldQueryCompareExpression($key, $value);
     }
 
     /**
